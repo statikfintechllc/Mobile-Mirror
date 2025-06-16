@@ -7,7 +7,7 @@ set -eu
 
 echo "[*] Installing required apt packages..."
 sudo apt update
-grep -vE '^\s*#|^\s*$' apt.txt | xargs --no-run-if-empty sudo apt install -y
+sudo apt install -y tailscale qrencode openssl lsof
 
 # Always install whiptail (for TUI)
 sudo apt install -y whiptail
