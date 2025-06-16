@@ -50,7 +50,7 @@ mkdir -p "$APPDIR" "$ICNDIR"
 
 # Copy scripts *flat* to applications (NOT recursive, NOT keeping folders)
 cp "$REPO/scripts/mobile_cli.sh" "$APPDIR/"
-chmod +x "$APPDIR/mobile_cli.sh"
+sudo chmod +x "$APPDIR/mobile_cli.sh"
 
 # Copy icon (flat, no folder)
 cp "$REPO/env/MobileDeveloper.png" "$ICNDIR/"
@@ -67,6 +67,6 @@ Terminal=true
 Categories=Development;Utility;
 EOF
 
-chmod 644 "$APPDIR/MobileDeveloper.desktop"
+sudo chmod +x "$APPDIR/MobileDeveloper.desktop"
 
 echo "[*] Mobile Developer installed. Look for 'Mobile Developer' in your launcher menu."
