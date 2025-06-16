@@ -30,7 +30,7 @@ conda activate "$ENV_NAME"
 
 echo "[*] Installing required apt packages..."
 sudo apt update
-sudo apt install -y tailscale qrencode openssl lsof whiptail
+sudo apt install -y tailscale kitty qrencode openssl lsof whiptail
 
 # ---- 2. Install code-server ----
 
