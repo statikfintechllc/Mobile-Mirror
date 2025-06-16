@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # stop_remote_dev.sh - Kill code-server on port 8888 and stop Tailscale
 
+if command -v conda &>/dev/null; then
+    eval "$(conda shell.bash hook)"
+    conda activate Mob-Dev
+fi
+
 set -eu
 
 PORT=8888
