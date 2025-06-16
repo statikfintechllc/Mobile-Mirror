@@ -2,3 +2,4 @@ tailscale
 qrencode
 openssl
 lsof
+kitty
