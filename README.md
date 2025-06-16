@@ -70,7 +70,7 @@ Plus:
 
 - Linux (Ubuntu 20.04+, Debian, Arch, Pop!\_OS tested)
 - [Tailscale account (free)](https://tailscale.com/)
-- `git`, `curl`, `qrencode`, `whiptail` — auto-installed if missing
+- `conda`, `kitty`, `git`, `curl`, `qrencode`, `whiptail` — auto-installed if missing
 - `code-server` — auto-installed if missing
 
 ---
@@ -116,15 +116,15 @@ To stop:
 
 # 🖥️ Desktop Launcher
 
-After install:
+After install, you can:
 
-- Look for **Mobile Developer** in your Linux App Launcher  
+- Look for **Mobile Developer v1.0.1** in your Linux App Launcher  
 - Use the GUI panel for:  
   - ✅ Start  
+  - ✅ Stop
   - ✅ Stop  
-  - ✅ Logs  
 
-> No terminal required.
+> No terminal required. If you don't like running commands.
 
 ---
 
