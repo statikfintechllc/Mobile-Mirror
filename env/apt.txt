@@ -1,0 +1,5 @@
+# All required apt packages, one per line
+tailscale
+qrencode
+openssl
+lsof
