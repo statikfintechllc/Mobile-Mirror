@@ -132,7 +132,8 @@ After install, you can:
   - ✅ Start  
   - ✅ Stop
   - ✅ Trail Logs  
-  - ✅ Exit  
+  - ✅ Exit
+  - ✅ UnInstall
 
 > No terminal required.
 
