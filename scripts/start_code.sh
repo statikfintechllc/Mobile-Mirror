@@ -50,7 +50,7 @@ else
 fi
 
 echo -e "${BOLD}${CYAN}[*] Starting code-server with HTTPS on port $PORT...${RESET}"
-nohup code-server --bind-addr 0.0.0.0:$PORT --cert "$CERT" --cert-key "$KEY" > ~/code-server.log 2>&1 &
+nohup code-server --bind-addr 0.0.0.0:$PORT --cert "$CERT" --cert-key "$KEY" > "$HOME/.local/share/applications/code-server.log" 2>&1 &
 
 sleep 2
 
@@ -66,4 +66,8 @@ else
     echo -e "${BOLD}Install qrencode for mobile QR access: sudo apt install qrencode${RESET}"
     echo -e "Or open this URL on your device:\n$URL\n"
 fi
+echo -e "\n${BOLD}${CYAN}Open this in your mobile browser and accept the self-signed cert warning.${RESET}\n"
+
+echo -e "${BOLD}${CYAN}Press Enter to return to the menu...${RESET}"
+read -r
 

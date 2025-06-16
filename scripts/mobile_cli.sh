@@ -1,8 +1,14 @@
-#!/usr/bin/env bash
+##!/usr/bin/env bash
 set -e
 
 APP_TITLE="Mobile Developer v.1.0.1"
 SUB_TITLE="SFTi"
+
+# Resolve current script dir
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+START_SCRIPT="$SCRIPT_DIR/start_code.sh"
+STOP_SCRIPT="$SCRIPT_DIR/stop_code.sh"
+LOG_FILE="$LOG_FILE/code-server.log"
 
 while true; do
     clear
@@ -21,17 +27,17 @@ while true; do
 
     case $CHOICE in
         1)
-            bash start_code.sh
+            bash "$START_SCRIPT"
             echo -e "\nMobile Tunnel Started! Press enter to continue..."
             read -r
             ;;
         2)
-            bash stop_code.sh
+            bash "$STOP_SCRIPT"
             echo -e "\nMobile Tunnel Stopped. Press enter to continue..."
             read -r
             ;;
         3)
-            tail -n 40 ../Mobile-Developer/logs/code-server.log
+            tail -n 40 "$LOG_FILE" || echo "No log file found at $LOG_FILE"
             echo -e "\nPress enter to continue..."
             read -r
             ;;
@@ -44,3 +50,4 @@ while true; do
             ;;
     esac
 done
+

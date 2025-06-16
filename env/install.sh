@@ -45,15 +45,25 @@ fi
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 APPDIR="$HOME/.local/share/applications"
 ICNDIR="$HOME/.local/share/icons"
+LOG_FILE="$APPDIR/code-server.log"
 
-mkdir -p "$APPDIR" "$ICNDIR"
+mkdir -p "$APPDIR" "$ICNDIR" "$LOG_FILE"
 
 # Copy scripts *flat* to applications (NOT recursive, NOT keeping folders)
-cp "$REPO/scripts/mobile_cli.sh" "$APPDIR/"
+cp "$REPO/scripts/mobile_cli.sh" "$APPDIR/mobile_cli.sh"
 sudo chmod +x "$APPDIR/mobile_cli.sh"
 
+cp "$REPO/scripts/start_code.sh" "$APPDIR/start_code.sh"
+sudo chmod +x "$APPDIR/mobile_cli.sh"
+
+cp "$REPO/scripts/stop_code.sh" "$APPDIR/stop_code.sh"
+sudo chmod +x "$APPDIR/stop_code.sh"
+
+cp "$REPO/logs/code-server.log" "$LOG_FILE/code-server.log"
+sudo chmod +x "$LOG_FILE/code-server.log"
+
 # Copy icon (flat, no folder)
-cp "$REPO/env/MobileDeveloper.png" "$ICNDIR/"
+cp "$REPO/env/MobileDeveloper.png" "$ICNDIR/MobileDeveloper.png"
 
 # Write .desktop file with ONLY BARE FILENAMES, no paths
 cat > "$APPDIR/MobileDeveloper.desktop" <<EOF
@@ -61,8 +71,8 @@ cat > "$APPDIR/MobileDeveloper.desktop" <<EOF
 Type=Application
 Name=Mobile Developer v.1.0.1
 Comment=SFTi
-Exec=mobile_cli.sh
-Icon=MobileDeveloper
+Exec=$APPDIR/mobile_cli.sh
+Icon=$ICNDIR/MobileDeveloper.png
 Terminal=true
 Categories=Development;Utility;
 EOF
