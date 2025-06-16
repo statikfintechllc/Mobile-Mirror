@@ -50,8 +50,7 @@ You can develop and deploy as if you’re sitting at your desk—no matter where
 
 > *Built to let you actually code on the move. No cloud. No lock-in. No bullshit.*
 
-This project is **not monetized, centralized, or VC-filtered.**  
-But it now requires infrastructure support to evolve into an autonomous AGI prototype.
+This project is **not monetized, centralized, or VC-filtered.**
 
 ---
 
@@ -89,20 +88,13 @@ The initial funding target will allow StatikFinTech, LLC to:
 
 ## Why Now?
 
-The core system is live. It:
-- Installs and launches(Has CLI and Dashboard, CLI launches, Still Debugging nlp, full dashboard is in the works)
-- Tracks state, vector memory, tasks, and execution(On paper)
-- Includes a roadmap through mutation, NLP, scraping, and signal intelligence
-
-It is **ready to evolve** into a persistent agent with retraining, planning, and code synthesis across self-contained loops. Everything is present and Almost fully wired.
-
 But without me being able to run Devops full time, the loop cannot scale.
 
 ---
 
 ## Strategic Fit
 
-GremlinGPT aligns with:
+StatikFinTech, LLC is building:
 
 | Sector           | Why it Fits |
 |------------------|-------------|
@@ -116,12 +108,12 @@ GremlinGPT aligns with:
 
 ## Summary
 
-This isn’t another LLM front-end.
+This isn’t another LLM Wrapper Start-Up.
 
 This is a *live AI loop* building itself from local computation —  
-and it’s working, starving, and scaling.
+and the team is working, starving, and scaling.
 
-**GremlinGPT v1.0.3 will be the foundation of self-bootstrapped, offline recursive AI** if funded and supported in time.
+The Prize **GremlinGPT v1.0.3 will be the foundation of self-bootstrapped, offline recursive AI** if funded and supported in time.
 
 **Support autonomy. Fund the evolution.**
 
