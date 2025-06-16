@@ -27,7 +27,7 @@ Mobile Developer/
 │   └── ... # About the team and How to contact
 │
 └── docs/
-│   │
+    │
     ├── SYSTEM_OVERVIEW.md
     └── STRUCTURE.md
 ```
