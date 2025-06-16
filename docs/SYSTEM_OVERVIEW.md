@@ -130,4 +130,4 @@ Mobile Developer automates the setup and lifecycle of a private mobile dev tunne
 
 > *Built to let you *actually* code on the move. No cloud. No lock-in. No bullshit.*
 
-- *StatikFinTech, LLC*
+*StatikFinTech, LLC*
