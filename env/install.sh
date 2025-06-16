@@ -7,7 +7,7 @@ set -eu
 
 echo "[*] Installing required apt packages..."
 sudo apt update
-xargs -a apt.txt -r -- sudo apt install -y
+grep -vE '^\s*#|^\s*$' apt.txt | xargs --no-run-if-empty sudo apt install -y
 
 # Always install whiptail (for TUI)
 sudo apt install -y whiptail
