@@ -2,7 +2,7 @@
 Type=Application
 Name=Mobile Developer v.1.0.1
 Comment=SFTi
-Exec=sh -c 'cd "$(dirname %k)/../scripts" && ./mobile_dev_cli.sh'
+Exec=mobile_cli
 Icon=MobileDeveloper
 Terminal=true
 Categories=Development;Utility;
