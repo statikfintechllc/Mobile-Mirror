@@ -21,6 +21,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 START_SCRIPT="$SCRIPT_DIR/start_code.sh"
 STOP_SCRIPT="$SCRIPT_DIR/stop_code.sh"
 LOG_FILE="$SCRIPT_DIR/code-server.log"
+REMOVE_SCRIPT="$SCRIPT_DIR/remove_mobile.sh"
 
 # Main loop
 while true; do
@@ -35,6 +36,7 @@ while true; do
     echo "2) Stop Mobile Tunnel"
     echo "3) View Logs"
     echo "4) Exit"
+    echo "5) Uninstall Mobile Developer"
     echo -n "Select> "
     read -r CHOICE
 
@@ -57,6 +59,18 @@ while true; do
             ;;
         4)
             exit 0
+            ;;
+        5)
+            echo -e "\n\033[1;31mWARNING: This will uninstall Mobile Developer permanently.\033[0m"
+            echo -n "Type 'UNINSTALL' to confirm: "
+            read -r CONFIRM
+            if [[ "$CONFIRM" == "UNINSTALL" ]]; then
+                bash "$REMOVE_SCRIPT"
+                exit 0
+            else
+                echo "Uninstall cancelled. Press enter to return to menu."
+                read -r
+            fi
             ;;
         *)
             echo "Invalid choice. Press enter to try again..."
