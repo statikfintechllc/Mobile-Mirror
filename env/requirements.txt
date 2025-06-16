@@ -1,0 +1,3 @@
+# Python requirements for scripts/extensions (if any)
+# None required for bash/cli-only use.
+# If you add python automation, list packages here.
