@@ -26,9 +26,10 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
   <a href="https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">
     <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
   </a>
-</div>
 
-# Mobile Developer: Instant Secure Dev From Anywhere
+# Mobile Development. Instant. Secure. From Anywhere.
+
+</div>
 
 > Remote code, build, and ops on your home computer — from your phone — with zero cloud or port-forwarding.
 
