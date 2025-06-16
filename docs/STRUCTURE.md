@@ -11,6 +11,7 @@ Mobile Developer/
 ├── env/
 │   │
 │   ├── MobileDeveloper.desktop
+│   ├── MobileDeveloper.png
 │   ├── .env.example
 │   ├── apt.txt
 │   ├── requirements.txt
