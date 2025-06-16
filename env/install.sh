@@ -6,7 +6,7 @@ set -eu
 # ---- 0. Conda setup ----
 
 ENV_NAME="Mob-Dev"
-PYTHON_VERSION="3.10"  # Change to your required python version
+PYTHON_VERSION="3.10"  # Change if a different python version is required
 
 if ! command -v conda &>/dev/null; then
     echo "[ERROR] conda not found. Please install Miniconda or Anaconda first."
@@ -43,7 +43,7 @@ fi
 
 # ---- 3. Install python requirements (inside conda env) ----
 
-REQS_PATH="../requirements.txt"
+REQS_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/requirements.txt"
 if [[ -s "$REQS_PATH" ]]; then
     echo "[*] Installing python requirements from $REQS_PATH..."
     pip install --upgrade pip
@@ -56,27 +56,15 @@ fi
 
 echo "[*] Installing Mobile Developer desktop launcher..."
 
-SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../scripts" && pwd)"
+# Source (in repo) and destination (system user applications dir)
+DESKTOP_SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/MobileDeveloper.desktop"
 APPDIR="$HOME/.local/share/applications"
-ICON_PATH="$APPDIR/MobileDeveloper.desktop"
-SCRIPT_PATH="$SCRIPTDIR/mobile_dev_cli.sh"
+DESKTOP_DEST="$APPDIR/MobileDeveloper.desktop"
 
 mkdir -p "$APPDIR"
+cp "$DESKTOP_SRC" "$DESKTOP_DEST"
+chmod +x "$DESKTOP_DEST"
 
-cat > "$ICON_PATH" <<EOF
-[Desktop Entry]
-Type=Application
-Name=Mobile Developer
-Exec=$SCRIPT_PATH
-Icon=utilities-terminal
-Terminal=true
-Categories=Development;Utility;
-Comment=Start/Stop Mobile Developer Tunnel and VSCode
-EOF
-
-chmod +x "$SCRIPT_PATH"
-chmod +x "$ICON_PATH"
-
-echo "[*] App icon created at $ICON_PATH"
-echo "    - You can now search for 'Mobile Developer' and pin it to your launcher/dash."
+echo "[*] Desktop launcher installed at $DESKTOP_DEST"
+echo "    - Search for 'Mobile Developer' in your app launcher/menu."
 echo "[*] All dependencies installed and app ready to run."
