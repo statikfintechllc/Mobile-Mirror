@@ -22,10 +22,6 @@ Mobile Developer/
 │   ├── stop_all.sh
 │   └── mobile_dev_cli.sh
 │
-├── About Us/
-│   │
-│   └── ... # About the team and How to contact
-│
 └── docs/
     │
     ├── SYSTEM_OVERVIEW.md
