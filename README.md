@@ -55,6 +55,7 @@ Plus:
 
 ## 📦 Features
 
+- ✅ App Icon and Naming for Easy Lauch after clone and install
 - ✅ One-command start with secure HTTPS and self-signed certs
 - ✅ QR code terminal output for mobile login
 - ✅ Clean shutdown script: kills all tunnels and services
