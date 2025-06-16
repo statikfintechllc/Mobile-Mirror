@@ -2,7 +2,7 @@
 Type=Application
 Name=Mobile Developer
 Exec=sh -c 'cd "$(dirname %k)/../scripts" && ./start_code.sh'
-Icon=utilities-terminal
+Icon=MobileDeveloper
 Terminal=true
 Categories=Development;Utility;
 Comment=Start/Stop Mobile Developer Tunnel and VSCode
