@@ -129,8 +129,8 @@ After install:
 
 # 📖 Documentation
 
-- [System Overview]((https://github.com/statikfintechllc/Mobile-Developer/blob/master/docs/SYSTEM_OVERVIEW.md)
-- [Directory Structure]((https://github.com/statikfintechllc/Mobile-Developer/blob/master/docs/STRUCTURE.md)
+- [System Overview](https://github.com/statikfintechllc/Mobile-Developer/blob/master/docs/SYSTEM_OVERVIEW.md)
+- [Directory Structure](https://github.com/statikfintechllc/Mobile-Developer/blob/master/docs/STRUCTURE.md)
 - [About Us](https://github.com/statikfintechllc/Mobile-Developer/blob/master/About%20Us/)
 
 ---
