@@ -4,11 +4,11 @@ set -e
 APP_TITLE="Mobile Developer v.1.0.1"
 SUB_TITLE="SFTi"
 
-# Ensure terminal context for .desktop safety
+# Ensure terminal emulator context
 if ! [ -t 0 ]; then
     for TERM_APP in x-terminal-emulator gnome-terminal konsole xfce4-terminal lxterminal tilix mate-terminal; do
         if command -v "$TERM_APP" &>/dev/null; then
-            exec "$TERM_APP" -- bash -c "$0"
+            exec "$TERM_APP" -- bash -ic "$0"
             exit 0
         fi
     done
@@ -78,3 +78,4 @@ while true; do
             ;;
     esac
 done
+

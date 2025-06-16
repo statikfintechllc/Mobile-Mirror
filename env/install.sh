@@ -45,16 +45,15 @@ fi
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 APPDIR="$HOME/.local/share/applications"
 ICNDIR="$HOME/.local/share/icons"
-LOG_FILE="$APPDIR/code-server.log"
 
-mkdir -p "$APPDIR" "$ICNDIR" "$LOG_FILE"
+mkdir -p "$APPDIR" "$ICNDIR"
 
 # Copy scripts *flat* to applications (NOT recursive, NOT keeping folders)
 cp "$REPO/scripts/mobile_cli.sh" "$APPDIR/mobile_cli.sh"
 sudo chmod +x "$APPDIR/mobile_cli.sh"
 
 cp "$REPO/scripts/start_code.sh" "$APPDIR/start_code.sh"
-sudo chmod +x "$APPDIR/mobile_cli.sh"
+sudo chmod +x "$APPDIR/start_code.sh"
 
 cp "$REPO/scripts/stop_code.sh" "$APPDIR/stop_code.sh"
 sudo chmod +x "$APPDIR/stop_code.sh"

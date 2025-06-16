@@ -1,6 +1,6 @@
 # Directory Structure
 
-*Built This in ~4 hours, Buttoned in ~4 hours*
+*Built This in ~4 hours, Buttoned in ~4 hours, Now Adding a Feature. SOON*
 
 ```text
 Mobile Developer/
@@ -10,21 +10,21 @@ Mobile Developer/
 │
 ├── env/
 │   │
-│   ├── MobileDeveloper.desktop
-│   ├── MobileDeveloper.png
-│   ├── .env.example
-│   ├── apt.txt
-│   └── install.sh
+│   ├── MobileDeveloper.desktop   # DeBugging
+│   ├── MobileDeveloper.png   # DeBugging
+│   ├── .env.example   # ALIGNED
+│   ├── apt.txt   # ALIGNED
+│   └── install.sh   # GOOD
 │
 ├── scripts/
 │   │
-│   ├── remove_mobile.sh
-│   ├── start_all.sh
-│   ├── stop_all.sh
-│   └── mobile_cli.sh
+│   ├── remove_mobile.sh   # GOOD
+│   ├── start_all.sh   # GOOD
+│   ├── stop_all.sh   # GOOD
+│   └── mobile_cli.sh   # GOOD
 │
 └── docs/
     │
-    ├── SYSTEM_OVERVIEW.md
-    └── STRUCTURE.md
+    ├── SYSTEM_OVERVIEW.md   # ALIGNED
+    └── STRUCTURE.md   # ALIGNED
 ```

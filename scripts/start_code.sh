@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 # start_remote_dev.sh - Start Tailscale + code-server with HTTPS + QR code display
 
+# Explicitly source Conda setup
+CONDA_BASE=$(conda info --base)
+source "$CONDA_BASE/etc/profile.d/conda.sh"
+conda activate Mob-Dev
+
 # Always activate Mob-Dev conda env, regardless of shell
 if command -v conda &>/dev/null; then
     eval "$(conda shell.bash hook)"
@@ -12,8 +17,9 @@ fi
 
 set -eu
 
-CERT=~/code-server.crt
-KEY=~/code-server.key
+LOGFILE="$HOME/code-server.log"
+CERT="$HOME/code-server.crt"
+KEY="$HOME/code-server.key"
 PORT=8888
 
 # Colors for CLI
@@ -22,12 +28,23 @@ CYAN='\033[36m'
 RESET='\033[0m'
 
 echo -e "${BOLD}${CYAN}[*] Starting Tailscale daemon via systemd...${RESET}"
-sudo systemctl enable --now tailscaled
+if command -v pkexec &>/dev/null; then
+  pkexec systemctl enable --now tailscaled
+else
+  echo "[ERROR] pkexec not available, falling back to sudo..."
+  sudo systemctl enable --now tailscaled
+fi
+
 
 echo -e "${BOLD}${CYAN}[*] Bringing up Tailscale...${RESET}"
 if ! tailscale ip -4 >/dev/null 2>&1; then
     echo -e "${BOLD}${CYAN}[*] Running tailscale up...${RESET}"
-    sudo tailscale up
+if command -v pkexec &>/dev/null; then
+  pkexec tailscale up
+else
+  sudo tailscale up
+fi
+
 else
     echo -e "${BOLD}${CYAN}[*] Already connected to Tailnet.${RESET}"
 fi
@@ -50,7 +67,7 @@ else
 fi
 
 echo -e "${BOLD}${CYAN}[*] Starting code-server with HTTPS on port $PORT...${RESET}"
-nohup code-server --bind-addr 0.0.0.0:$PORT --cert "$CERT" --cert-key "$KEY" > "$HOME/.local/share/applications/code-server.log" 2>&1 &
+code-server --bind-addr 0.0.0.0:$PORT --cert "$CERT" --cert-key "$KEY" >> "$LOGFILE" 2>&1 &
 
 sleep 2
 

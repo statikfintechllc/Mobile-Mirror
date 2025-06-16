@@ -1,27 +1,10 @@
 #!/usr/bin/env bash
-# stop_remote_dev.sh - Kill code-server on port 8888 and stop Tailscale
-
-if command -v conda &>/dev/null; then
-    eval "$(conda shell.bash hook)"
-    conda activate Mob-Dev
-fi
+# stop_remote_dev.sh - Kill code-server and stop Tailscale
 
 set -eu
 
-PORT=8888
-
-echo "[*] Killing all code-server processes on port $PORT..."
-PIDS=$(sudo lsof -t -i:$PORT || true)
-
-if [[ -n "$PIDS" ]]; then
-    for pid in $PIDS; do
-        echo "[*] Killing PID $pid..."
-        sudo kill -9 "$pid" || true
-    done
-    echo "[✓] Killed all code-server processes bound to port $PORT."
-else
-    echo "[!] No code-server processes found on port $PORT."
-fi
+echo "[*] Killing all code-server processes owned by user $USER..."
+pkill -9 -u "$USER" -f "code-server" || echo "[!] No code-server process found."
 
 echo "[*] Stopping Tailscale daemon..."
 sudo systemctl stop tailscaled || true

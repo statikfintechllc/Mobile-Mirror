@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="docs/custom.css">
+k<link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
   <a
 href="https://github.com/statikfintechllc/Mobile-Developer/blob/master/LICENSE">
@@ -32,6 +32,8 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 </div>
 
 > Remote code, build, and ops on your home computer — from your phone — with zero cloud or port-forwarding.
+
+*UPDATE: System Fully Operational. Manual run of the mobile_cli.sh allows full terminal access to the system from Start to Uninstall, Debugging App start, All processes work through directly through the App Face besides the Starting Function*
 
 ---
 
