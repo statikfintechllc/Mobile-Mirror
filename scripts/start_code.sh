@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 # start_remote_dev.sh - Start Tailscale + code-server with HTTPS + QR code display
 
+# Always activate Mob-Dev conda env, regardless of shell
+if command -v conda &>/dev/null; then
+    eval "$(conda shell.bash hook)"
+    conda activate Mob-Dev
+else
+    echo "conda not found! Exiting."
+    exit 1
+fi
+
 set -eu
 
 CERT=~/code-server.crt
