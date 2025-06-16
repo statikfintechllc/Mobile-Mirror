@@ -25,16 +25,20 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
   <a href="https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink">
     <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
   </a>
-</div>
+
+  </div>
 
 # Mobile-Developer – Open Funding Proposal
 
-**Project:** Mobile-Developer v.1.0.1  
-**Repo:** [https://github.com/statikfintechllc/Mobile-Developer](https://github.com/statikfintechllc/Mobile-Developer.git) 
+## Project: Mobile-Developer v.1.0.1  
+
+*Repo:* 
+
+[https://github.com/statikfintechllc/Mobile-Developer](https://github.com/statikfintechllc/Mobile-Developer.git)  
 **Maintainer:** statikfintechllc / ascend.gremlin@gmail.com  
-**Version:** 1.0.1
-**License:** MIT
-**Status:** Actively Maintained  
+**Version:** 1.0.1  
+**License:** MIT  
+**Status:** Actively Maintained   
 **Dashboard:** [https://statikfintechllc.github.io
 ](https://statikfintechllc.github.io/AscendAI/)
 
