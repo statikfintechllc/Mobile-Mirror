@@ -27,7 +27,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
     <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="SFTi"/>
   </a>
 
-# Mobile Development. Instant. Secure. From Anywhere.
+# Mobile Development. Instant. Secure. Anywhere.
 
 </div>
 
