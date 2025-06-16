@@ -59,8 +59,11 @@ sudo chmod +x "$APPDIR/mobile_cli.sh"
 cp "$REPO/scripts/stop_code.sh" "$APPDIR/stop_code.sh"
 sudo chmod +x "$APPDIR/stop_code.sh"
 
-cp "$REPO/logs/code-server.log" "$LOG_FILE/code-server.log"
-sudo chmod +x "$LOG_FILE/code-server.log"
+cp "$REPO/scripts/remove_mobile.sh" "$APPDIR/remove_mobile.sh"
+sudo chmod +x "$APPDIR/remove_mobile.sh"
+
+cp "$REPO/logs/code-server.log" "$APPDIR/code-server.log"
+sudo chmod +x "$APPDIR/code-server.log"
 
 # Copy icon (flat, no folder)
 cp "$REPO/env/MobileDeveloper.png" "$ICNDIR/MobileDeveloper.png"
