@@ -173,4 +173,4 @@ Open source. Contributions, forks, and feedback welcome.
   - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
   - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
 
-**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/Mobile-Developer/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
