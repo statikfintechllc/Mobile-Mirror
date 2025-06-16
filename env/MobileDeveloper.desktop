@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Mobile Developer
-Exec=/home/$USER/Mobile\ Developer/scripts/mobile_dev_cli.sh
+Exec=sh -c 'cd "$(dirname %k)/../scripts" && ./start_code.sh'
 Icon=utilities-terminal
 Terminal=true
 Categories=Development;Utility;
