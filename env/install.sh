@@ -52,19 +52,33 @@ else
     echo "[*] No python requirements found at $REQS_PATH."
 fi
 
-# ---- 4. Install the Desktop Launcher (.desktop) ----
+# ---- 4. Install the Desktop Launcher (.desktop) and App Icon ----
 
-echo "[*] Installing Mobile Developer desktop launcher..."
+echo "[*] Installing Mobile Developer desktop launcher and icon..."
 
-# Source (in repo) and destination (system user applications dir)
-DESKTOP_SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/MobileDeveloper.desktop"
+# Always resolve current script dir (env/) and repo root
+SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPOROOT="$(cd "$SCRIPTDIR/.." && pwd)"
+
+# Set icon and desktop file locations in the repo
+ICON_SRC="$SCRIPTDIR/MobileDeveloper.png"
+DESKTOP_SRC="$SCRIPTDIR/MobileDeveloper.desktop"
+
+# Set user-local destinations
+ICON_DEST="$HOME/.local/share/icons/MobileDeveloper.png"
 APPDIR="$HOME/.local/share/applications"
 DESKTOP_DEST="$APPDIR/MobileDeveloper.desktop"
 
+# Copy icon (will be found as 'MobileDeveloper' by .desktop file)
+mkdir -p "$(dirname "$ICON_DEST")"
+cp "$ICON_SRC" "$ICON_DEST"
+
+# Copy .desktop to applications dir
 mkdir -p "$APPDIR"
 cp "$DESKTOP_SRC" "$DESKTOP_DEST"
 chmod +x "$DESKTOP_DEST"
 
+echo "[*] App icon installed at $ICON_DEST"
 echo "[*] Desktop launcher installed at $DESKTOP_DEST"
 echo "    - Search for 'Mobile Developer' in your app launcher/menu."
 echo "[*] All dependencies installed and app ready to run."
