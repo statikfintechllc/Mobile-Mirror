@@ -14,14 +14,13 @@ Mobile Developer/
 │   ├── MobileDeveloper.png
 │   ├── .env.example
 │   ├── apt.txt
-│   ├── requirements.txt
 │   └── install.sh
 │
 ├── scripts/
 │   │
 │   ├── start_all.sh
 │   ├── stop_all.sh
-│   └── mobile_dev_cli.sh
+│   └── mobile_cli.sh
 │
 └── docs/
     │
