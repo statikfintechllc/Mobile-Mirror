@@ -18,6 +18,7 @@ Mobile Developer/
 │
 ├── scripts/
 │   │
+│   ├── remove_mobile.sh
 │   ├── start_all.sh
 │   ├── stop_all.sh
 │   └── mobile_cli.sh
