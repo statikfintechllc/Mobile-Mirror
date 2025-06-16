@@ -110,7 +110,13 @@ Then:
 To stop:
 
 ```bash
-./stop_all.sh
+cd Mobile-Developer/scripts/ && ./stop_all.sh
+```
+
+To uninstall:
+
+```bash
+cd Mobile-Developer/scripts/ && ./remove_mobile.sh
 ```
 
 ---
@@ -125,7 +131,8 @@ After install, you can:
 - Use the GUI panel for:  
   - ✅ Start  
   - ✅ Stop
-  - ✅ Stop  
+  - ✅ Trail Logs  
+  - ✅ Exit  
 
 > No terminal required.
 
