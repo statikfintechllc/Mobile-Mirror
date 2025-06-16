@@ -1,15 +1,28 @@
-##!/usr/bin/env bash
+#!/usr/bin/env bash
 set -e
 
 APP_TITLE="Mobile Developer v.1.0.1"
 SUB_TITLE="SFTi"
 
-# Resolve current script dir
+# Ensure terminal context for .desktop safety
+if ! [ -t 0 ]; then
+    for TERM_APP in x-terminal-emulator gnome-terminal konsole xfce4-terminal lxterminal tilix mate-terminal; do
+        if command -v "$TERM_APP" &>/dev/null; then
+            exec "$TERM_APP" -- bash -c "$0"
+            exit 0
+        fi
+    done
+    echo "[ERROR] No terminal emulator found. Exiting."
+    exit 1
+fi
+
+# Resolve script dir
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 START_SCRIPT="$SCRIPT_DIR/start_code.sh"
 STOP_SCRIPT="$SCRIPT_DIR/stop_code.sh"
-LOG_FILE="$LOG_FILE/code-server.log"
+LOG_FILE="$SCRIPT_DIR/code-server.log"
 
+# Main loop
 while true; do
     clear
     UPTIME=$(uptime -p | sed 's/^up //')
@@ -37,7 +50,8 @@ while true; do
             read -r
             ;;
         3)
-            tail -n 40 "$LOG_FILE" || echo "No log file found at $LOG_FILE"
+            echo -e "\n\033[0;36m[Last 40 lines from: $LOG_FILE]\033[0m"
+            tail -n 40 "$LOG_FILE" 2>/dev/null || echo "No log file found at $LOG_FILE"
             echo -e "\nPress enter to continue..."
             read -r
             ;;
@@ -50,4 +64,3 @@ while true; do
             ;;
     esac
 done
-
