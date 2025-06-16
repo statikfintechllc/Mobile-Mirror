@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-# scripts/mobile_dev_cli.sh - Mobile Developer CLI/TUI launcher
-
 set -e
 
 APP_TITLE="Mobile Developer v.1.0.1"
@@ -8,7 +6,6 @@ SUB_TITLE="SFTi"
 
 while true; do
     clear
-    # Show header info
     UPTIME=$(uptime -p | sed 's/^up //')
     echo -e "\033[1;36m$APP_TITLE\033[0m"
     echo -e "\033[0;32m$SUB_TITLE\033[0m"
@@ -24,20 +21,17 @@ while true; do
 
     case $CHOICE in
         1)
-            # Launch start_all.sh (in repo/scripts/)
-            bash "$(dirname "$0")/start_all.sh"
+            bash start_code.sh
             echo -e "\nMobile Tunnel Started! Press enter to continue..."
             read -r
             ;;
         2)
-            bash "$(dirname "$0")/stop_all.sh"
+            bash stop_code.sh
             echo -e "\nMobile Tunnel Stopped. Press enter to continue..."
             read -r
             ;;
         3)
-            LOG=~/code-server.log
-            echo -e "\nLast 40 lines of log:\n"
-            tail -n 40 "$LOG"
+            tail -n 40 ../Mobile-Developer/logs/code-server.log
             echo -e "\nPress enter to continue..."
             read -r
             ;;
