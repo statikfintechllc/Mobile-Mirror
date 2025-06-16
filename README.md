@@ -151,3 +151,26 @@ Open source. Contributions, forks, and feedback welcome.
 
 > *System #3 in 3 weeks and 6 days, 1 Massive Proto-Type AGI, 1 3 part functioning AI ChatBot recieving persistence and 2 Brains, and now the solution to me not being able to Debug, As I'm never home.*
 - StatikFinTech, LLC
+
+---
+
+## Support Options
+
+| Method        | Handle / Link |
+|---------------|---------------|
+| **Patreon**   | [StatikFinTech, LLC](https://patreon.com/StatikFinTech_LLC?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink) |
+| **Ko-Fi**     | [statikfintech_llc](https://ko-fi.com/statikfintech_llc) |
+| **CashApp**   | [$statikmoney8](https://cash.app/$statikmoney8) |
+| **PayPal**    | [paypal.me/statikmoney8](https://paypal.me/statikmoney8) |
+| **Bitcoin**   | `bc1qarsr966ulmcs3mlcvae7p63v4j2y2vqrw74jl8` |
+| **Ethereum**  | `0xC2db50A0fc6c95f36Af7171D8C41F6998184103F` |
+| **Chime**     | `$StatikSmokTM` |
+
+**Want equity, private access, or to sponsor hardware directly? Reach Out to:**
+- **Email:** [ascend.gremlin@gmail.com](mailto:ascend.gremlin@gmail.com) | [ascend.help@gmail.com](mailto:ascend.help@gmail.com)
+- **Text Us:** [+1 (785) 443-6288](sms:+17854436288)  
+- **DM:**  
+  - a) [LinkedIn: StatikFinTech, LLC](https://www.linkedin.com/in/statikfintech-llc-780804368/)
+  - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
+
+**See Our [Open Funding Proposal](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/OPEN_FUNDING_PROPOSAL.md)**
