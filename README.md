@@ -87,7 +87,7 @@ chmod +x install.sh
 
 # 📂 Usage
 
-After install:
+After install you can:
 
 ```bash
 cd ../scripts
@@ -115,7 +115,9 @@ To stop:
 
 ---
 
-# 🖥️ Desktop Launcher
+**If you are allergic to bash. No Worries. Its an App!!**
+
+### 🖥️ Desktop Launcher
 
 After install, you can:
 
@@ -125,7 +127,7 @@ After install, you can:
   - ✅ Stop
   - ✅ Stop  
 
-> No terminal required. If you don't like running commands.
+> No terminal required.
 
 ---
 
