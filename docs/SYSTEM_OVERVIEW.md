@@ -1,99 +1,133 @@
-# System Overview — Mobile Developer
+# SYSTEM_OVERVIEW.md
 
-## Purpose
-
-**Mobile Developer** is a unified, zero-cloud remote development environment designed to let you code, build, and operate on your own hardware — from any device, anywhere — with maximum security and minimal setup pain. It’s built for hands-on creators, hackers, and devops who want to “just code” from their phone, tablet, or laptop, whether they’re at home, at work, or out in the world.
+## System Overview: Mobile Developer
 
 ---
 
-## Key Features
+### Executive Summary
 
-- **True Mobile Coding**: Write, run, debug, and manage your systems from your phone, tablet, or any browser—your code always runs on your own box.
-- **No Cloud Dependency**: No public IP, no VPS, no third-party remote servers or SaaS lock-in.
-- **Single QR Scan Onboarding**: After install, scan the terminal QR with your phone to open your code-server session instantly.
-- **Self-Healing HTTPS**: All browser connections are over HTTPS (self-signed cert auto-generated), ensuring browser feature support and privacy.
-- **Full System Control**: TUI (Text User Interface) menu lets you start, stop, or check logs for the full stack, without ever touching a terminal prompt.
+**Mobile Developer** enables secure, on-demand remote coding from any mobile device, directly on your home/server machine. With one-click tunnel creation, instant QR mobile onboarding, and seamless HTTPS VSCode (code-server) delivery, you can develop and deploy as if you’re sitting at your desk—no matter where you are.
 
 ---
 
-## Core Stack and Design
+## 1. Problem
 
-### 1. **Tailscale — Secure Mesh Network**
-
-- **Private global network**: Every device gets a stable 100.x.x.x WireGuard IP, routed privately and securely.
-- **No Port Forwarding**: Works across firewalls, NAT, or public WiFi with no need to expose ports to the Internet.
-- **Zero Trust**: Only devices authenticated with your Tailscale account can see or connect to each other.
-- **All traffic is end-to-end encrypted** by WireGuard, so you’re secure even over LTE or public hotspots.
-
-### 2. **code-server — Cloud VSCode, On Your Metal**
-
-- **Full VSCode experience**: Runs in your browser, on your own hardware.
-- **Persistent**: Your projects, files, and extensions are all local.
-- **Mobile ready**: Use touch, copy/paste, and keyboard features from phone or tablet browsers.
-- **HTTPS by default**: Browser sees a secure context, so all VSCode features are available.
-
-### 3. **Automation Scripts**
-
-- **Start/Stop Scripts**: One-click launch or kill for the entire remote dev stack. 
-    - `start_all.sh` — launches Tailscale, ensures connection, spins up code-server with HTTPS, and prints a QR code for mobile access.
-    - `stop_all.sh` — kills code-server processes on the specified port, shuts down Tailscale, and cleans up network state.
-- **TUI Control Panel**: Optional script with a button-based CLI menu, letting you Start/Stop/View Logs from a simple graphical menu (no bash knowledge required).
-
-### 4. **Desktop Integration**
-
-- **App Launcher Icon**: Installs a `.desktop` file, so users can start the Mobile Developer TUI from their applications dash/panel just like any other app.
-- **Pin and Forget**: Once installed, you can run/start/stop everything with a click, no terminal required.
+Developers increasingly need secure, real-time access to their coding environment from anywhere—traveling, commuting, or working outside the office. Current “remote dev” options are often clunky, insecure, or difficult to configure, especially for mobile.
 
 ---
 
-## Workflow
+## 2. Solution
 
-1. **Install with one command.**
-2. **Start**: Click the Mobile Developer icon or run the TUI script.
-3. **Scan**: Use your phone camera/QR app to scan the QR code in the terminal.
-4. **Code**: Browser opens to your secure code-server session; log in with your password and code as if you’re at your desk.
-5. **Stop**: When done, use the TUI or launcher to shut down all services and tunnels instantly.
+Mobile Developer automates the setup and lifecycle of a private mobile dev tunnel:
 
----
-
-## Security Model
-
-- **Zero Open Ports**: Nothing is accessible from the public internet.
-- **Encrypted at Every Layer**: WireGuard VPN via Tailscale, plus HTTPS on the web UI, even over mobile.
-- **No Vendor Lock**: All compute stays local, all configs are editable, and you can hard-reset the stack at any time.
-- **Per-Device Authorization**: Only your devices, with your Tailscale credentials, can access the network.
+- **Tailscale** creates a secure, peer-to-peer VPN tunnel between your phone and home/server.
+- **code-server** serves the full VSCode IDE (with HTTPS) to your device.
+- **CLI UI** provides easy controls and QR onboarding.
+- **Self-signed certs** ensure end-to-end encryption even on untrusted networks.
 
 ---
 
-## Use Cases
+## 3. Architecture & Pipeline
 
-- **On-the-go development:** Fix bugs, ship code, or deploy updates from your phone—no laptop or special hardware needed.
-- **Home lab/AI server management:** Check logs, reboot agents, or monitor status while you’re out.
-- **Privacy-focused mobile dev:** Work remotely, even over untrusted networks, with no third-party risk.
+#### **A. Tailscale**
 
----
+- Provides a private, device-to-device WireGuard VPN mesh.
+- Ensures traffic between your phone and server never leaves encrypted channels.
+- Mobile onboarding is trivial via the Tailscale app and QR code login.
 
-## Technical Limitations
+#### **B. code-server**
 
-- **Self-signed certificate**: The HTTPS connection uses a self-generated cert; you’ll need to accept the warning in your browser once.
-- **Requires Linux desktop/WSL**: Targeted for Ubuntu/Debian (but works on Arch and others with minimal tweaks).
-- **GUI is terminal-based**: TUI for ease of use, not a full graphical app (keeps it cross-platform and minimal).
+- Spins up a VSCode IDE on your server, accessible over HTTPS (`0.0.0.0:8888` by default).
+- Uses self-signed certificates (generated if missing) to force encrypted access.
+- Runs under your user, logs to `~/code-server.log`, never exposes to public internet.
 
----
+#### **C. QR Onboarding**
 
-## Extending/Customizing
+- After launch, a QR code with the Tailscale VPN IP + HTTPS port is displayed in the terminal.
+- Scan it on your phone—immediate, direct access to your home VSCode from anywhere.
 
-- **Add webhooks** for auto-start/stop via API or Shortcuts.
-- **Integrate with system notifications** for remote job completion or alerts.
-- **Swap code-server for other web tools** (Jupyter, RStudio, custom dashboards) — scripts are modular.
-- **Custom icons, branding, and About Us content** for organizational rollout.
+#### **D. Desktop Entry**
 
----
-
-## In Summary
-
-**Mobile Developer** is the fastest, safest, and simplest way to turn any Linux machine into a mobile-accessible dev powerhouse, letting you work from anywhere as if you never left home.
+- One-click “Mobile Developer” icon is installed to your system dash.
+- Clicking opens the menu/CLI: Start or Stop your remote dev tunnel instantly.
 
 ---
 
-*For full folder layout and script details, see [STRUCTURE.md](./STRUCTURE.md).*
+## 4. Lifecycle Flow
+
+### Startup (`start_all.sh`)
+1. **Enable and start Tailscale daemon.**
+2. **Bring up Tailscale:** Auth via browser if not yet connected.
+3. **Fetch VPN IP:** Pick primary Tailscale IPv4.
+4. **Generate HTTPS certs** if missing.
+5. **Launch code-server** (HTTPS, specified port).
+6. **Show QR code** for direct mobile access.
+
+### Shutdown (`stop_all.sh`)
+1. Kill all code-server processes on the target port.
+2. Stop Tailscale and kill residual tunnels/processes.
+3. Clean up stale tunnel interfaces (`tailscale0`).
+
+---
+
+## 5. Security Model
+
+- **No open ports to public internet**: Access is strictly via Tailscale private IPs.
+- **End-to-end encryption**: Both VPN (WireGuard) and HTTPS (self-signed cert).
+- **Ephemeral access**: Stop_all kills all tunnels, clears interfaces.
+- **Process cleanup**: No zombies, no leaked ports.
+
+---
+
+## 6. Key Benefits
+
+- **Zero config for users**: Just run `install.sh`, then use the app icon or scripts.
+- **Ultra-portable**: Works on Ubuntu, Debian, most Linux desktops, and any iOS/Android with Tailscale app.
+- **No cloud, no vendor lock-in**: 100% local, you control your environment.
+- **Instant onboarding**: QR code means no typing URLs or IPs.
+- **Battle-tested for devs**: Designed for robust restarts, multiple runs, and busy real-life usage.
+
+---
+
+## 7. How It Works: Developer Journey
+
+1. **Install:** Clone repo, run `env/install.sh`. Everything needed is set up, including a desktop icon.
+2. **Start Remote Tunnel:** Click “Mobile Developer” in your app menu or run `start_all.sh`. Scan the QR code on your phone.
+3. **Code from Anywhere:** Full VSCode, live on your phone, backed by your home machine’s compute/storage.
+4. **Stop (Cleanup):** Stop everything with one click (`stop_all.sh`)—nothing remains running or exposed.
+
+---
+
+## 8. Extensibility
+
+- Swap code-server for other local web services (Jupyter, RStudio, etc) via script mods.
+- Add 2FA, automatic cert trust for advanced users.
+- Integrate with other VPN providers as needed (see `apt.txt` for expansion).
+- Extend mobile_dev_cli.sh with more controls (restart, status, logs).
+
+---
+
+## 9. Dependencies
+
+- Ubuntu/Debian system
+- Tailscale (VPN)
+- code-server (VSCode in browser)
+- openssl, qrencode, whiptail (for full experience)
+
+---
+
+## 10. Troubleshooting
+
+- **If code-server is inaccessible:** Confirm both the server and phone are connected to the same Tailscale tailnet and that code-server is running.
+- **Certificate warnings:** Expected, accept the warning or trust the cert manually for a smoother experience.
+- **QR code won’t scan:** The IP in the code must match your Tailscale address; run `tailscale ip -4` to verify.
+
+---
+
+*For full folder layout and script details, see the [STRUCTURE.md](https://github.com/statikfintechllc/Mobile-Developer/blob/master/STRUCTURE.md)
+
+---
+
+> *Built to let you *actually* code on the move. No cloud. No lock-in. No bullshit.*
+
+- *StatikFinTech, LLC*
