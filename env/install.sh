@@ -41,44 +41,32 @@ else
     echo "[*] code-server already installed."
 fi
 
-# ---- 3. Install python requirements (inside conda env) ----
-
-REQS_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/requirements.txt"
-if [[ -s "$REQS_PATH" ]]; then
-    echo "[*] Installing python requirements from $REQS_PATH..."
-    pip install --upgrade pip
-    pip install -r "$REQS_PATH"
-else
-    echo "[*] No python requirements found at $REQS_PATH."
-fi
-
-# ---- 4. Install the Desktop Launcher (.desktop) and App Icon ----
-
-echo "[*] Installing Mobile Developer desktop launcher and icon..."
-
-# Always resolve current script dir (env/) and repo root
-SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPOROOT="$(cd "$SCRIPTDIR/.." && pwd)"
-
-# Set icon and desktop file locations in the repo
-ICON_SRC="$SCRIPTDIR/MobileDeveloper.png"
-DESKTOP_SRC="$SCRIPTDIR/MobileDeveloper.desktop"
-
-# Set user-local destinations
-ICON_DEST="$HOME/.local/share/icons/MobileDeveloper.png"
+# Paths
+REPO="$(cd "$(dirname "$0")/.." && pwd)"
 APPDIR="$HOME/.local/share/applications"
-DESKTOP_DEST="$APPDIR/MobileDeveloper.desktop"
+ICNDIR="$HOME/.local/share/icons"
 
-# Copy icon (will be found as 'MobileDeveloper' by .desktop file)
-mkdir -p "$(dirname "$ICON_DEST")"
-cp "$ICON_SRC" "$ICON_DEST"
+mkdir -p "$APPDIR" "$ICNDIR"
 
-# Copy .desktop to applications dir
-mkdir -p "$APPDIR"
-cp "$DESKTOP_SRC" "$DESKTOP_DEST"
-chmod +x "$DESKTOP_DEST"
+# Copy scripts *flat* to applications (NOT recursive, NOT keeping folders)
+cp "$REPO/scripts/mobile_cli.sh" "$APPDIR/"
+chmod +x "$APPDIR/mobile_cli.sh"
 
-echo "[*] App icon installed at $ICON_DEST"
-echo "[*] Desktop launcher installed at $DESKTOP_DEST"
-echo "    - Search for 'Mobile Developer' in your app launcher/menu."
-echo "[*] All dependencies installed and app ready to run."
+# Copy icon (flat, no folder)
+cp "$REPO/env/MobileDeveloper.png" "$ICNDIR/"
+
+# Write .desktop file with ONLY BARE FILENAMES, no paths
+cat > "$APPDIR/MobileDeveloper.desktop" <<EOF
+[Desktop Entry]
+Type=Application
+Name=Mobile Developer v.1.0.1
+Comment=SFTi
+Exec=mobile_cli.sh
+Icon=MobileDeveloper
+Terminal=true
+Categories=Development;Utility;
+EOF
+
+chmod 644 "$APPDIR/MobileDeveloper.desktop"
+
+echo "[*] Mobile Developer installed. Look for 'Mobile Developer' in your launcher menu."
