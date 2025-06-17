@@ -1,4 +1,4 @@
-k<link rel="stylesheet" type="text/css" href="docs/custom.css">
+<link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
   <a
 href="https://github.com/statikfintechllc/Mobile-Developer/blob/master/LICENSE">
