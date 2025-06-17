@@ -73,7 +73,7 @@ cat > "$APPDIR/MobileDeveloper.desktop" <<EOF
 Type=Application
 Name=Mobile Developer v.1.0.1
 Comment=SFTi
-Exec=$APPDIR/mobile_cli.sh
+Exec=/bin/bash -l -c "$APPDIR/mobile_cli.sh"
 Icon=$ICNDIR/MobileDeveloper.png
 Terminal=true
 Categories=Development;Utility;
