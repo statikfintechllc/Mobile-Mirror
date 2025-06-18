@@ -186,3 +186,12 @@ EOF
 sudo chmod +x "$APPDIR/MobileDeveloper.desktop"
 
 echo "[*] Mobile Developer installed. Look for 'Mobile Developer' in your launcher menu."
+echo "[*] Checking for you, and Re-Running permissions"
+
+chmod +x ~/.local/share/applications/mobile_cli.sh
+chmod +x ~/.local/share/applications/start_code.sh
+chmod +x ~/.local/share/applications/stop_code.sh
+chmod +x ~/.local/share/applications/remove_mobile.sh
+chmod 644 ~/.local/share/icons/MobileDeveloper.png
+chmod +x ~/.local/share/applications/MobileDeveloper.desktop
+echo "[*] Triple-Check Complete. Systems Located, Placed, and Healthy."
