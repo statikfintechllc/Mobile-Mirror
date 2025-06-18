@@ -2,7 +2,6 @@
 # start_remote_dev.sh - Start Tailscale + code-server with HTTPS + QR code display
 
 set -x
-exec > /tmp/start_code_debug.txt 2>&1
 
 # Guarantee login+interactive shell for environment
 if [[ -z "$LOGIN_SHELL_STARTED" ]]; then

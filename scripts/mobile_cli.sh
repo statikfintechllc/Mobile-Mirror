@@ -10,6 +10,14 @@ fi
 
 APP_TITLE="Mobile Developer v.1.0.1"
 SUB_TITLE="SFTi"
+
+# Resolve script dir
+APPDIR="$HOME/.local/share/applications"
+ICNDIR="$HOME/.local/share/icons"
+START_SCRIPT="$APPDIR/start_code.sh"
+STOP_SCRIPT="$APPDIR/stop_code.sh"
+LOG_FILE="$HOME/code-server.log"
+REMOVE_SCRIPT="$APPDIR/remove_mobile.sh"
     
 # Detect preferred shell (get user's shell from /etc/passwd or $SHELL)
 USER_SHELL="$(getent passwd "$USER" | cut -d: -f7 2>/dev/null || echo "${SHELL:-/bin/bash}")"
@@ -37,14 +45,6 @@ function relaunch_in_terminal() {
 if ! [ -t 0 ]; then
     relaunch_in_terminal
 fi
-
-# Resolve script dir
-APPDIR="$HOME/.local/share/applications"
-ICNDIR="$HOME/.local/share/icons"
-START_SCRIPT="$APPDIR/start_code.sh"
-STOP_SCRIPT="$APPDIR/stop_code.sh"
-LOG_FILE="$HOME/code-server.log"
-REMOVE_SCRIPT="$APPDIR/remove_mobile.sh"
 
 while true; do
     clear

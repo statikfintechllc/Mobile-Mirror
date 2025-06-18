@@ -2,7 +2,7 @@
 Type=Application
 Name=Mobile Developer v.1.0.1
 Comment=SFTi
-Exec=zsh -l -ic 'cd "$HOME/.local/share/applications/mobile_cli.sh
+Exec=$HOME/.local/share/applications/mobile_cli.sh
 Icon=$HOME/.local/share/icons/MobileDeveloper.png
 Terminal=true
 Categories=Development;Utility;
