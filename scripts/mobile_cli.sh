@@ -4,16 +4,31 @@ set -e
 APP_TITLE="Mobile Developer v.1.0.1"
 SUB_TITLE="SFTi"
 
-# Ensure terminal emulator context
-if ! [ -t 0 ]; then
-    for TERM_APP in x-terminal-emulator gnome-terminal konsole xfce4-terminal lxterminal tilix mate-terminal; do
+# Detect preferred shell (get user's shell from /etc/passwd or $SHELL)
+USER_SHELL="$(getent passwd "$USER" | cut -d: -f7 2>/dev/null || echo "${SHELL:-/bin/bash}")"
+
+# List of popular emulators
+EMULATORS=(x-terminal-emulator gnome-terminal konsole xfce4-terminal lxterminal tilix mate-terminal)
+
+function relaunch_in_terminal() {
+    for TERM_APP in "${EMULATORS[@]}"; do
         if command -v "$TERM_APP" &>/dev/null; then
-            exec "$TERM_APP" -- bash -ic "$0"
+            # Prefer interactive+login if possible
+            if [[ "$USER_SHELL" =~ (bash|zsh) ]]; then
+                exec "$TERM_APP" -- "$USER_SHELL" -ilc "$0"
+            else
+                exec "$TERM_APP" -- "$USER_SHELL" -ic "$0"
+            fi
             exit 0
         fi
     done
-    echo "[ERROR] No terminal emulator found. Exiting."
+    echo "[ERROR] No graphical terminal emulator found. Exiting."
     exit 1
+}
+
+# Check if we're in a terminal, if not relaunch in a graphical one
+if ! [ -t 0 ]; then
+    relaunch_in_terminal
 fi
 
 # Resolve script dir
@@ -23,7 +38,6 @@ STOP_SCRIPT="$SCRIPT_DIR/stop_code.sh"
 LOG_FILE="$SCRIPT_DIR/code-server.log"
 REMOVE_SCRIPT="$SCRIPT_DIR/remove_mobile.sh"
 
-# Main loop
 while true; do
     clear
     UPTIME=$(uptime -p | sed 's/^up //')
@@ -42,12 +56,12 @@ while true; do
 
     case $CHOICE in
         1)
-            bash "$START_SCRIPT"
+            "$USER_SHELL" -ilc "\"$START_SCRIPT\""
             echo -e "\nMobile Tunnel Started! Press enter to continue..."
             read -r
             ;;
         2)
-            bash "$STOP_SCRIPT"
+            "$USER_SHELL" -ilc "\"$STOP_SCRIPT\""
             echo -e "\nMobile Tunnel Stopped. Press enter to continue..."
             read -r
             ;;
@@ -65,7 +79,7 @@ while true; do
             echo -n "Type 'UNINSTALL' to confirm: "
             read -r CONFIRM
             if [[ "$CONFIRM" == "UNINSTALL" ]]; then
-                bash "$REMOVE_SCRIPT"
+                "$USER_SHELL" -ilc "\"$REMOVE_SCRIPT\""
                 exit 0
             else
                 echo "Uninstall cancelled. Press enter to return to menu."
@@ -78,4 +92,3 @@ while true; do
             ;;
     esac
 done
-
