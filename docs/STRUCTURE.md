@@ -7,18 +7,18 @@ Mobile Developer/
 │
 ├── env/
 │   │
-│   ├── MobileDeveloper.desktop   # DeBugging
-│   ├── MobileDeveloper.png   # DeBugging
+│   ├── MobileDeveloper.desktop   # ALIGNED
+│   ├── MobileDeveloper.png   # ALIGNED
 │   ├── .env.example   # ALIGNED
 │   ├── apt.txt   # ALIGNED
-│   └── install.sh   # GOOD
+│   └── install.sh   # ALIGNED
 │
 ├── scripts/
 │   │
-│   ├── remove_mobile.sh   # GOOD
-│   ├── start_all.sh   # GOOD
-│   ├── stop_all.sh   # GOOD
-│   └── mobile_cli.sh   # GOOD
+│   ├── remove_mobile.sh   # ALIGNED
+│   ├── start_all.sh   # ALIGNED
+│   ├── stop_all.sh   # ALIGNED
+│   └── mobile_cli.sh   # ALIGNED
 │
 ├── docs/
 │   │
@@ -26,5 +26,5 @@ Mobile Developer/
 │   ├── SYSTEM_OVERVIEW.md   # ALIGNED
 │   └── STRUCTURE.md   # ALIGNED
 │
-└── LICENSE   # Open-Use
+└── LICENSE   # Open-Use, ENJOY!
 ```
