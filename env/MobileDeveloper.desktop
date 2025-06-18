@@ -2,8 +2,7 @@
 Type=Application
 Name=Mobile Developer v.1.0.1
 Comment=SFTi
-Exec=bash -c 'cd "~/.local/share/applications" && ./mobile_cli.sh'
-Icon=MobileDeveloper.png
+Exec=/bin/bash -l -c "$APPDIR/mobile_cli.sh"
+Icon=$ICNDIR/MobileDeveloper.png
 Terminal=true
 Categories=Development;Utility;
-
