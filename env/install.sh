@@ -186,13 +186,14 @@ EOF
 sudo chmod +x "$APPDIR/MobileDeveloper.desktop"
 
 echo "[*] Mobile Developer installed. Look for 'Mobile Developer' in your launcher menu."
-echo "[*] Checking for you, and Re-Running permissions"
+echo "[*] Checking for you... "
+
 GREEN='\033[0;32m'
 RED='\033[1;31m'
 RESET='\033[0m'
 
 echo
-echo "[*] File Health Check:"
+echo "[*] File Health and Permissions Check:"
 
 files=(
     "$APPDIR/mobile_cli.sh"
@@ -205,17 +206,16 @@ files=(
 
 for f in "${files[@]}"; do
     if [ -f "$f" ]; then
-        echo -e "${GREEN}✔ $f found${RESET}"
+        if [[ "$f" == *.sh || "$f" == *.desktop ]]; then
+            chmod +x "$f"
+        elif [[ "$f" == *.png ]]; then
+            chmod 644 "$f"
+        fi
+        echo -e "${GREEN}✔ $f found and permissions set${RESET}"
     else
         echo -e "${RED}✘ $f missing!${RESET}"
     fi
 done
+
 echo
-echo "[*] Running the Final Permissions Sweep... Stand By... "
-chmod +x ~/.local/share/applications/mobile_cli.sh
-chmod +x ~/.local/share/applications/start_code.sh
-chmod +x ~/.local/share/applications/stop_code.sh
-chmod +x ~/.local/share/applications/remove_mobile.sh
-chmod 644 ~/.local/share/icons/MobileDeveloper.png
-chmod +x ~/.local/share/applications/MobileDeveloper.desktop
-echo "[*] Triple-Check Complete. Systems Located, Placed, and Healthy."
+echo "[*] ✅Triple-Check Complete. Systems Located, Placed, Permissions Set, and all files are Healthy✅."
