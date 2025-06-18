@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # start_remote_dev.sh - Start Tailscale + code-server with HTTPS + QR code display
 
-set -x
+set -eu
 
 # Guarantee login+interactive shell for environment
 if [[ -z "$LOGIN_SHELL_STARTED" ]]; then
@@ -23,8 +23,6 @@ else
     echo "conda not found! Exiting."
     exit 1
 fi
-
-set -eu
 
 LOGFILE="$HOME/code-server.log"
 CERT="$HOME/code-server.crt"
