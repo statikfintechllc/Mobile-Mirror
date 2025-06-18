@@ -39,11 +39,12 @@ if ! [ -t 0 ]; then
 fi
 
 # Resolve script dir
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-START_SCRIPT="$SCRIPT_DIR/start_code.sh"
-STOP_SCRIPT="$SCRIPT_DIR/stop_code.sh"
-LOG_FILE="$SCRIPT_DIR/code-server.log"
-REMOVE_SCRIPT="$SCRIPT_DIR/remove_mobile.sh"
+APPDIR="$HOME/.local/share/applications"
+ICNDIR="$HOME/.local/share/icons"
+START_SCRIPT="$APPDIR/start_code.sh"
+STOP_SCRIPT="$APPDIR/stop_code.sh"
+LOG_FILE="$HOME/code-server.log"
+REMOVE_SCRIPT="$APPDIR/remove_mobile.sh"
 
 while true; do
     clear
