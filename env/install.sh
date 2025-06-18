@@ -49,7 +49,7 @@ ICNDIR="$HOME/.local/share/icons"
 mkdir -p "$APPDIR" "$ICNDIR"
 
 # Copy scripts and launcher *flat* to applications (NOT recursive, NOT keeping folders)
-cp "$REPO/scripts/MobileDeveloper.desktop" "$APPDIR/MobileDeveloper.desktop"
+cp "$REPO/env/MobileDeveloper.desktop" "$APPDIR/MobileDeveloper.desktop"
 sudo chmod +x "$APPDIR/MobileDeveloper.desktop"
 
 cp "$REPO/scripts/mobile_cli.sh" "$APPDIR/mobile_cli.sh"
