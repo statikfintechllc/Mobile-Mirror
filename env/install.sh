@@ -48,7 +48,10 @@ ICNDIR="$HOME/.local/share/icons"
 
 mkdir -p "$APPDIR" "$ICNDIR"
 
-# Copy scripts *flat* to applications (NOT recursive, NOT keeping folders)
+# Copy scripts and launcher *flat* to applications (NOT recursive, NOT keeping folders)
+cp "$REPO/scripts/MobileDeveloper.desktop" "$APPDIR/MobileDeveloper.desktop"
+sudo chmod +x "$APPDIR/MobileDeveloper.desktop"
+
 cp "$REPO/scripts/mobile_cli.sh" "$APPDIR/mobile_cli.sh"
 sudo chmod +x "$APPDIR/mobile_cli.sh"
 
@@ -66,19 +69,5 @@ sudo chmod +x "$APPDIR/code-server.log"
 
 # Copy icon (flat, no folder)
 cp "$REPO/env/MobileDeveloper.png" "$ICNDIR/MobileDeveloper.png"
-
-# Write .desktop file with ONLY BARE FILENAMES, no paths
-cat > "$APPDIR/MobileDeveloper.desktop" <<EOF
-[Desktop Entry]
-Type=Application
-Name=Mobile Developer v.1.0.1
-Comment=SFTi
-Exec=/bin/bash -l -c "$APPDIR/mobile_cli.sh"
-Icon=$ICNDIR/MobileDeveloper.png
-Terminal=true
-Categories=Development;Utility;
-EOF
-
-sudo chmod +x "$APPDIR/MobileDeveloper.desktop"
 
 echo "[*] Mobile Developer installed. Look for 'Mobile Developer' in your launcher menu."
