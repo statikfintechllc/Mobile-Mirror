@@ -187,7 +187,31 @@ sudo chmod +x "$APPDIR/MobileDeveloper.desktop"
 
 echo "[*] Mobile Developer installed. Look for 'Mobile Developer' in your launcher menu."
 echo "[*] Checking for you, and Re-Running permissions"
+GREEN='\033[0;32m'
+RED='\033[1;31m'
+RESET='\033[0m'
 
+echo
+echo "[*] File Health Check:"
+
+files=(
+    "$APPDIR/mobile_cli.sh"
+    "$APPDIR/start_code.sh"
+    "$APPDIR/stop_code.sh"
+    "$APPDIR/remove_mobile.sh"
+    "$ICNDIR/MobileDeveloper.png"
+    "$APPDIR/MobileDeveloper.desktop"
+)
+
+for f in "${files[@]}"; do
+    if [ -f "$f" ]; then
+        echo -e "${GREEN}✔ $f found${RESET}"
+    else
+        echo -e "${RED}✘ $f missing!${RESET}"
+    fi
+done
+echo
+echo "[*] Running the Final Permissions Sweep... Stand By... "
 chmod +x ~/.local/share/applications/mobile_cli.sh
 chmod +x ~/.local/share/applications/start_code.sh
 chmod +x ~/.local/share/applications/stop_code.sh
