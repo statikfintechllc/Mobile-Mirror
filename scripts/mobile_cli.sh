@@ -1,9 +1,16 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 set -e
+
+# Guarantee login+interactive shell for environment
+if [[ -z "$LOGIN_SHELL_STARTED" ]]; then
+    export LOGIN_SHELL_STARTED=1
+    exec "$SHELL" -l -i "$0" "$@"
+    exit 1
+fi
 
 APP_TITLE="Mobile Developer v.1.0.1"
 SUB_TITLE="SFTi"
-
+    
 # Detect preferred shell (get user's shell from /etc/passwd or $SHELL)
 USER_SHELL="$(getent passwd "$USER" | cut -d: -f7 2>/dev/null || echo "${SHELL:-/bin/bash}")"
 
