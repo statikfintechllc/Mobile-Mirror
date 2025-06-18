@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 # start_remote_dev.sh - Start Tailscale + code-server with HTTPS + QR code display
 
+set -x
+exec > /tmp/start_code_debug.txt 2>&1
+
+# Guarantee login+interactive shell for environment
+if [[ -z "$LOGIN_SHELL_STARTED" ]]; then
+    export LOGIN_SHELL_STARTED=1
+    exec "$SHELL" -l -i "$0" "$@"
+    exit 1
+fi
+
 # Explicitly source Conda setup
 CONDA_BASE=$(conda info --base)
 source "$CONDA_BASE/etc/profile.d/conda.sh"

@@ -63,12 +63,12 @@ while true; do
 
     case $CHOICE in
         1)
-            "$USER_SHELL" -ilc "\"$START_SCRIPT\""
+            bash -l "$START_SCRIPT"
             echo -e "\nMobile Tunnel Started! Press enter to continue..."
             read -r
             ;;
         2)
-            "$USER_SHELL" -ilc "\"$STOP_SCRIPT\""
+            bash -l "$STOP_SCRIPT"
             echo -e "\nMobile Tunnel Stopped. Press enter to continue..."
             read -r
             ;;
@@ -86,7 +86,7 @@ while true; do
             echo -n "Type 'UNINSTALL' to confirm: "
             read -r CONFIRM
             if [[ "$CONFIRM" == "UNINSTALL" ]]; then
-                "$USER_SHELL" -ilc "\"$REMOVE_SCRIPT\""
+                bash -l "$REMOVE_SCRIPT"
                 exit 0
             else
                 echo "Uninstall cancelled. Press enter to return to menu."
