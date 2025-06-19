@@ -68,6 +68,18 @@ sudo chmod +x "$APPDIR/code-server.log"
 cp "$REPO/env/MobileDeveloper.png" "$ICNDIR/MobileDeveloper.png"
 sudo chmod +x "$ICNDIR/MobileDeveloper.png"
 
+echo "[*] Copying TouchCore core scripts..."
+cp "$REPO/touchcore/start_touchcore.sh" "$APPDIR/start_touchcore.sh"
+cp "$REPO/touchcore/backend/"*.py "$APPDIR/"
+cp "$REPO/touchcore/backend/utils/"*.py "$APPDIR/"
+cp -r "$REPO/touchcore/frontend/build" "$APPDIR/build"
+cp "$REPO/touchcore/frontend/public/manifest.json" "$APPDIR/manifest.json"
+
+echo "[*] Creating log directories..."
+mkdir -p "$APPDIR/system/services"
+touch "$APPDIR/system/services/touchcore_backend.log"
+touch "$APPDIR/system/services/touchcore_frontend.log"
+
 # Write .desktop file with ONLY BARE FILENAMES, no paths
 cat > "$APPDIR/MobileDeveloper.desktop" <<EOF
 [Desktop Entry]
