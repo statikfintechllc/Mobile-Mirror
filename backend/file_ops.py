@@ -20,7 +20,7 @@ def list_files(path="."):
                 "size": item.stat().st_size if item.is_file() else None
             })
 
-        log_event(f"Listed files in {abs_path}")
+        log_event(f"Listed directory: {abs_path}")
         return {"path": str(abs_path), "items": items}
     except Exception as e:
         log_event(f"[ERR] list_files: {e}")
@@ -28,20 +28,22 @@ def list_files(path="."):
 
 def read_file(path):
     try:
-        with open(path, "r", encoding="utf-8") as f:
+        abs_path = Path(path).expanduser().resolve()
+        with open(abs_path, "r", encoding="utf-8") as f:
             content = f.read()
-        log_event(f"Opened file: {path}")
-        return {"path": path, "content": content}
+        log_event(f"Read file: {abs_path}")
+        return {"path": str(abs_path), "content": content}
     except Exception as e:
         log_event(f"[ERR] read_file: {e}")
         return {"error": str(e)}
 
 def write_file(path, content):
     try:
-        with open(path, "w", encoding="utf-8") as f:
+        abs_path = Path(path).expanduser().resolve()
+        with open(abs_path, "w", encoding="utf-8") as f:
             f.write(content)
-        log_event(f"Saved file: {path}")
-        return {"status": "success", "path": path}
+        log_event(f"Wrote file: {abs_path}")
+        return {"status": "success", "path": str(abs_path)}
     except Exception as e:
         log_event(f"[ERR] write_file: {e}")
         return {"error": str(e)}

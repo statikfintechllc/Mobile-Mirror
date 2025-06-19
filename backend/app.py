@@ -2,7 +2,7 @@
 # app.py — TouchCore backend service for mobile streaming + control
 
 import uvicorn
-from fastapi import FastAPI, WebSocket, Request
+from fastapi import FastAPI, WebSocket, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 
@@ -37,26 +37,38 @@ def index():
     return {"status": "TouchCore Online", "ui": "http://localhost:5000"}
 
 @app.get("/files")
-def get_files(path: str = "."):
+def get_files(path: str = ".", request: Request = None):
+    token = request.headers.get("Authorization", "")
+    if not verify_token(token):
+        raise HTTPException(status_code=403, detail="Invalid token")
     return list_files(path)
 
 @app.post("/read")
-def open_file(req: Request):
-    data = req.json()
+async def open_file(req: Request):
+    token = req.headers.get("Authorization", "")
+    if not verify_token(token):
+        raise HTTPException(status_code=403, detail="Invalid token")
+    data = await req.json()
     return read_file(data.get("path", ""))
 
 @app.post("/write")
-def save_file(req: Request):
-    data = req.json()
+async def save_file(req: Request):
+    token = req.headers.get("Authorization", "")
+    if not verify_token(token):
+        raise HTTPException(status_code=403, detail="Invalid token")
+    data = await req.json()
     return write_file(data.get("path", ""), data.get("content", ""))
 
 @app.websocket("/terminal")
 async def ws_terminal(websocket: WebSocket):
-    await handle_terminal(websocket)
+    await handle_terminal(websocket)  # optional: inject token handshake for full protection
 
 @app.post("/mouse")
-def handle_mouse(req: Request):
-    data = req.json()
+async def handle_mouse(req: Request):
+    token = req.headers.get("Authorization", "")
+    if not verify_token(token):
+        raise HTTPException(status_code=403, detail="Invalid token")
+    data = await req.json()
     return move_mouse(data.get("x"), data.get("y"), data.get("click", False))
 
 @app.get("/qr")
@@ -81,5 +93,5 @@ def get_tailscale_ip():
 
 if __name__ == "__main__":
     log_event("TouchCore backend launched.")
-    start_stream()  # starts screen streaming
+    start_stream()
     uvicorn.run(app, host="0.0.0.0", port=PORT)

@@ -23,9 +23,14 @@ def start_stream():
             "-bg",
             "-o", f"{LOGDIR}/x11vnc.log"
         ])
-        log_event(f"x11vnc started on :{STREAM_PORT}")
-    except Exception as e:
-        log_event(f"Failed to start x11vnc: {e}")
-        raise
+        log_event(f"x11vnc started on port {STREAM_PORT}")
+        return {"status": "screen stream started", "port": STREAM_PORT}
 
-    return {"status": "screen stream started", "port": STREAM_PORT}
+    except FileNotFoundError:
+        msg = "x11vnc not found. Please install it via: sudo apt install x11vnc"
+        log_event(f"[ERR] {msg}")
+        return {"error": msg}
+
+    except Exception as e:
+        log_event(f"[ERR] screen_streamer: {e}")
+        return {"error": str(e)}
