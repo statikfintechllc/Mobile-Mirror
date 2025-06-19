@@ -150,7 +150,7 @@ After install, you can:
 
 - [System Overview](https://github.com/statikfintechllc/Mobile-Developer/blob/master/docs/SYSTEM_OVERVIEW.md)
 - [Directory Structure](https://github.com/statikfintechllc/Mobile-Developer/blob/master/docs/STRUCTURE.md)
-- [About Us](https://github.com/statikfintechllc/Mobile-Developer/blob/master/About%20Us/)
+- [About Us](https://github.com/statikfintechllc/AscendAI/blob/master/About%20Us/)
 
 ---
 
