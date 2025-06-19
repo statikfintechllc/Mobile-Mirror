@@ -43,9 +43,8 @@ Mobile-Developer/
 │   ├── config/
 │   │   ├── system.toml
 │   │   └── tailscale_setup.sh
-│   ├── static/
-│   │   ├── screenshots/
-│   │   └── logs/
+│   ├── system
+│   │   └── services
 │   └── start_touchcore.sh     # 👈 Optional standalone start script
 │
 ├── system/                    # 🧠 Runtime and service layer
