@@ -1,9 +1,9 @@
-# Mobile-Developer: TouchCore
+# Mobile-Developer: Mobile-Mirror
 
 **Structure Build-Out:**
 
 ```text
-Mobile-Developer: TouchCore/
+Mobile-Developer: Mobile-Mirror/
 │
 ├── env/
 │   │
@@ -16,11 +16,12 @@ Mobile-Developer: TouchCore/
 ├── scripts/
 │   │
 │   ├── remove_mobile.sh
-│   ├── start_all.sh           # 🔁 Starts both code-server + TouchCore
-│   ├── stop_all.sh
+│   ├── start_code.sh           # 🔁 Starts both code-server + Mobile-Mirror
+│   ├── start_mirror.sh
+│   ├── stop_code.sh
 │   └── mobile_cli.sh
 │
-├── touchcore/                 # 🔥 New SubSystem
+├── mobilemirror/                 # 🔥 New SubSystem
 │   │
 │   ├── backend/
 │   │   │
@@ -56,14 +57,13 @@ Mobile-Developer: TouchCore/
 │   │   ├── system.toml
 │   │   └── tailscale_setup.sh
 │   │   
-│   ├── system
-│   │   │   
-│   │   └── services
-│   │       │
-│   │       ├── touchcore_backend.log
-│   │       └── touchcore_frontend.log
-│   │
-│   └── start_touchcore.sh  # 👈 Optional standalone start script
+│   └── system
+│        │   
+│        └── services
+│           │
+│           ├── touchcore_backend.log
+│           └── touchcore_frontend.log
+│   
 │
 ├── docs/
 │   │
