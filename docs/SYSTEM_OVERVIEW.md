@@ -124,9 +124,9 @@ Mobile Developer automates the setup and lifecycle of a private mobile dev tunne
 
 *For full folder layout and script details, see the [STRUCTURE.md](https://github.com/statikfintechllc/Mobile-Developer/blob/master/STRUCTURE.md)
 
-## Mobile-Developer: TouchCore
+## Mobile-Developer: Mobile-Mirror
 ```text
-Mobile-Developer/
+Mobile-Developer: Mobile-Mirror/
 │
 ├── env/
 │   ├── MobileDeveloper.desktop
@@ -137,11 +137,12 @@ Mobile-Developer/
 │
 ├── scripts/
 │   ├── remove_mobile.sh
-│   ├── start_all.sh           # 🔁 Starts both code-server + TouchCore
-│   ├── stop_all.sh
+│   ├── start_code.sh # 🔁 Starts both code-server + TouchCore
+│   ├── start_mobilemirror.sh
+│   ├── stop_code.sh
 │   └── mobile_cli.sh
 │
-├── touchcore/                 # 🔥 New Subsystem
+├── mobile-mirror/ # 🔥 New Subsystem
 │   ├── backend/
 │   │   ├── app.py
 │   │   ├── screen_streamer.py
@@ -166,17 +167,12 @@ Mobile-Developer/
 │   ├── config/
 │   │   ├── system.toml
 │   │   └── tailscale_setup.sh
-│   ├── static/
-│   │   ├── screenshots/
-│   │   └── logs/
 │   └── start_touchcore.sh     # 👈 Optional standalone start script
 │
-├── system/                    # 🧠 Runtime and service layer
-│   ├── code-server/           # Optional VS Code mirror or cache
-│   ├── x11vnc/                # VNC or ffmpeg screen stream configs
-│   ├── tailscale/             # Auth state & PID tracking
-│   └── services/              # Daemon logs, lockfiles, .pid flags
-│
+├── system/   
+│   └── services/
+│        ├── mobilemirror_backend.log
+│        └── mobilemirror_frontend.log
 ├── docs/
 │   ├── README.md
 │   ├── SYSTEM_OVERVIEW.md
@@ -185,7 +181,7 @@ Mobile-Developer/
 └── LICENSE                    # Open-use: Gremlin-style
 ```
 
-> Coming Soon.
+> Coming Soon. Like, Now?
 
 ---
 
