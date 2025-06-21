@@ -92,17 +92,14 @@ chmod +x "$APPDIR/tailscale_setup.sh"
 cp "$REPO/env/MobileDeveloper.png" "$ICNDIR/MobileDeveloper.png"
 sudo chmod +x "$ICNDIR/MobileDeveloper.png"
 
-echo "[*] Copying TouchCore core scripts..."
-cp "$REPO/touchcore/start_touchcore.sh" "$APPDIR/start_touchcore.sh"
-cp "$REPO/touchcore/backend/"*.py "$APPDIR/"
-cp "$REPO/touchcore/backend/utils/"*.py "$APPDIR/"
-cp -r "$REPO/touchcore/frontend/build" "$APPDIR/build"
-cp "$REPO/touchcore/frontend/public/manifest.json" "$APPDIR/manifest.json"
+echo "[*] Copying Mobile-Mirror core scripts..."
+cp "$REPO/mobilemirror/start_touchcore.sh" "$APPDIR/start_touchcore.sh"
+cp "$REPO/mobilemirror/backend" "$APPDIR/backend"
+cp -r "$REPO/mobilemirror/frontend" "$APPDIR/frontend"
+cp "$REPO/mobilemirror/frontend/public/manifest.json" "$APPDIR/manifest.json"
 
-echo "[*] Creating log directories..."
-mkdir -p "$APPDIR/system/services"
-touch "$APPDIR/system/services/touchcore_backend.log"
-touch "$APPDIR/system/services/touchcore_frontend.log"
+echo "[*] Checking log directories..."
+cp "$REPO/mobilemirror/system/services" "$APPDIR/system/services"
 
 # Write .desktop file with ONLY BARE FILENAMES, no paths
 cat > "$APPDIR/MobileDeveloper.desktop" <<EOF
@@ -135,6 +132,7 @@ files=(
     "$APPDIR/remove_mobile.sh"
     "$ICNDIR/MobileDeveloper.png"
     "$APPDIR/MobileDeveloper.desktop"
+    
 )
 
 for f in "${files[@]}"; do
@@ -149,6 +147,48 @@ for f in "${files[@]}"; do
         echo -e "${RED}✘ $f missing!${RESET}"
     fi
 done
+
+echo
+echo "[*] Mobile-Mirror Health Check:"
+
+files=(
+    "$APPDIR/backend/utils/auth.py"
+    "$APPDIR/backend/utils/logger.py"
+    "$APPDIR/backend/utils/qr_generator.py"
+    "$APPDIR/backend/app.py"
+    "$APPDIR/backend/screen_streamer.py"
+    "$APPDIR/backend/mouse_input.py"
+    "$APPDIR/backend/file_ops.py"
+    "$APPDIR/backend/terminal_bridge.py"
+    "$APPDIR/frontend/public/manifest.json"
+    "$APPDIR/frontend/src/App.jsx"
+    "$APPDIR/frontend/src/api.js"
+    "$APPDIR/frontend/src/FileManager.jsx"
+    "$APPDIR/frontend/src/MouseController.js"
+    "$APPDIR/frontend/src/ScreenViewer.jsx"
+    "$APPDIR/frontend/src/Terminal.jsx"
+    "$APPDIR/frontend/src/Editor.jsx"
+    "$APPDIR/system.toml"
+)
+
+for f in "${files[@]}"; do
+    if [ -f "$f" ]; then
+        if [[ "$f" == *.sh || "$f" == *.py || "$f" == *.jsx || "$f" == *.json || "$f" == *.js ]]; then
+            chmod +x "$f"
+        elif [[ "$f" == *.png ]]; then
+            chmod 644 "$f"
+        fi
+        echo -e "${GREEN}✔ $f found and permissions set${RESET}"
+    else
+        echo -e "${RED}✘ $f missing!${RESET}"
+    fi
+done
+
+echo
+echo "[*] Log File Read Write Check:"
+sudo chmod 644 $APPDIR/system/services/touchcore_backend.log
+sudo chmod 644 $APPDIR/system/services/touchcore_frontend.log
+sudo chmod 644 $APPDIR/MobileDeveloper.desktop
 
 echo
 echo "[*] ✅Triple-Check Complete. Systems Located, Placed, Permissions Set, and all files are Healthy✅."
