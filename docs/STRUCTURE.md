@@ -16,6 +16,10 @@ Mobile Developer/
 ├── logs/
 │   │
 │   └── coder-server.log   # ALIGNED
+│
+├── demos/
+│   │
+│   └── ...    # SCREEN-SHOTS HERE
 │   
 │
 ├── scripts/
