@@ -12,6 +12,11 @@ Mobile Developer/
 │   ├── .env.example   # ALIGNED
 │   ├── apt.txt   # ALIGNED
 │   └── install.sh   # ALIGNED
+│   
+├── logs/
+│   │
+│   └── coder-server.log   # ALIGNED
+│   
 │
 ├── scripts/
 │   │

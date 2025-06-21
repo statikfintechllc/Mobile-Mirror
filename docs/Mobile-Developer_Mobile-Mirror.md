@@ -13,15 +13,19 @@ Mobile-Developer: Mobile-Mirror/
 │   ├── apt.txt
 │   └── install.sh
 │
+├── logs/
+│   │
+│   └── coder-server.log   # ALIGNED
+│
 ├── scripts/
 │   │
 │   ├── remove_mobile.sh
-│   ├── start_code.sh           # 🔁 Starts both code-server + Mobile-Mirror
+│   ├── start_code.sh   # 🔁 Starts both code-server + Mobile-Mirror
 │   ├── start_mirror.sh
 │   ├── stop_code.sh
 │   └── mobile_cli.sh
 │
-├── mobilemirror/                 # 🔥 New SubSystem
+├── mobilemirror/  # 🔥 New SubSystem
 │   │
 │   ├── backend/
 │   │   │
@@ -64,7 +68,6 @@ Mobile-Developer: Mobile-Mirror/
 │           ├── touchcore_backend.log
 │           └── touchcore_frontend.log
 │   
-│
 ├── docs/
 │   │
 │   ├── README.md
