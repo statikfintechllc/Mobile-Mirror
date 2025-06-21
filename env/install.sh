@@ -95,7 +95,7 @@ sudo chmod +x "$ICNDIR/MobileDeveloper.png"
 echo "[*] Copying Mobile-Mirror core scripts..."
 cp "$REPO/mobilemirror/start_touchcore.sh" "$APPDIR/start_touchcore.sh"
 cp "$REPO/mobilemirror/backend" "$APPDIR/backend"
-cp -r "$REPO/mobilemirror/frontend" "$APPDIR/frontend"
+cp "$REPO/mobilemirror/frontend" "$APPDIR/frontend"
 cp "$REPO/mobilemirror/frontend/public/manifest.json" "$APPDIR/manifest.json"
 
 echo "[*] Checking log directories..."
@@ -132,7 +132,7 @@ files=(
     "$APPDIR/remove_mobile.sh"
     "$ICNDIR/MobileDeveloper.png"
     "$APPDIR/MobileDeveloper.desktop"
-    
+
 )
 
 for f in "${files[@]}"; do
