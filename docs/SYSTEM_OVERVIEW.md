@@ -128,20 +128,6 @@ Mobile Developer automates the setup and lifecycle of a private mobile dev tunne
 ```text
 Mobile-Developer: Mobile-Mirror/
 │
-├── env/
-│   ├── MobileDeveloper.desktop
-│   ├── MobileDeveloper.png
-│   ├── .env.example
-│   ├── apt.txt
-│   └── install.sh
-│
-├── scripts/
-│   ├── remove_mobile.sh
-│   ├── start_code.sh # 🔁 Starts both code-server + TouchCore
-│   ├── start_mobilemirror.sh
-│   ├── stop_code.sh
-│   └── mobile_cli.sh
-│
 ├── mobile-mirror/ # 🔥 New Subsystem
 │   ├── backend/
 │   │   ├── app.py
@@ -167,18 +153,7 @@ Mobile-Developer: Mobile-Mirror/
 │   ├── config/
 │   │   ├── system.toml
 │   │   └── tailscale_setup.sh
-│   └── start_touchcore.sh     # 👈 Optional standalone start script
-│
-├── system/   
-│   └── services/
-│        ├── mobilemirror_backend.log
-│        └── mobilemirror_frontend.log
-├── docs/
-│   ├── README.md
-│   ├── SYSTEM_OVERVIEW.md
-│   └── STRUCTURE.md
-│
-└── LICENSE                    # Open-use: Gremlin-style
+│   └── start_touchcore.sh     # 👈 Optional standalone start script       
 ```
 
 > Coming Soon. Like, Now?
