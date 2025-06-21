@@ -30,7 +30,10 @@ conda activate "$ENV_NAME"
 
 echo "[*] Installing required apt packages..."
 sudo apt update
-sudo apt install -y tailscale kitty qrencode openssl lsof whiptail
+sudo apt install -y tailscale kitty qrencode openssl lsof whiptail xdotool x11vnc libx11-dev libxtst-dev
+
+echo "[*] Installing Python packages into '$ENV_NAME'..."
+pip install fastapi uvicorn toml Pillow
 
 # ---- 2. Install code-server ----
 
@@ -49,6 +52,7 @@ ICNDIR="$HOME/.local/share/icons"
 mkdir -p "$APPDIR" "$ICNDIR"
 
 # Copy scripts and launcher *flat* to applications (NOT recursive, NOT keeping folders)
+echo "[*] Installing Icons and loading Metadata..."
 cp "$REPO/scripts/mobile_cli.sh" "$APPDIR/mobile_cli.sh"
 sudo chmod +x "$APPDIR/mobile_cli.sh"
 
@@ -63,6 +67,26 @@ sudo chmod +x "$APPDIR/remove_mobile.sh"
 
 cp "$REPO/logs/code-server.log" "$APPDIR/code-server.log"
 sudo chmod +x "$APPDIR/code-server.log"
+
+echo "[*] Installing Frontend Files and Checking API's..."
+cp "$REPO/mobilemirror/frontend/public/manifest.json" "$APPDIR/manifest.json"
+cp "$REPO/mobilemirror/frontend/src/App.jsx" "$APPDIR/App.jsx"
+cp "$REPO/mobilemirror/frontend/src/Terminal.jsx" "$APPDIR/Terminal.jsx"
+cp "$REPO/mobilemirror/frontend/src/Editor.jsx" "$APPDIR/Editor.jsx"
+cp "$REPO/mobilemirror/frontend/src/FileManager.jsx" "$APPDIR/FileManager.jsx"
+cp "$REPO/mobilemirror/frontend/src/ScreenViewer.jsx" "$APPDIR/ScreenViewer.jsx"
+cp "$REPO/mobilemirror/frontend/src/MouseController.jsx" "$APPDIR/MouseController.jsx"
+cp "$REPO/mobilemirror/frontend/src/api.js" "$APPDIR/api.js"
+
+echo "[*] Installing Backend Files and Systems..."
+cp "$REPO/mobilemirror/backend/screen_streamer.py" "$APPDIR/screen_streamer.py"
+cp "$REPO/mobilemirror/backend/mouse_input.py" "$APPDIR/mouse_input.py"
+cp "$REPO/mobilemirror/backend/utils/auth.py" "$APPDIR/auth.py"
+cp "$REPO/mobilemirror/backend/utils/logger.py" "$APPDIR/logger.py"
+cp "$REPO/mobilemirror/backend/utils/qr_generator.py" "$APPDIR/qr_generator.py"
+cp "$REPO/mobilemirror/config/system.toml" "$APPDIR/system.toml"
+cp "$REPO/mobilemirror/config/tailscale_setup.sh" "$APPDIR/tailscale_setup.sh"
+chmod +x "$APPDIR/tailscale_setup.sh"
 
 # Copy icon (flat, no folder)
 cp "$REPO/env/MobileDeveloper.png" "$ICNDIR/MobileDeveloper.png"
