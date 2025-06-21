@@ -17,6 +17,10 @@ Mobile-Developer: Mobile-Mirror/
 │   │
 │   └── coder-server.log   # ALIGNED
 │
+├── demos/
+│   │
+│   └── ...    # SCREEN-SHOTS HERE
+│
 ├── scripts/
 │   │
 │   ├── remove_mobile.sh
