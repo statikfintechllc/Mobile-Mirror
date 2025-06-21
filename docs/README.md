@@ -31,6 +31,8 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 
 </div>
 
+⚠️*The Working Directory will be AscendAI/GremlinGPT, His tools are Architeched. Time to attach and Debug*⚠️
+
 > Remote code, build, and ops on your home computer — from your phone — with zero cloud or port-forwarding.
 
 UPDATE: System fully operational!
@@ -38,7 +40,7 @@ Both manual and app launch via mobile_cli.sh now provide complete terminal acces
 
 Next up: Mobile Mirror mode is in progress—run your desktop from your phone, anywhere.
 
-Built 100% with GremlinGPT and hands-on dev grind. Every repo, every step, public and open. Thanks for watching and building with me.
+Built 100% with ChatGPT and hands-on dev grind. Every repo, every step, public and open. Thanks for watching, learning, and building with me.
 
 ---
 
