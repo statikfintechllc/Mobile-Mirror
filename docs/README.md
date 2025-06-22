@@ -7,15 +7,12 @@ href="https://github.com/statikfintechllc/Mobile-Developer/blob/master/LICENSE">
   <a href="https://github.com/statikfintechllc/Mobile-Developer/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/Developer%20v.1.0.1-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT License"/>
   </a>
-</div>
-
-<div align="center">
   <a
 href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
     <img src="https://img.shields.io/badge/Why-black?style=for-the-badge&logo=dragon&logoColor=gold" alt="Why"/>
   </a>
   <a href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREMLINGPT.md">
-    <img src="https://img.shields.io/badge/GremlinGPT-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
+    <img src="https://img.shields.io/badge/SFTi-darkred?style=for-the-badge&logo=dragon&logoColor=gold" alt="GremlinGPT"/>
   </a>
 </div>
 
