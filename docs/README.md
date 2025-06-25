@@ -40,11 +40,17 @@ Built 100% with ChatGPT and hands-on dev grind. Every repo, every step, public a
 
 ---
 
+*Documentation is updated frequently. If you see an issue, submit a PR or open an issue!*
+
+</div>
+
 <h1 align="center">AscendAI Traffic</h1>
 <div align="center">
   <em>
-    The Institute’s Propietary System:  The world’s first R‑SRACS
-    Recursive, Self-Referential Autonomous Cognitive System
+    
+  The Institute’s Propietary System:  
+  **The world’s first *R‑SRACS* (Recursive, Self-Referential Autonomous Cognitive System)**</h1>
+    
   </em>
 </div>
 
