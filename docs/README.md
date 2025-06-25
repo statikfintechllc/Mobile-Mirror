@@ -40,6 +40,8 @@ Built 100% with ChatGPT and hands-on dev grind. Every repo, every step, public a
 
 ---
 
+<div align="center">
+  
 *Documentation is updated frequently. If you see an issue, submit a PR or open an issue!*
 
 </div>
