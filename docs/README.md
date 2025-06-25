@@ -4,9 +4,9 @@
   <!-- GitHub Stats -->
 
 <div align="center"> 
-  <img src="https://img.shields.io/github/stars/statikfintechllc/AscendAI?style=social" alt="Stars"/>
-  <img src="https://img.shields.io/github/forks/statikfintechllc/AscendAI?style=social" alt="Forks"/>
-  <img src="https://img.shields.io/github/last-commit/statikfintechllc/AscendAI?style=social" alt="Last Commit"/>
+  <img src="https://img.shields.io/github/stars/statikfintechllc/Mobile-Developer?style=social" alt="Stars"/>
+  <img src="https://img.shields.io/github/forks/statikfintechllc/Mobile-Developer?style=social" alt="Forks"/>
+  <img src="https://img.shields.io/github/last-commit/statikfintechllc/Mobile-Developer?style=social" alt="Last Commit"/>
 </div>
 
 <meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
