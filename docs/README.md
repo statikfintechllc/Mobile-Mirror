@@ -1,5 +1,4 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
-<link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
   <!-- GitHub Stats -->
 
