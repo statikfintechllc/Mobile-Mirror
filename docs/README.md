@@ -68,7 +68,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 
 </div>
 
-⚠️*The Working Directory will be AscendAI/GremlinGPT, His tools are Architeched. Time to attach and Debug*⚠️
+⚠️*The Working Directory will be AscendAI/GremlinGPT, His tools are Architeched. Time to attach and Debug, Lets Scare the .org*⚠️
 
 > Remote code, build, and ops on your home computer — from your phone — with zero cloud or port-forwarding.
 
