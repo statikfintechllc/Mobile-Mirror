@@ -68,16 +68,23 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 
 </div>
 
+</div>
+
+> [!WARNING]
+>
+> Mirror under construction, Coding & tunnel Bullet Proof
+
 ⚠️*The Working Directory will be AscendAI/GremlinGPT, His tools are Architeched. Time to attach and Debug, Lets Scare the .org*⚠️
 
+> [!NOTE]
+>
+> Has Application for Linux
+>
 > Remote code, build, and ops on your home computer — from your phone — with zero cloud or port-forwarding.
 
-UPDATE: System fully operational!
-Both manual and app launch via mobile_cli.sh now provide complete terminal access—from Start to Uninstall.
+Built 100% hands-on dev grind, properly utilizong the multi-million dollar tools Gifted to the Public, @OpenAI.
 
-Next up: Mobile Mirror mode is in progress—run your desktop from your phone, anywhere.
-
-Built 100% with ChatGPT and hands-on dev grind. Every repo, every step, public and open. Thanks for watching, learning, and building with me.
+Every repo, every step, public and open. Thanks for watching, learning, and building with me.
 
 ---
 
@@ -119,9 +126,13 @@ href="https://github.com/statikfintechllc/AscendDocs_of_GovSeverance">
   </a>
 </div>
 
-</div>
-
 ---
+
+> [!IMPORTANT]
+>
+> In-Progress:
+> Mobile Mirror mode is in progress—run your desktop from your phone, anywhere.
+
 
 ## 🚀 What is this?
 
