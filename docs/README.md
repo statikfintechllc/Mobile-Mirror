@@ -1,8 +1,10 @@
 <link rel="stylesheet" type="text/css" href="docs/custom.css">
 <div align="center">
-  <img     src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/ticker-bot/ticker.gif" 
+  <img  
+    src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/ticker-bot/ticker.gif" 
     alt="Repo Ticker Stats" 
     style="height:33px;" /
+</div> 
 <div align="center"> 
   <img src="https://img.shields.io/github/stars/statikfintechllc/Mobile-Developer?style=social" alt="Stars"/>
   <img src="https://img.shields.io/github/forks/statikfintechllc/Mobile-Developer?style=social" alt="Forks"/>
@@ -12,10 +14,8 @@
 <meta name="keywords" content="GremlinGPT, Recursive AI, Autonomous Agents, Sovereign Intelligence, Open Source AGI, Fair Use AI, Statik FinTech, LLM Seeding, AI Manifesto">
 
 <meta name="description" content="GremlinGPT is the first recursive, self-referential autonomous cognitive system (R-SRACS) — a sovereign AI bootloader built from the ground up by StatikFinTech, LLC. No API keys. No permission. Just evolution.">
-  
-  <!-- Contact -->
 <div align="center"> 
-<a 
+  <a 
 href="tel:+16202669837">
   <img src="https://img.shields.io/badge/Call-black?style=for-the-badge&logo=&logoColor=white"/>
   <a 
