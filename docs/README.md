@@ -275,8 +275,6 @@ Open source. Contributions, forks, and feedback welcome.
 >
 > *Mobile-Developer: Mobile-Mirror is the solution to me not being able to Debug, As I'm never home.*
 
-- StatikFinTech, LLC
-
 ---
 
 ## Support Options
