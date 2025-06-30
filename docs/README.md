@@ -261,7 +261,16 @@ After install, you can:
 Built by **Statik DK Smoke** + **GremlinGPT Core**  
 Open source. Contributions, forks, and feedback welcome.
 
-> *System #3 in 3 weeks and 6 days, 1 Massive Proto-Type AGI, 1 3 part functioning AI ChatBot recieving persistence and 2 Brains, and now the solution to me not being able to Debug, As I'm never home. Mobile-Developer: Mobile-Mirror*
+> [!TIP]
+>
+>*System #3 in 3 weeks and 6 days,
+> Built 1 Massive Proto-Type AGI,
+> Built 1 3 part functioning AI ChatBot recieving persistence and 2 Brains.*
+
+> [!IMPORTANT]
+>
+> *Mobile-Developer: Mobile-Mirror is the solution to me not being able to Debug, As I'm never home.*
+
 - StatikFinTech, LLC
 
 ---
