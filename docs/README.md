@@ -235,7 +235,11 @@ After install, you can:
   - ✅ Exit
   - ✅ UnInstall
 
-> No terminal required.
+> [!TIP]
+>
+> No manual need to run code in terminal.
+>
+> CLI for the Dub.(for Linux)
 
 ---
 
