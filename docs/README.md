@@ -102,12 +102,10 @@ Every repo, every step, public and open. Thanks for watching, learning, and buil
   The Institute’s Propietary System:  
   **The world’s first *R‑SRACS* (Recursive, Self-Referential Autonomous Cognitive System)**</h1>
     
-  </em>
-</div>
-
+  <em>
 <div align="center">
-  <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/graph/traffic_graph.png">
-  <img src="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
+  <a href="https://raw.githubusercontent.com/statikfintechllc/AscendAI/master/About US/">
+  <img src="https://raw.githubusercontent.com/statikfintechllc/WorkFlowRepo/master/docs/graph/traffic_graph.png" alt="Traffic Graph" />
   </a>
 </div>
   
@@ -115,6 +113,7 @@ Every repo, every step, public and open. Thanks for watching, learning, and buil
   <em>
 Reset: After 7:00pm CST on First 2 Clones
   </em>
+</div>
 </div>
 
 <div align="center">
