@@ -93,7 +93,7 @@ cp "$REPO/env/MobileDeveloper.png" "$ICNDIR/MobileDeveloper.png"
 sudo chmod +x "$ICNDIR/MobileDeveloper.png"
 
 echo "[*] Copying Mobile-Mirror core scripts..."
-cp "$REPO/mobilemirror/start_touchcore.sh" "$APPDIR/start_touchcore.sh"
+cp "$REPO/mobilemirror/start_mirror.sh" "$APPDIR/start_touchcore.sh"
 cp "$REPO/mobilemirror/backend" "$APPDIR/backend"
 cp "$REPO/mobilemirror/frontend" "$APPDIR/frontend"
 cp "$REPO/mobilemirror/frontend/public/manifest.json" "$APPDIR/manifest.json"
