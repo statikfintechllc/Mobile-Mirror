@@ -14,7 +14,7 @@ SUB_TITLE="SFTi"
 # Resolve script dir
 APPDIR="$HOME/.local/share/applications"
 ICNDIR="$HOME/.local/share/icons"
-MIRROR="$APPDIR/start_touchcore.sh"
+MIRROR="$APPDIR/start_mirror.sh"
 START_SCRIPT="$APPDIR/start_code.sh"
 STOP_SCRIPT="$APPDIR/stop_code.sh"
 LOG_FILE="$HOME/code-server.log"
