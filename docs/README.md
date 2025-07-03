@@ -73,7 +73,7 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 
 > [!WARNING]
 >
-> Mirror under construction, Coding & tunnel Bullet Proof
+> Mirror under construction, Coding & tunnel Bullet Proof, Fully wired Mirror, in wait of debugging passes.
 
 ⚠️*The Working Directory will be AscendAI/GremlinGPT, His tools are Architeched(MB-MM is one of them). Time to attach and Debug, Lets Scare the .org*⚠️
 
