@@ -14,6 +14,7 @@ SUB_TITLE="SFTi"
 # Resolve script dir
 APPDIR="$HOME/.local/share/applications"
 ICNDIR="$HOME/.local/share/icons"
+MIRROR="$APPDIR/start_touchcore.sh"
 START_SCRIPT="$APPDIR/start_code.sh"
 STOP_SCRIPT="$APPDIR/stop_code.sh"
 LOG_FILE="$HOME/code-server.log"
@@ -69,20 +70,25 @@ while true; do
             read -r
             ;;
         2)
+            bash -l "$MIRROR"
+            echo -e "\nMobile Mirror Started! Press enter to continue..."
+            read -r
+            ;;
+        3)
             bash -l "$STOP_SCRIPT"
             echo -e "\nMobile Tunnel Stopped. Press enter to continue..."
             read -r
             ;;
-        3)
+        4)
             echo -e "\n\033[0;36m[Last 40 lines from: $LOG_FILE]\033[0m"
             tail -n 40 "$LOG_FILE" 2>/dev/null || echo "No log file found at $LOG_FILE"
             echo -e "\nPress enter to continue..."
             read -r
             ;;
-        4)
+        5)
             exit 0
             ;;
-        5)
+        6)
             echo -e "\n\033[1;31mWARNING: This will uninstall Mobile Developer permanently.\033[0m"
             echo -n "Type 'UNINSTALL' to confirm: "
             read -r CONFIRM
