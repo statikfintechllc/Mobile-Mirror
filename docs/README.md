@@ -357,3 +357,9 @@ Open source. Contributions, forks, and feedback welcome.
   - b) [X: @GremlinsForge](https://twitter.com/GremlinsForge)  
 
 **See Our [Open Funding Proposal](https://github.com/statikfintechllc/Mobile-Developer/blob/master/docs/OPEN_FUNDING_PROPOSAL.md)**
+
+<div align="center"> 
+
+[![Sponsor 💪 statikfintechllc](https://img.shields.io/badge/Sponsor%20%F0%9F%92%AA%20statikfintechllc-darkred?logo=github&style=for-the-badge)](https://github.com/sponsors/statikfintechllc)
+
+</div>
