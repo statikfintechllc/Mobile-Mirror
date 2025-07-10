@@ -75,9 +75,9 @@ href="https://github.com/statikfintechllc/AscendAI/blob/master/About Us/WHY_GREM
 >
 > Mirror under construction, Coding & tunnel Bullet Proof, Fully wired Mirror, in wait of debugging passes.
 
-⚠️*The Working Directory will be AscendAI/GremlinGPT, His tools are Architeched(MB-MM is one of them). Time to attach and Debug, Lets Scare the .org*⚠️
+⚠️*The Working Directory will be AscendAI/GremlinGPT, His tools are Architeched(MB-MM is one of them, debugging finishes when integration into GremlinGPT is needed). Time to Debug, Lets Scare the .orgs*⚠️
 
-Built 100% hands-on dev grind, properly utilizong the multi-million dollar tools Gifted to the Public, @OpenAI.
+Built 100% hands-on dev grind, properly utilizong the multi-million dollar tools Gifted to the Public. @OpenAI, @Copilot, @xAI
 
 Every repo, every step, public and open. Thanks for watching, learning, and building with me.
 
