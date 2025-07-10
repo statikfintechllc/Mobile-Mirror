@@ -178,8 +178,8 @@ Plus:
 ### 📥 Clone and Install
 
 ```bash
-git clone https://github.com/youruser/mobile-developer.git
-cd mobile-developer/env
+git clone https://github.com/statikfintechllc/mobile-mirror.git
+cd mobile-mirror/env
 chmod +x install.sh
 ./install.sh
 ```
