@@ -55,18 +55,19 @@ while true; do
     echo -e "Up-Time: \033[1;33m$UPTIME\033[0m"
     echo ""
     echo "Choose an action:"
-    echo "1) Start Mobile Tunnel"
-    echo "2) Stop Mobile Tunnel"
-    echo "3) View Logs"
-    echo "4) Exit"
-    echo "5) Uninstall Mobile Developer"
+    echo "1) Start Code-Server"
+    echo "2) Start Mobile Mirror"
+    echo "3) Stop Services"
+    echo "4) View Logs"
+    echo "5) Exit"
+    echo "6) Uninstall Mobile Developer"
     echo -n "Select> "
     read -r CHOICE
 
     case $CHOICE in
         1)
             bash -l "$START_SCRIPT"
-            echo -e "\nMobile Tunnel Started! Press enter to continue..."
+            echo -e "\nCode-Server Started! Press enter to continue..."
             read -r
             ;;
         2)
@@ -76,7 +77,7 @@ while true; do
             ;;
         3)
             bash -l "$STOP_SCRIPT"
-            echo -e "\nMobile Tunnel Stopped. Press enter to continue..."
+            echo -e "\nServices Stopped. Press enter to continue..."
             read -r
             ;;
         4)

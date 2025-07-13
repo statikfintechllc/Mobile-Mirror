@@ -1,13 +1,28 @@
-# system.toml — TouchCore runtime config
+# system.toml — Mobile Mirror runtime config
 
 [network]
 stream_port = 5901
 api_port = 8000
 frontend_port = 5000
+statik_server_port = 9443
+headscale_url = "https://headscale.statikfintech.dev"
 
 [paths]
 log_dir = "$HOME/.local/share/applications/system/services"
 default_file = "$HOME/sample.py"
+conda_env_path = "$HOME/miniconda/envs/Mob-Dev"
+python_executable = "$HOME/miniconda/envs/Mob-Dev/bin/python"
+
+[statik_server]
+enabled = true
+ssl_cert_path = "$HOME/.local/share/applications/certs"
+auto_generate_certs = true
+domain = "localhost"
+
+[headscale]
+enabled = true
+namespace = "statikfintech"
+auth_key_file = "$HOME/.config/headscale/authkey"
 
 [theme]
 background = "#1e1e1e"
@@ -15,5 +30,5 @@ foreground = "#ffffff"
 accent = "#00ffcc"
 
 [auth]
-token_env_var = "TOUCHCORE_TOKEN"
-default_token = "touchcore-access"
+token_env_var = "MOBILE_MIRROR_TOKEN"
+default_token = "statik-mobile-mirror-access"

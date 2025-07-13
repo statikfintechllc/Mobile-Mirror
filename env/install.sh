@@ -35,13 +35,47 @@ sudo apt install -y tailscale kitty qrencode openssl lsof whiptail xdotool x11vn
 echo "[*] Installing Python packages into '$ENV_NAME'..."
 pip install fastapi uvicorn toml Pillow
 
-# ---- 2. Install code-server ----
+# ---- 2. Install code-server and build statik-server ----
 
 echo "[*] Installing code-server (if not present)..."
 if ! command -v code-server >/dev/null 2>&1; then
     curl -fsSL https://code-server.dev/install.sh | sh
 else
     echo "[*] code-server already installed."
+fi
+
+# ---- 3. Build statik-server with headscale mesh ----
+
+echo "[*] Setting up statik-server with integrated mesh VPN..."
+STATIK_DIR="$REPO/statik-server"
+
+if [[ -d "$STATIK_DIR" ]]; then
+    cd "$STATIK_DIR"
+    
+    # Build headscale if Go is available
+    if command -v go >/dev/null 2>&1; then
+        echo "[*] Building headscale mesh VPN..."
+        cd internal/mesh
+        if [[ -f "go.mod" ]]; then
+            go build -o headscale ./cmd/headscale/
+            chmod +x headscale
+        fi
+        cd "$STATIK_DIR"
+    fi
+    
+    # Make scripts executable
+    chmod +x mesh-start.sh startup.sh 2>/dev/null || true
+    
+    # Build statik-server if package.json exists
+    if [[ -f "package.json" ]] && command -v npm >/dev/null 2>&1; then
+        echo "[*] Building statik-server..."
+        npm install
+        if [[ -f "build.sh" ]]; then
+            ./build.sh
+        fi
+    fi
+    
+    echo "[*] Statik-server setup complete"
 fi
 
 # Paths
@@ -74,8 +108,8 @@ cp "$REPO/mobilemirror/frontend/src/App.jsx" "$APPDIR/App.jsx"
 cp "$REPO/mobilemirror/frontend/src/Terminal.jsx" "$APPDIR/Terminal.jsx"
 cp "$REPO/mobilemirror/frontend/src/Editor.jsx" "$APPDIR/Editor.jsx"
 cp "$REPO/mobilemirror/frontend/src/FileManager.jsx" "$APPDIR/FileManager.jsx"
-cp "$REPO/mobilemirror/frontend/src/ScreenViewer.jsx" "$APPDIR/ScreenViewer.jsx"
-cp "$REPO/mobilemirror/frontend/src/MouseController.jsx" "$APPDIR/MouseController.jsx"
+cp "$REPO/mobilemirror/frontend/src/ScreenView.jsx" "$APPDIR/ScreenView.jsx"
+cp "$REPO/mobilemirror/frontend/src/MouseController.js" "$APPDIR/MouseController.js"
 cp "$REPO/mobilemirror/frontend/src/api.js" "$APPDIR/api.js"
 
 echo "[*] Installing Backend Files and Systems..."
@@ -93,15 +127,16 @@ cp "$REPO/env/MobileDeveloper.png" "$ICNDIR/MobileDeveloper.png"
 sudo chmod +x "$ICNDIR/MobileDeveloper.png"
 
 echo "[*] Copying Mobile-Mirror core scripts..."
-cp "$REPO/mobilemirror/start_mirror.sh" "$APPDIR/start_mirror.sh"
-cp "$REPO/mobilemirror/backend" "$APPDIR/backend"
-cp "$REPO/mobilemirror/frontend" "$APPDIR/frontend"
-cp "$REPO/mobilemirror/frontend/public/manifest.json" "$APPDIR/manifest.json"
+cp "$REPO/scripts/start_mirror.sh" "$APPDIR/start_mirror.sh"
+cp -r "$REPO/mobilemirror/backend" "$APPDIR/"
+cp -r "$REPO/mobilemirror/frontend" "$APPDIR/"
+# cp "$REPO/mobilemirror/frontend/public/manifest.json" "$APPDIR/manifest.json"  # Already copied above
 
 sudo chmod +x "$APPDIR/start_mirror.sh"
 
 echo "[*] Checking log directories..."
-cp "$REPO/mobilemirror/system/services" "$APPDIR/system/services"
+mkdir -p "$APPDIR/system"
+cp -r "$REPO/mobilemirror/system/services" "$APPDIR/system/"
 
 # Write .desktop file with ONLY BARE FILENAMES, no paths
 cat > "$APPDIR/MobileDeveloper.desktop" <<EOF
@@ -132,6 +167,7 @@ files=(
     "$APPDIR/start_code.sh"
     "$APPDIR/stop_code.sh"
     "$APPDIR/remove_mobile.sh"
+    "$APPDIR/start_mirror.sh"
     "$ICNDIR/MobileDeveloper.png"
     "$APPDIR/MobileDeveloper.desktop"
 
@@ -167,7 +203,7 @@ files=(
     "$APPDIR/frontend/src/api.js"
     "$APPDIR/frontend/src/FileManager.jsx"
     "$APPDIR/frontend/src/MouseController.js"
-    "$APPDIR/frontend/src/ScreenViewer.jsx"
+    "$APPDIR/frontend/src/ScreenView.jsx"
     "$APPDIR/frontend/src/Terminal.jsx"
     "$APPDIR/frontend/src/Editor.jsx"
     "$APPDIR/system.toml"

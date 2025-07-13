@@ -1,0 +1,10 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/statiksmoke8/miniconda/envs/Mob-Dev/lib/python3.10/site-packages",
+        "/home/statiksmoke8/miniconda/lib/python3.10/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/statiksmoke8/miniconda/envs/Mob-Dev/lib/python3.10/site-packages",
+        "/home/statiksmoke8/miniconda/lib/python3.10/site-packages"
+    ]
+}

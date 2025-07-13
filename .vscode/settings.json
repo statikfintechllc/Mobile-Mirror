@@ -1,0 +1,14 @@
+{
+    "python.interpreter.path": "/home/statiksmoke8/miniconda3/envs/Mob-Dev/bin/python",
+    "python.defaultInterpreterPath": "/home/statiksmoke8/miniconda3/envs/Mob-Dev/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "python.condaPath": "/home/statiksmoke8/miniconda3/bin/conda",
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.autoComplete.extraPaths": [
+        "/home/statiksmoke8/miniconda3/envs/Mob-Dev/lib/python3.10/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/statiksmoke8/miniconda3/envs/Mob-Dev/lib/python3.10/site-packages"
+    ]
+}
