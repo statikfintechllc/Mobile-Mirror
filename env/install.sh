@@ -9,8 +9,30 @@ ENV_NAME="Mob-Dev"
 PYTHON_VERSION="3.10"  # Change if a different python version is required
 
 if ! command -v conda &>/dev/null; then
-    echo "[ERROR] conda not found. Please install Miniconda or Anaconda first."
-    exit 1
+    echo "[*] conda not found. Installing Miniconda..."
+    cd "$(dirname "$0")"
+    
+    # Download Miniconda if not present
+    if [[ ! -f "Miniconda3-latest-Linux-x86_64.sh" ]]; then
+        echo "[*] Downloading Miniconda installer..."
+        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        chmod +x Miniconda3-latest-Linux-x86_64.sh
+    fi
+    
+    # Install Miniconda
+    echo "[*] Installing Miniconda..."
+    ./Miniconda3-latest-Linux-x86_64.sh -b -p "$HOME/miniconda3"
+    
+    # Initialize conda
+    "$HOME/miniconda3/bin/conda" init bash
+    "$HOME/miniconda3/bin/conda" init zsh
+    
+    # Add to PATH for current session
+    export PATH="$HOME/miniconda3/bin:$PATH"
+    
+    echo "[*] Miniconda installed. Please restart your shell or run: source ~/.bashrc"
+    echo "[*] Then re-run this script."
+    exit 0
 fi
 
 echo "[*] Checking if conda env '$ENV_NAME' exists..."
