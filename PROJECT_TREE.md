@@ -3,106 +3,134 @@
 ## 📋 Project Structure Overview
 
 ```
-Mobile-Mirror/                           # 🏠 Root project directory
-├── 📱 mobilemirror/                     # Core Mobile Mirror application
-│   ├── __init__.py                      # Package initialization
-│   └── backend/                         # 🚀 FastAPI backend server
-│       ├── __init__.py                  # Backend package init
-│       ├── README.md                    # Backend documentation  
-│       ├── app.py                       # 🌐 Main FastAPI application & API routes
-│       ├── file_ops.py                  # 📁 Secure file system operations
-│       ├── terminal_bridge.py           # 💻 WebSocket terminal access via PTY
-│       ├── mouse_input.py               # 🖱️ Mouse input simulation with xdotool
-│       ├── screen_streamer.py           # 📺 VNC-based desktop streaming
-│       └── utils/                       # 🛠️ Utility modules
-│           ├── __init__.py              # Utils package init
-│           ├── README.md                # Utils documentation
-│           ├── logger.py                # 📝 Centralized logging system
-│           ├── auth.py                  # 🔐 Authentication & security
-│           └── qr_generator.py          # 📱 QR code generation for mobile access
-│
-├── 🖥️ statik-server/                   # VS Code server with mesh VPN integration
-│   ├── startup.sh                       # 🚀 Main server launcher script
-│   ├── mesh-start.sh                    # 🌐 VPN initialization script
-│   ├── build.sh                         # 🔨 Build script for statik-server
-│   ├── internal/                        # Internal components
-│   │   └── mesh/                        # 🔒 Headscale mesh VPN
-│   │       ├── headscale                # Compiled headscale binary
-│   │       ├── headscale.sh             # VPN startup script
-│   │       └── config/                  # VPN configuration files
-│   └── .statik/                         # 🔧 Configuration & keys directory
-│       ├── config/                      # System configuration
-│       │   ├── headscale.yaml           # Headscale mesh configuration
-│       │   └── acl.yaml                 # Access control list
-│       ├── keys/                        # 🔑 Authentication keys storage
-│       │   ├── github-token             # GitHub authentication
-│       │   ├── codetoken                # VS Code access token
-│       │   └── preauth-keys/            # Pre-authentication keys for devices
-│       ├── db/                          # Database files
-│       ├── data/                        # Runtime data
-│       ├── logs/                        # Component logs
-│       ├── extensions/                  # VS Code extensions
-│       └── userdata/                    # VS Code user data
-│
-├── 📜 scripts/                          # 🔧 System management scripts
-│   ├── start-statik-system.sh           # 🚀 Complete system launcher
-│   ├── stop-statik-system.sh            # 🛑 System shutdown script
-│   ├── start_mobile_mirror.sh           # 📱 Backend-only launcher
-│   ├── mobile_cli.sh                    # 🖥️ GUI management interface
-│   ├── start_code.sh                    # VS Code server launcher
-│   ├── stop_code.sh                     # VS Code server shutdown
-│   └── remove_mobile.sh                 # 🗑️ Cleanup/uninstall script
-│
-├── 📚 docs/                             # 📖 Documentation
-│   ├── API.md                           # API documentation
-│   ├── INSTALLATION.md                  # Installation guide
-│   ├── CONFIGURATION.md                 # Configuration guide
-│   ├── SECURITY.md                      # Security guidelines
-│   └── TROUBLESHOOTING.md               # Troubleshooting guide
-│
-├── 🧪 demos/                            # 🎯 Example configurations & demos
-│   ├── mobile-client/                   # Mobile client examples
-│   ├── api-examples/                    # API usage examples
-│   └── integration-tests/               # Integration test scenarios
-│
-├── ⚙️ env/                              # 🌍 Environment setup
-│   ├── install.sh                       # 🔧 Main installation script
-│   ├── requirements.txt                 # 📦 Python dependencies
-│   ├── environment.yml                  # 🐍 Conda environment definition
-│   └── setup/                           # Setup utilities
-│       ├── python-setup.sh              # Python environment setup
-│       ├── system-deps.sh               # System dependencies installer
-│       └── vscode-setup.sh              # VS Code configuration
-│
-├── 📊 logs/                             # 📈 System logs (created at runtime)
-│   ├── mobilemirror.log                 # Main application log
-│   ├── errors.log                       # Error-only log
-│   ├── security.log                     # Security events
-│   └── performance.log                  # Performance metrics
-│
-├── 🧱 .github/                          # GitHub configuration
-│   ├── workflows/                       # CI/CD workflows
-│   │   ├── tests.yml                    # Test automation
-│   │   ├── security.yml                 # Security scanning
-│   │   └── docs.yml                     # Documentation updates
-│   ├── ISSUE_TEMPLATE/                  # Issue templates
-│   └── PULL_REQUEST_TEMPLATE.md         # PR template
-│
-├── 🔧 .vscode/                          # VS Code workspace configuration
-│   ├── settings.json                    # Python interpreter & project settings
-│   ├── launch.json                      # Debug configurations
-│   ├── tasks.json                       # Build & run tasks
-│   └── extensions.json                  # Recommended extensions
-│
-├── 📄 Root Files                        # 📋 Project configuration files
-├── .env                                 # Environment variables
-├── .python-version                      # Python version specification
-├── .gitignore                           # Git ignore rules
-├── LICENSE                              # MIT license
-├── COMPREHENSIVE_README.md              # 📚 Complete project documentation
-├── SYSTEM_STATUS.md                     # 🔋 System status & completion summary
-├── STATIK_SYSTEM_README.md              # 🖥️ Statik server documentation
-└── PROJECT_TREE.md                     # 🌳 This file - project structure
+.
+├── app
+│   ├── cli
+│   │   └── statik-cli
+│   │
+│   ├── gui
+│   │
+│   ├── icons
+│   │   └── AscendAI-v1.0.3.png
+│   │
+│   ├── install-app-fixed.sh
+│   └── install-app.sh
+│   
+├── docs
+│   ├── BUILD_COMPLETE.md
+│   ├── development
+│   │   ├── REORGANIZATION.md
+│   │   └── STRUCTURE.md
+│   │
+│   ├── INSTALL.md
+│   │
+│   ├── mesh
+│   │   └── MESH_OVERVIEW.md
+│   │
+│   ├── README-CLEAN.md
+│   ├── README-old2.md
+│   ├── README-old.md
+│   ├── README_STATIK.md
+│   ├── USAGE.md
+│   │
+│   └── user
+│       └── APP_INTERFACE.md
+│   
+├── internal
+│   │
+│   └── mesh
+│       ├── buf.gen.yaml
+│       ├── CHANGELOG.md
+│       ├── cmd
+│       ├── CODE_OF_CONDUCT.md
+│       ├── config-example.yaml
+│       ├── CONTRIBUTING.md
+│       ├── derp-example.yaml
+│       ├── Dockerfile.derper
+│       ├── Dockerfile.integration
+│       ├── Dockerfile.tailscale-HEAD
+│       ├── docs
+│       ├── flake.nix
+│       ├── gen
+│       ├── go.mod
+│       ├── go.sum
+│       ├── headscale
+│       ├── headscale.sh
+│       ├── headscale.yaml
+│       ├── hscontrol
+│       ├── integration
+│       ├── LICENSE
+│       ├── Makefile
+│       ├── mkdocs.yml
+│       ├── packaging
+│       ├── proto
+│       ├── README.md
+│       └── swagger.go
+│   
+├── lib
+│   ├── code
+│   ├── vscode
+│   └── vscode_cli.tar.gz
+│   
+├── scripts
+│   ├── build.sh
+│   ├── domain-setup.sh
+│   ├── mesh-start.sh
+│   ├── quick-build.sh
+│   ├── setup.sh
+│   ├── startup-clean.sh
+│   ├── startup-new.sh
+│   ├── startup-old.sh
+│   ├── startup.sh
+│   ├── test-setup.sh
+│   └── vscode-broadcast.sh
+│   
+├── src
+│   ├── AscendAI-v1.0.3.png
+│   │
+│   ├── browser
+│   │   ├── favicon.afdesign
+│   │   ├── media
+│   │   ├── pages
+│   │   ├── robots.txt
+│   │   ├── security-clean.txt
+│   │   ├── security-old.txt
+│   │   ├── security.txt
+│   │   └── serviceWorker.ts
+│   │
+│   ├── common
+│   │   ├── emitter.ts
+│   │   ├── http.ts
+│   │   └── util.ts
+│   │
+│   └── node
+│       ├── app.ts
+│       ├── cli.ts
+│       ├── constants.ts
+│       ├── entry.ts
+│       ├── heart.ts
+│       ├── http.ts
+│       ├── i18n
+│       ├── main.ts
+│       ├── proxy.ts
+│       ├── routes
+│       ├── settings.ts
+│       ├── socket.ts
+│       ├── statik
+│       ├── update.ts
+│       ├── util.ts
+│       ├── vscodeSocket.ts
+│       ├── wrapper.ts
+│       └── wsRouter.ts
+│   
+├── bootstrap.sh
+├── Broadcasting
+├── config
+├── LICENSE
+├── install.sh
+├── package.json
+├── README.md
+└── tsconfig.json
 ```
 
 ## 📁 Directory Details
