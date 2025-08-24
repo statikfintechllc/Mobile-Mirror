@@ -1,0 +1,32 @@
+[
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "### Issue Notebook for the Isses Notebook Repo"
+  },
+  {
+    "kind": 2,
+    "language": "github-issues",
+    "value": "$repo=repo:microsoft/vscode-github-issue-notebooks\n$bar=$repo:repo "
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "* eins\n* zwei\n* drei"
+  },
+  {
+    "kind": 2,
+    "language": "github-issues",
+    "value": "$repo is:open no:assignee $bar"
+  },
+  {
+    "kind": 2,
+    "language": "github-issues",
+    "value": "$repo is:open\n\n$FOO=is:open"
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "### ddddss"
+  }
+]

@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Test GremlinGPT Extension",
+            "type": "shell",
+            "command": "echo 'Extension ready for testing'",
+            "group": "test"
+        }
+    ]
+}

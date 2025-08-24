@@ -1,0 +1,51 @@
+popular_models:
+  - title: "DeepSeek-R1"
+    subtitle: "Multiple hosting options"
+    description: |
+      DeepSeek-R1 is a strong language model known for its high reasoning abilities and robust multilingual understanding.
+    tags: ["Easy to start", "Reasoning", "Agents"]
+    icon: "deepseek"
+    providers:
+      - name: "GitHub"
+        models: ["DeepSeek-R1"]
+      - name: "Azure AI Foundry"
+        models: ["DeepSeek-R1-0528"]
+      - name: "Ollama"
+        models: ["deepseek-r1"]
+      - name: "ONNX"
+        models:
+          - deepseek-r1-distill-qwen-1.5b-cpu-int4-rtn-block-32-acc-level-4
+          - deepseek-r1-distill-qwen-1.5b-cuda-int4-awq-block-128-acc-level-4
+          - deepseek-r1-distill-qwen-1.5b-cuda-int4-rtn-block-32
+  
+  - title: "Phi-4"
+    subtitle: "Multiple hosting options"
+    description: |
+      Phi-4 is a state-of-the-art open model built upon a blend of synthetic datasets, data from filtered public domain websites, and acquired academic books and Q&A datasets. The goal of this approach was to ensure that small capable models were trained with data focused on high quality and advanced reasoning.
+    tags: ["Reasoning", "Understanding", "Low latency"]
+    icon: "ms"
+    providers:
+      - name: "GitHub"
+        models: ["Phi-4"]
+      - name: "Azure AI Foundry"
+        models: ["Phi-4"]
+      - name: "Ollama"
+        models: ["phi-4"]
+      - name: "ONNX"
+        models: 
+          - Phi-4-mini-cpu-int4-rtn-block-32-acc-level-4-onnx
+          - Phi-4-mini-gpu-int4-rtn-block-32
+  
+  - title: "OpenAI GPT-4.1"
+    subtitle: "Multiple hosting options"
+    description: |
+      The gpt-4.1 series is the latest iteration of the gpt-4o model family. This iteration of models is specifically targeted for better coding and instruction following, making it better at handling complex technical and coding problems.
+    tags: ["Multipurpose", "Multilingual", "Multimodal"]
+    icon: "openai"
+    providers:
+      - name: "GitHub"
+        models: ["gpt-4.1"]
+      - name: "Azure AI Foundry"
+        models: ["gpt-4.1"]
+      - name: "OpenAI"
+        models: ["gpt-4.1"]

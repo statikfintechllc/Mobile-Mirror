@@ -3,7 +3,7 @@
 ## Quick Install
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/statikfintechllc/AscendNet/master/statik-server/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/statikfintechllc/AscendNet/master/statik-server/scripts/install.sh | bash
 ```
 
 ## Manual Installation

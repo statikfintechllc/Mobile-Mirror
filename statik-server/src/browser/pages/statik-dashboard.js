@@ -5,6 +5,10 @@ class StatikDashboard {
         this.currentTab = 'overview';
         this.memoryFeedActive = true;
         this.autonomousMode = false;
+        this.vscodeConfig = {
+            stock: { port: 8080, url: 'http://localhost:8080' },
+            gremlin: { port: 8081, url: 'http://localhost:8081' }
+        };
         this.init();
     }
 
@@ -34,42 +38,42 @@ class StatikDashboard {
         document.querySelectorAll('.nav-btn').forEach(btn => {
             btn.classList.remove('active');
         });
-        document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+        const targetBtn = document.querySelector(`[data-tab="${tabName}"]`);
+        if (targetBtn) {
+            targetBtn.classList.add('active');
+        }
 
         // Update content
         document.querySelectorAll('.tab-content').forEach(content => {
             content.classList.remove('active');
         });
-        document.getElementById(tabName).classList.add('active');
+        const targetContent = document.getElementById(tabName);
+        if (targetContent) {
+            targetContent.classList.add('active');
+        }
 
         this.currentTab = tabName;
-        
+
         // Load tab-specific content
         this.loadTabContent(tabName);
     }
 
     loadTabContent(tabName) {
         switch(tabName) {
-            case 'vscode':
-                this.loadVSCode();
+            case 'vscode-stock':
+                this.loadStockVSCode();
                 break;
-            case 'gremlin':
-                this.loadGremlinGPT();
-                break;
-            case 'godcore':
-                this.loadGodCore();
-                break;
-            case 'mobile':
-                this.loadMobileMirror();
-                break;
-            case 'memory':
-                this.loadMemoryDashboard();
+            case 'vscode-gremlin':
+                this.loadGremlinVSCode();
                 break;
             case 'mesh':
                 this.loadMeshVPN();
                 break;
             case 'system':
                 this.loadSystemDashboard();
+                break;
+            default:
+                // Overview tab or others - already loaded
                 break;
         }
     }
@@ -111,10 +115,10 @@ class StatikDashboard {
     // Memory Feed Management
     startMemoryFeed() {
         this.memoryEventSource = new EventSource('/api/statik/memory/live');
-        
+
         this.memoryEventSource.onmessage = (event) => {
             if (!this.memoryFeedActive) return;
-            
+
             try {
                 const memoryData = JSON.parse(event.data);
                 this.updateMemoryFeed(memoryData);
@@ -133,12 +137,12 @@ class StatikDashboard {
     updateMemoryFeed(data) {
         const feedContainer = document.getElementById('memory-feed');
         const liveFeedContainer = document.getElementById('live-memory-feed');
-        
+
         if (!feedContainer && !liveFeedContainer) return;
 
         // Create new memory entries
         const entries = [];
-        
+
         if (data.gremlinGPT && data.gremlinGPT.signal_trace) {
             data.gremlinGPT.signal_trace.slice(-3).forEach(signal => {
                 entries.push({
@@ -160,7 +164,7 @@ class StatikDashboard {
         // Update both containers
         [feedContainer, liveFeedContainer].forEach(container => {
             if (!container) return;
-            
+
             entries.forEach(entry => {
                 const entryElement = document.createElement('div');
                 entryElement.className = 'memory-item';
@@ -169,9 +173,9 @@ class StatikDashboard {
                     <span class="memory-source ${entry.source}">${entry.source.toUpperCase()}</span>
                     <span class="memory-content">${entry.content}</span>
                 `;
-                
+
                 container.insertBefore(entryElement, container.firstChild);
-                
+
                 // Limit to 20 entries
                 if (container.children.length > 20) {
                     container.removeChild(container.lastChild);
@@ -180,12 +184,197 @@ class StatikDashboard {
         });
     }
 
-    // VS Code Integration
-    loadVSCode() {
-        const iframe = document.getElementById('vscode-frame');
-        if (iframe && !iframe.src) {
-            iframe.src = '/';
+    // Stock VS Code Integration
+    async loadStockVSCode() {
+        const iframe = document.getElementById('vscode-stock-frame');
+        if (!iframe) return;
+
+        try {
+            // Load tunnel configuration
+            const config = await this.loadTunnelConfig();
+
+            if (config && config.vscode && config.vscode.stock) {
+                const vscodeUrl = config.vscode.stock.iframe_src || config.vscode.stock.url;
+                if (vscodeUrl && vscodeUrl !== iframe.src) {
+                    console.log('Loading Stock VS Code from tunnel URL:', vscodeUrl);
+                    iframe.src = vscodeUrl;
+                    this.updateStockVSCodeStatus('connected', 'Tunneled via Tailscale');
+                    document.getElementById('stock-vscode-url-status').textContent = vscodeUrl;
+                }
+            } else {
+                // Fallback to local
+                const localUrl = this.vscodeConfig.stock.url;
+                if (iframe.src !== localUrl) {
+                    console.log('Loading Stock VS Code from local URL:', localUrl);
+                    iframe.src = localUrl;
+                    this.updateStockVSCodeStatus('local', 'Local connection');
+                    document.getElementById('stock-vscode-url-status').textContent = localUrl;
+                }
+            }
+        } catch (error) {
+            console.error('Error loading Stock VS Code tunnel config:', error);
+            // Fallback to local
+            const localUrl = this.vscodeConfig.stock.url;
+            iframe.src = localUrl;
+            this.updateStockVSCodeStatus('local', 'Local connection (fallback)');
+            document.getElementById('stock-vscode-url-status').textContent = localUrl;
         }
+    }
+
+    // GremlinGPT VS Code Integration
+    async loadGremlinVSCode() {
+        const iframe = document.getElementById('vscode-gremlin-frame');
+        if (!iframe) return;
+
+        try {
+            // Load tunnel configuration
+            const config = await this.loadTunnelConfig();
+
+            if (config && config.vscode && config.vscode.gremlingpt) {
+                const vscodeUrl = config.vscode.gremlingpt.iframe_src || config.vscode.gremlingpt.url;
+                if (vscodeUrl && vscodeUrl !== iframe.src) {
+                    console.log('Loading GremlinGPT VS Code from tunnel URL:', vscodeUrl);
+                    iframe.src = vscodeUrl;
+                    this.updateGremlinVSCodeStatus('connected', 'AI-Enhanced via Tailscale');
+                    document.getElementById('gremlin-vscode-url-status').textContent = vscodeUrl;
+                }
+            } else {
+                // Fallback to local
+                const localUrl = this.vscodeConfig.gremlin.url;
+                if (iframe.src !== localUrl) {
+                    console.log('Loading GremlinGPT VS Code from local URL:', localUrl);
+                    iframe.src = localUrl;
+                    this.updateGremlinVSCodeStatus('local', 'AI-Enhanced (local)');
+                    document.getElementById('gremlin-vscode-url-status').textContent = localUrl;
+                }
+            }
+        } catch (error) {
+            console.error('Error loading GremlinGPT VS Code tunnel config:', error);
+            // Fallback to local
+            const localUrl = this.vscodeConfig.gremlin.url;
+            iframe.src = localUrl;
+            this.updateGremlinVSCodeStatus('local', 'AI-Enhanced (local fallback)');
+            document.getElementById('gremlin-vscode-url-status').textContent = localUrl;
+        }
+    }
+
+    // VS Code Integration (Legacy)
+    async loadVSCode() {
+        const iframe = document.getElementById('vscode-frame');
+        if (!iframe) return;
+
+        try {
+            // Load tunnel configuration
+            const config = await this.loadTunnelConfig();
+
+            if (config && config.services && config.services.vscode) {
+                const vscodeUrl = config.services.vscode.iframe_src || config.services.vscode.url;
+                if (vscodeUrl && vscodeUrl !== iframe.src) {
+                    console.log('Loading VS Code from tunnel URL:', vscodeUrl);
+                    iframe.src = vscodeUrl;
+
+                    // Update status indicator
+                    this.updateVSCodeStatus('connected', 'Tunneled via Tailscale');
+                }
+            } else {
+                // Fallback to local
+                if (!iframe.src) {
+                    console.log('Loading VS Code from local URL');
+                    iframe.src = '/';
+                    this.updateVSCodeStatus('local', 'Local connection');
+                }
+            }
+        } catch (error) {
+            console.error('Error loading VS Code tunnel config:', error);
+            // Fallback to local
+            if (!iframe.src) {
+                iframe.src = '/';
+                this.updateVSCodeStatus('local', 'Local connection (fallback)');
+            }
+        }
+    }
+
+    async loadTunnelConfig() {
+        try {
+            const response = await fetch('/api/config/runtime');
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (error) {
+            console.log('Tunnel config not available:', error.message);
+        }
+        return null;
+    }
+
+    updateVSCodeStatus(type, message) {
+        const statusElement = document.getElementById('vscode-status');
+        if (statusElement) {
+            const icon = type === 'connected' ? '🌍' : type === 'local' ? '🏠' : '💻';
+            statusElement.innerHTML = `${icon} ${message}`;
+            statusElement.className = `status-value ${type}`;
+        }
+    }
+
+    // Stock VS Code Status Management
+    updateStockVSCodeStatus(type, message) {
+        const statusElement = document.getElementById('stock-vscode-status');
+        if (statusElement) {
+            const icon = type === 'connected' ? '🌍' : type === 'local' ? '🏠' : '💻';
+            statusElement.innerHTML = `${icon} ${message}`;
+            statusElement.className = `status-value ${type}`;
+        }
+    }
+
+    // GremlinGPT VS Code Status Management
+    updateGremlinVSCodeStatus(type, message) {
+        const statusElement = document.getElementById('gremlin-vscode-status');
+        if (statusElement) {
+            const icon = type === 'connected' ? '🌍🤖' : type === 'local' ? '🏠🤖' : '💻🤖';
+            statusElement.innerHTML = `${icon} ${message}`;
+            statusElement.className = `status-value ${type}`;
+        }
+    }
+
+    // VS Code Control Functions for Stock Instance
+    reloadStockVSCode() {
+        const iframe = document.getElementById('vscode-stock-frame');
+        if (iframe && iframe.src) {
+            iframe.src = iframe.src;
+            this.updateStockVSCodeStatus('local', 'Reloading...');
+            setTimeout(() => this.loadStockVSCode(), 1000);
+        }
+    }
+
+    async openStockVSCodeNew() {
+        const config = await this.loadTunnelConfig();
+        let url = 'http://localhost:8080'; // fallback
+        
+        if (config && config.vscode && config.vscode.stock) {
+            url = config.vscode.stock.url;
+        }
+        
+        window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    // VS Code Control Functions for GremlinGPT Instance
+    reloadGremlinVSCode() {
+        const iframe = document.getElementById('vscode-gremlin-frame');
+        if (iframe && iframe.src) {
+            iframe.src = iframe.src;
+            this.updateGremlinVSCodeStatus('local', 'Reloading AI-Enhanced...');
+            setTimeout(() => this.loadGremlinVSCode(), 1000);
+        }
+    }
+
+    async openGremlinVSCodeNew() {
+        const config = await this.loadTunnelConfig();
+        let url = 'http://localhost:8081'; // fallback
+        
+        if (config && config.vscode && config.vscode.gremlingpt) {
+            url = config.vscode.gremlingpt.url;
+        }
+        
+        window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     // GremlinGPT Integration
@@ -276,7 +465,7 @@ class StatikDashboard {
             <div class="message-content">${content}</div>
             <div class="message-time">${new Date().toLocaleTimeString()}</div>
         `;
-        
+
         messagesContainer.appendChild(messageElement);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
@@ -364,7 +553,7 @@ class StatikDashboard {
             <div class="message-content">${content}</div>
             <div class="message-time">${new Date().toLocaleTimeString()}</div>
         `;
-        
+
         messagesContainer.appendChild(messageElement);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
@@ -397,7 +586,7 @@ class StatikDashboard {
         if (!canvas) return;
 
         const ctx = canvas.getContext('2d');
-        
+
         // Simple QR code placeholder
         ctx.fillStyle = '#000';
         for (let i = 0; i < 20; i++) {
@@ -525,9 +714,9 @@ class StatikDashboard {
                 <span class="log-level">INFO</span>
                 <span class="log-message">System heartbeat: All services running</span>
             `;
-            
+
             logsContainer.insertBefore(logEntry, logsContainer.firstChild);
-            
+
             if (logsContainer.children.length > 50) {
                 logsContainer.removeChild(logsContainer.lastChild);
             }
@@ -555,7 +744,7 @@ class StatikDashboard {
     updateStatusIndicators(data) {
         const statusDot = document.getElementById('status-dot');
         const statusText = document.getElementById('status-text');
-        
+
         if (data.status === 'healthy') {
             statusDot.textContent = '🟢';
             statusText.textContent = 'All Systems Operational';
@@ -599,19 +788,33 @@ function openMobileMirror() {
 function reloadVSCode() {
     const iframe = document.getElementById('vscode-frame');
     if (iframe) {
-        iframe.src = iframe.src;
+        // Force reload the VS Code iframe
+        iframe.src = iframe.src + '?reload=' + Date.now();
     }
 }
 
-function openVSCodeNew() {
-    window.open('/', '_blank');
+async function openVSCodeNew() {
+    try {
+        // Try to get tunnel URL for new window
+        const config = await dashboard.loadTunnelConfig();
+        let vscodeUrl = '/';
+
+        if (config && config.services && config.services.vscode) {
+            vscodeUrl = config.services.vscode.url || '/';
+        }
+
+        window.open(vscodeUrl, '_blank');
+    } catch (error) {
+        console.error('Error opening VS Code in new window:', error);
+        window.open('/', '_blank');
+    }
 }
 
 function toggleAutonomous() {
     dashboard.autonomousMode = !dashboard.autonomousMode;
     const btn = document.getElementById('autonomous-btn');
     const status = document.getElementById('autonomous-status');
-    
+
     if (dashboard.autonomousMode) {
         status.textContent = '🟢 Autonomous ON';
         btn.style.background = 'var(--statik-success)';
@@ -619,7 +822,7 @@ function toggleAutonomous() {
         status.textContent = '🔴 Autonomous OFF';
         btn.style.background = 'var(--statik-danger)';
     }
-    
+
     // Send autonomous mode toggle to backend
     fetch('/api/statik/gremlin/autonomous', {
         method: 'POST',
@@ -708,7 +911,7 @@ function sendGodCoreMessage() {
     const modelSelect = document.getElementById('model-select');
     const message = input.value.trim();
     const model = modelSelect.value;
-    
+
     if (!message) return;
 
     dashboard.addGodCoreMessage('user', message);
@@ -885,6 +1088,83 @@ let dashboard;
 document.addEventListener('DOMContentLoaded', () => {
     dashboard = new StatikDashboard();
 });
+
+// Global functions for button clicks
+
+// Function to open external links (StatikFinTech publications)
+function openLink(url) {
+    window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+// Function to get Tailscale configuration
+async function getTailscaleConfig() {
+    try {
+        const response = await fetch('/api/config/runtime');
+        if (response.ok) {
+            return await response.json();
+        }
+    } catch (error) {
+        console.warn('Could not load Tailscale config:', error);
+    }
+    
+    // Fallback: try to get Tailscale IP from known locations
+    try {
+        const ipResponse = await fetch('/api/statik/tailscale/ip');
+        if (ipResponse.ok) {
+            const data = await ipResponse.json();
+            return {
+                tailscale_ip: data.ip,
+                vscode: {
+                    stock: { url: `http://${data.ip}:8080` },
+                    gremlingpt: { url: `http://${data.ip}:8081` }
+                }
+            };
+        }
+    } catch (error) {
+        console.warn('Could not get Tailscale IP:', error);
+    }
+    
+    return null;
+}
+
+// Function to open VS Code (Stock)
+async function openVSCode() {
+    const config = await getTailscaleConfig();
+    let url = 'http://localhost:8080'; // fallback
+    
+    if (config && config.vscode && config.vscode.stock) {
+        url = config.vscode.stock.url;
+    }
+    
+    window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+// Function to open Statik-Code (GremlinGPT VS Code)
+async function openStatikCode() {
+    const config = await getTailscaleConfig();
+    let url = 'http://localhost:8081'; // fallback
+    
+    if (config && config.vscode && config.vscode.gremlingpt) {
+        url = config.vscode.gremlingpt.url;
+    }
+    
+    window.open(url, '_blank', 'noopener,noreferrer');
+}
+
+// Legacy function names for compatibility
+function openGremlinChat() {
+    openStatikCode();
+}
+
+function openGodCore() {
+    // Redirect to settings for now
+    dashboard.switchTab('system');
+}
+
+function openMobileMirror() {
+    // Redirect to mesh VPN for now  
+    dashboard.switchTab('mesh');
+}
 
 // Export for global access
 window.StatikDashboard = StatikDashboard;

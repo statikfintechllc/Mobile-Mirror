@@ -1,0 +1,54 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch GremlinGPT Unified System",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/run/unified_startup.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "CONDA_DEFAULT_ENV": "gremlin-orchestrator"
+            },
+            "preLaunchTask": "Setup Conda Environments"
+        },
+        {
+            "name": "Launch GremlinGPT Backend Server",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "backend.server",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "CONDA_DEFAULT_ENV": "gremlin-dashboard"
+            }
+        },
+        {
+            "name": "Test GremlinGPT Core",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/core/loop.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "CONDA_DEFAULT_ENV": "gremlin-orchestrator"
+            }
+        },
+        {
+            "name": "Debug Memory System",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "memory.vector_store.embedder",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "CONDA_DEFAULT_ENV": "gremlin-memory"
+            }
+        }
+    ]
+}

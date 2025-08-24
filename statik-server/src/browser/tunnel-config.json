@@ -1,0 +1,38 @@
+{
+  "tailscale": {
+    "ip": "100.76.205.85",
+    "status": "connected",
+    "last_updated": "2025-07-16T03:20:00Z"
+  },
+  "services": {
+    "frontend": {
+      "port": 3000,
+      "url": "http://100.76.205.85:3000/pages/statik-dashboard.html",
+      "iframe_src": "http://100.76.205.85:3000/pages/statik-dashboard.html",
+      "status": "running"
+    }
+  },
+  "vscode": {
+    "stock": {
+      "port": 8080,
+      "url": "http://100.76.205.85:8080",
+      "iframe_src": "http://100.76.205.85:8080",
+      "status": "running",
+      "type": "Standard VS Code"
+    },
+    "gremlingpt": {
+      "port": 8081,
+      "url": "http://100.76.205.85:8081",
+      "iframe_src": "http://100.76.205.85:8081",
+      "status": "running",
+      "type": "AI-Enhanced VS Code (GremlinGPT)"
+    }
+  },
+  "deployment_info": {
+    "timestamp": "2025-07-16T03:20:00Z",
+    "version": "1.0.0",
+    "dual_vscode_enabled": true,
+    "ai_enhanced": true,
+    "tunneling_active": true
+  }
+}

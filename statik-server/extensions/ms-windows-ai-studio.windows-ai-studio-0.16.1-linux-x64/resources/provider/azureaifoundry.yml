@@ -1,0 +1,758 @@
+name: Azure AI Foundry
+info: 
+  icon: foundry
+  platform: azure-ai-foundry
+  task: "Text Generation"
+features:
+  streaming: true
+  structuredOutputs: true
+  tokenCounting: false
+  isEditable: true
+  tools: true
+  attachments:
+    - type: image
+      mimeTypes:
+        - image/jpeg
+        - image/png
+        - image/gif
+        - image/webp
+    - type: text
+      aitkEnhanced: true
+      mimeTypes:
+        - application/pdf
+        - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        - application/epub+zip
+        - application/vnd.oasis.opendocument.text
+        - application/rtf
+        - text/csv
+        - text/plain
+        - text/html
+        - application/json
+        - application/vnd.openxmlformats-officedocument.presentationml.presentation
+        - application/vnd.oasis.opendocument.presentation
+        - text/javascript
+        - text/css
+        - application/x-httpd-php
+        - application/x-sh
+  promptGenerator: system_prompt
+  testDataGenerator: true
+parameterSchema:
+  enabled:
+    - name: system_prompt
+    - name: max_tokens
+      default: 4096
+    - name: temperature
+    - name: top_p
+    - name: presence_penalty
+    - name: frequency_penalty
+models:
+  - name: AI21-Jamba-1.5-Large
+    registryName: azureml-ai21
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+  - name: AI21-Jamba-1.5-Mini
+    registryName: azureml-ai21
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+  - name: Codestral-2501
+    registryName: azureml-mistral
+    popular: 3
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+  - name: cohere-command-a
+    registryName: azureml-cohere
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: frequency_penalty
+        - name: presence_penalty
+  - name: Cohere-command-r
+    registryName: azureml-cohere
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: frequency_penalty
+        - name: presence_penalty
+  - name: Cohere-command-r-08-2024
+    registryName: azureml-cohere
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: frequency_penalty
+        - name: presence_penalty
+  - name: Cohere-command-r-plus
+    registryName: azureml-cohere
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: frequency_penalty
+        - name: presence_penalty
+  - name: Cohere-command-r-plus-08-2024
+    registryName: azureml-cohere
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: frequency_penalty
+        - name: presence_penalty
+  - name: DeepSeek-R1
+    registryName: azureml-deepseek
+    popular: 2
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+  - name: DeepSeek-R1-0528
+    registryName: azureml-deepseek
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+  - name: DeepSeek-V3
+    registryName: azureml-deepseek
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: DeepSeek-V3-0324
+    registryName: azureml-deepseek
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: gpt-35-turbo
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p
+  - name: gpt-35-turbo-16k
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p
+  - name: gpt-35-turbo-instruct
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p
+  - name: gpt-4
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p
+  - name: gpt-4-32k
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p
+  - name: gpt-4.5-preview
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_completion_tokens
+          default: 800
+        - name: temperature
+        - name: top_p
+        - name: frequency_penalty
+        - name: presence_penalty
+  - name: Gretel-Navigator-Tabular
+    registryName: azureml-gretel
+    parameterSchema:
+      enabled:
+        - name: temperature
+        - name: top_p
+  - name: grok-3
+    registryName: azureml-xai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_completion_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: frequency_penalty
+        - name: presence_penalty
+  - name: grok-3-mini
+    registryName: azureml-xai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_completion_tokens
+          default: 16000
+        - name: temperature
+        - name: top_p
+  - name: jais-30b-chat
+    registryName: azureml-core42
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Llama-4-Scout-17B-16E-Instruct
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Llama-2-13b-chat
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Llama-2-70b-chat
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Llama-2-7b-chat
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Llama-3.2-11B-Vision-Instruct
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Llama-3.2-90B-Vision-Instruct
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Llama-3.3-70B-Instruct
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: MAI-DS-R1
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+  - name: Meta-Llama-3-70B-Instruct
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Meta-Llama-3-8B-Instruct
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Meta-Llama-3.1-405B-Instruct
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Meta-Llama-3.1-70B-Instruct
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Meta-Llama-3.1-8B-Instruct
+    registryName: azureml-meta
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Ministral-3B
+    registryName: azureml-mistral
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+  - name: Mistral-large-2407
+    registryName: azureml-mistral
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+  - name: Mistral-Large-2411
+    registryName: azureml-mistral
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+  - name: mistral-medium-2505
+    registryName: azureml-mistral
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+  - name: Mistral-Nemo
+    registryName: azureml-mistral
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+  - name: Mistral-small
+    registryName: azureml-mistral
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+  - name: mistral-small-2503
+    registryName: azureml-mistral
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+  - name: gpt-4.1
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_completion_tokens
+          default: 800
+        - name: temperature
+        - name: top_p
+        - name: frequency_penalty
+        - name: presence_penalty
+  - name: gpt-4.1-mini
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_completion_tokens
+          default: 800
+        - name: temperature
+        - name: top_p
+        - name: frequency_penalty
+        - name: presence_penalty
+  - name: gpt-4.1-nano
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_completion_tokens
+          default: 800
+        - name: temperature
+        - name: top_p
+        - name: frequency_penalty
+        - name: presence_penalty
+  - name: gpt-4o
+    registryName: azure-openai
+    popular: 1
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p
+  - name: gpt-4o-mini
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p
+  - name: o1
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_completion_tokens
+          default: 40000
+  - name: o1-mini
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: max_completion_tokens
+          default: 4096
+  - name: o1-preview
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: max_completion_tokens
+          default: 4096
+  - name: o3
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_completion_tokens
+          default: 100000
+  - name: o3-mini
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_completion_tokens
+          default: 100000
+  - name: o4-mini
+    registryName: azure-openai
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_completion_tokens
+          default: 100000
+  - name: Phi-3-medium-128k-instruct
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3-medium-4k-instruct
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3-mini-128k-instruct
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3-mini-4k-instruct
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3-small-128k-instruct
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3-small-8k-instruct
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3.5-mini-instruct
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3.5-MoE-instruct
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3.5-vision-instruct
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-4
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-4-mini-instruct
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-4-mini-reasoning
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-4-multimodal-instruct
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 4096
+  - name: Phi-4-reasoning
+    registryName: azureml
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: tsuzumi-7b
+    registryName: azureml-nttdata
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 4096
+        - name: temperature

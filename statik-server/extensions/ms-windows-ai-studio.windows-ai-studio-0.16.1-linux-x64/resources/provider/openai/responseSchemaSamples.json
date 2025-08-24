@@ -1,0 +1,82 @@
+{
+    "samples": [
+        {
+            "name": "math_response",
+            "description": "Structured outputs for chain-of-thought math tutoring",
+            "content": {
+                "name": "math_response",
+                "strict": true,
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "steps": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "explanation": {
+                                        "type": "string"
+                                    },
+                                    "output": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "explanation",
+                                    "output"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "final_answer": {
+                            "type": "string"
+                        }
+                    },
+                    "additionalProperties": false,
+                    "required": [
+                        "steps",
+                        "final_answer"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "paper_metadata",
+            "description": "Paper metadata",
+            "content": {
+                "name": "paper_metadata",
+                "strict": true,
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "title": {
+                            "type": "string"
+                        },
+                        "authors": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "abstract": {
+                            "type": "string"
+                        },
+                        "keywords": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "required": [
+                        "title",
+                        "authors",
+                        "abstract",
+                        "keywords"
+                    ],
+                    "additionalProperties": false
+                }
+            }
+        }
+    ]
+}

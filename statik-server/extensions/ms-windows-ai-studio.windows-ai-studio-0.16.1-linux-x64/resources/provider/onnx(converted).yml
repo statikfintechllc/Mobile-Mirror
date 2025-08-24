@@ -1,0 +1,36 @@
+name: ONNX (Converted)
+features:
+  streaming: true
+  structuredOutputs: false
+  tokenCounting: true
+  isEditable: false
+  rawText: true
+  attachments:
+    - type: text
+      aitkEnhanced: true
+      mimeTypes:
+        - application/pdf
+        - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        - application/epub+zip
+        - application/vnd.oasis.opendocument.text
+        - application/rtf
+        - text/csv
+        - text/plain
+        - text/html
+        - application/json
+        - application/vnd.openxmlformats-officedocument.presentationml.presentation
+        - application/vnd.oasis.opendocument.presentation
+        - text/javascript
+        - text/css
+        - application/x-httpd-php
+        - application/x-sh
+parameterSchema:
+  enabled:
+    - name: system_prompt
+    - name: max_tokens
+      default: 256
+    - name: temperature
+    - name: top_p
+    - name: presence_penalty
+    - name: frequency_penalty
+      default: 1

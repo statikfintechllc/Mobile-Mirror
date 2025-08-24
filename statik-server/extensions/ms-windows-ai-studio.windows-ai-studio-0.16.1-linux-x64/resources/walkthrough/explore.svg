@@ -1,0 +1,111 @@
+<svg width="631" height="479" viewBox="0 0 631 479" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <g>
+      <g>
+        <rect x="465" y="340" width="77" height="59" rx="2" stroke="var(--vscode-dropdown-border, #3C3C3C)" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5" />
+      </g>
+      <g>
+        <rect x="80" y="80" width="379" height="267" rx="2" stroke="var(--vscode-dropdown-border, #3C3C3C)" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5" />
+      </g>
+      <g filter="url(#filter0_d_4505_108304)">
+        <g clip-path="url(#clip0_4505_108304)">
+          <rect x="100" y="102" width="431" height="287" rx="2" fill="var(--vscode-editor-background, #1E1E1E)" />
+          <g>
+            <rect width="431" height="20" transform="translate(100 102)" fill="var(--vscode-titleBar-activeBackground, #303031)" />
+            <g>
+              <g>
+                <g>
+                  <rect width="72" height="15" transform="translate(105 107)" fill="var(--vscode-tab-activeBackground, #3C3C3C)" />
+                  <rect x="113.406" y="112" width="55.3408" height="4.90362" rx="2.45181" fill="var(--vscode-badge-background, #303031)" />
+                </g>
+              </g>
+            </g>
+            <g>
+              <path d="M493.982 112.009V112.628H487.124V112.009H493.982Z" fill="var(--vscode-keybindingLabel-background, #808080)" />
+              <path d="M502.097 108.885V115.123H508.336V108.885H502.097ZM507.707 114.505H502.716V109.514H507.707V114.505Z" fill="var(--vscode-keybindingLabel-background, #808080)" />
+              <path d="M519.636 112.009L516.791 114.854L517.34 115.403L520.185 112.558L523.03 115.403L523.579 114.854L520.734 112.009L523.579 109.164L523.03 108.615L520.185 111.46L517.34 108.615L516.791 109.164L519.636 112.009Z" fill="var(--vscode-keybindingLabel-background, #808080)" />
+            </g>
+          </g>
+          <g>
+            <g>
+              <g>
+                <g>
+                  <g>
+                    <rect x="127" y="296" width="303" height="8" rx="4" fill="var(--vscode-tab-inactiveForeground, #FFFFFF)" fill-opacity="0.16" />
+                    <rect x="127" y="311" width="212.281" height="8" rx="4" fill="var(--vscode-tab-inactiveForeground, #FFFFFF)" fill-opacity="0.16" />
+                    <rect x="346.281" y="311" width="58.0599" height="8" rx="4" fill="var(--vscode-activityBarBadge-background, #007ACC)" />
+                  </g>
+                  <g>
+                    <rect x="127" y="351" width="99.7904" height="8" rx="4" fill="var(--vscode-tab-inactiveForeground, #FFFFFF)" fill-opacity="0.16" />
+                    <rect x="127" y="366" width="50" height="8" rx="4" fill="var(--vscode-tab-inactiveForeground, #FFFFFF)" fill-opacity="0.16" />
+                    <rect x="249" y="366" width="181" height="8" rx="4" fill="var(--vscode-tab-inactiveForeground, #FFFFFF)" fill-opacity="0.16" />
+                    <rect x="184" y="366" width="58.0599" height="8" rx="4" fill="var(--vscode-activityBarBadge-background, #007ACC)" />
+                  </g>
+                  <g>
+                    <rect x="127" y="211" width="160" height="8" rx="4" fill="var(--vscode-tab-inactiveForeground, #FFFFFF)" fill-opacity="0.16" />
+                    <rect x="359" y="211" width="71" height="8" rx="4" fill="var(--vscode-tab-inactiveForeground, #FFFFFF)" fill-opacity="0.16" />
+                    <rect x="294" y="211" width="58.0599" height="8" rx="4" fill="var(--vscode-activityBarBadge-background, #007ACC)" />
+                    <rect x="127" y="241" width="281.228" height="8" rx="4" fill="var(--vscode-tab-inactiveForeground, #FFFFFF)" fill-opacity="0.16" />
+                    <rect x="127" y="256" width="100" height="8" rx="4" fill="var(--vscode-gitlens-mergedPullRequestIconColor, #6C6CC4)" />
+                    <rect x="127" y="226" width="303" height="8" rx="4" fill="var(--vscode-tab-inactiveForeground, #FFFFFF)" fill-opacity="0.16" />
+                  </g>
+                </g>
+              </g>
+              <path d="M141.079 185L139.53 180.265H132.789L131.215 185H127.901L134.401 166.681H138.083L144.596 185H141.079ZM136.064 170.121L133.551 177.738H138.769L136.28 170.121H136.064ZM151.02 185H147.744V166.681H151.02V185ZM170.304 185H167.028V169.436H161.392V166.681H175.953V169.436H170.304V185ZM182.58 185.279C178.416 185.279 175.902 182.562 175.902 178.056C175.902 173.587 178.454 170.857 182.58 170.857C186.719 170.857 189.258 173.574 189.258 178.056C189.258 182.562 186.731 185.279 182.58 185.279ZM182.58 182.702C184.776 182.702 186.021 181.001 186.021 178.068C186.021 175.136 184.764 173.435 182.58 173.435C180.384 173.435 179.127 175.136 179.127 178.068C179.127 181.001 180.384 182.702 182.58 182.702ZM198.424 185.279C194.26 185.279 191.746 182.562 191.746 178.056C191.746 173.587 194.298 170.857 198.424 170.857C202.562 170.857 205.102 173.574 205.102 178.056C205.102 182.562 202.575 185.279 198.424 185.279ZM198.424 182.702C200.62 182.702 201.864 181.001 201.864 178.068C201.864 175.136 200.607 173.435 198.424 173.435C196.228 173.435 194.971 175.136 194.971 178.068C194.971 181.001 196.228 182.702 198.424 182.702ZM208.402 185V165.754H211.551V185H208.402ZM219.028 176.812L224.157 171.124H227.813L222.278 177.078L228.194 185H224.386L219.93 179.008L218.812 180.125V185H215.664V165.754H218.812V176.812H219.028ZM232.219 168.801C231.19 168.801 230.34 167.976 230.34 166.935C230.34 165.906 231.19 165.068 232.219 165.068C233.26 165.068 234.11 165.906 234.11 166.935C234.11 167.976 233.26 168.801 232.219 168.801ZM230.657 185V171.124H233.793V185H230.657ZM238.706 167.722H241.842V171.213H244.812V173.663H241.842V180.569C241.842 181.953 242.426 182.575 243.746 182.575C244.19 182.575 244.432 182.55 244.812 182.512V184.924C244.355 185.013 243.771 185.063 243.162 185.063C239.976 185.063 238.706 183.997 238.706 181.318V173.663H236.51V171.213H238.706V167.722Z" fill="var(--vscode-tab-activeForeground, #FFFFFF)" />
+            </g>
+          </g>
+        </g>
+      </g>
+      <g>
+        <rect x="500.758" y="313.927" width="72.0325" height="49.8687" fill="var(--vscode-breadcrumb-background, #1E1E1E)" />
+        <path d="M498.067 311.79L500.467 309.123H565.533L567.933 311.79V356.59L565.533 359.256H500.467L498.067 356.59V311.79ZM503.133 316.856V354.19H563.133V316.856L534.6 338.723H531.4L503.133 316.856ZM558.067 314.19H507.933L533 333.656L558.067 314.19Z" fill="var(--vscode-breadcrumb-foreground, #CCCCCC)" />
+      </g>
+      <path d="M603.533 238.867L605.933 241.533V286.6L603.533 289H569.667L555.267 303.4L551 301.533V289H538.467L536.067 286.6V241.533L538.467 238.867H603.533ZM601.133 283.933V243.933H541.133V283.933H553.4L556.067 286.6V295.4L566.733 284.733L568.6 283.933H601.133Z" fill="var(--vscode-breadcrumb-foreground, #CCCCCC)" />
+    </g>
+  </g>
+  <defs>
+    <filter id="filter0_d_4505_108304" x="84" y="88" width="463" height="319" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+      <feOffset dy="2" />
+      <feGaussianBlur stdDeviation="8" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.36 0" />
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4505_108304" />
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4505_108304" result="shape" />
+    </filter>
+    <filter id="filter1_d_4505_108304" x="126.128" y="137.752" width="17.7432" height="17.7432" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+      <feOffset dy="0.623874" />
+      <feGaussianBlur stdDeviation="0.935811" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4505_108304" />
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4505_108304" result="shape" />
+    </filter>
+    <filter id="filter2_d_4505_108304" x="123.624" y="138.016" width="22.7428" height="19.3153" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+      <feOffset />
+      <feGaussianBlur stdDeviation="2.18356" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+      <feBlend mode="overlay" in2="BackgroundImageFix" result="effect1_dropShadow_4505_108304" />
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4505_108304" result="shape" />
+    </filter>
+    <filter id="filter3_d_4505_108304" x="133.258" y="134.669" width="13.1092" height="22.662" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+      <feOffset />
+      <feGaussianBlur stdDeviation="2.18356" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+      <feBlend mode="overlay" in2="BackgroundImageFix" result="effect1_dropShadow_4505_108304" />
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4505_108304" result="shape" />
+    </filter>
+    <linearGradient id="paint0_linear_4505_108304" x1="134.991" y1="139.036" x2="134.991" y2="152.964" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" />
+      <stop offset="1" stop-color="white" stop-opacity="0" />
+    </linearGradient>
+    <clipPath id="clip0_4505_108304">
+      <rect x="100" y="102" width="431" height="287" rx="2" fill="var(--vscode-activityBar-activeBorder, #FFFFFF)" />
+    </clipPath>
+  </defs>
+</svg>

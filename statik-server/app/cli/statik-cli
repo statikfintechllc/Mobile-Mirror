@@ -47,6 +47,10 @@ function usage() {
     echo "  config        Configuration management"
     echo "  mesh          Mesh VPN management"
     echo "  open          Open server in browser"
+    echo "  code          Open VS Code locally (desktop app)"
+    echo "  code-stock    Launch Stock VS Code server"
+    echo "  code-gremlin  Launch GremlinGPT VS Code (statik-code)"
+    echo "  tunnel        Manage Tailscale tunnels"
     echo "  gui           Launch interactive GUI"
     echo "  install       Install desktop app"
     echo "  uninstall     Remove desktop app"
@@ -63,6 +67,11 @@ function usage() {
     echo "  statik-cli start           # Start the server"
     echo "  statik-cli status          # Check status"
     echo "  statik-cli logs --tail 50  # View last 50 log lines"
+    echo "  statik-cli code            # Open VS Code interactively"
+    echo "  statik-cli code ~/project  # Open VS Code with project folder"
+    echo "  statik-cli code-stock      # Launch Stock VS Code server"
+    echo "  statik-cli code-gremlin    # Launch GremlinGPT VS Code"
+    echo "  statik-cli tunnel status   # Check tunnel status"
     echo "  statik-cli config token    # Set GitHub token"
     echo "  statik-cli commit -m 'Fix' # Git commit with message"
     echo "  statik-cli push            # Push to remote"
@@ -184,21 +193,43 @@ function stop_server() {
         rm -f "$PID_FILE"
     fi
     
-    # Kill any remaining VS Code, headscale, and socat processes
+    # Kill any remaining VS Code, Tailscale, and socat processes
     local cleanup_procs=()
     
-    # Find all related processes
+    # Find all related processes with more comprehensive patterns
     while IFS= read -r line; do
         if [[ -n "$line" ]]; then
             cleanup_procs+=("$line")
         fi
-    done < <(ps aux | grep -E "(code serve-web|headscale|socat.*8443)" | grep -v grep | awk '{print $2}')
+    done < <(ps aux | grep -E "(serve-web|headscale|socat.*8443|server-main\.js|bootstrap-fork|extensionHost)" | grep -v grep | awk '{print $2}')
     
     if [[ ${#cleanup_procs[@]} -gt 0 ]]; then
         verbose "Cleaning up ${#cleanup_procs[@]} related processes..."
         for pid in "${cleanup_procs[@]}"; do
-            kill -9 "$pid" 2>/dev/null || true
+            kill "$pid" 2>/dev/null || true
         done
+        sleep 3
+        
+        # Force kill any stubborn processes
+        local force_procs=()
+        while IFS= read -r line; do
+            if [[ -n "$line" ]]; then
+                force_procs+=("$line")
+            fi
+        done < <(ps aux | grep -E "(serve-web|headscale|socat.*8443|server-main\.js|bootstrap-fork|extensionHost)" | grep -v grep | awk '{print $2}')
+        
+        if [[ ${#force_procs[@]} -gt 0 ]]; then
+            verbose "Force killing ${#force_procs[@]} stubborn processes..."
+            for pid in "${force_procs[@]}"; do
+                kill -9 "$pid" 2>/dev/null || true
+            done
+        fi
+    fi
+    
+    # Clear log file to prevent flooding
+    if [[ -f "$LOG_FILE" ]]; then
+        > "$LOG_FILE"
+        verbose "Cleared server logs"
     fi
     
     # Clean up PID files
@@ -228,14 +259,13 @@ function show_status() {
     echo ""
     echo "Service Ports:"
     echo "  VS Code Server: 8080"
-    echo "  Mesh VPN Admin: 8081"
-    echo "  Headscale API: 50443"
+    echo "  HTTPS Proxy: 8443"
     echo ""
     
     # Check port status
     if command -v netstat >/dev/null; then
         echo "Port Status:"
-        for port in 8080 8081 50443; do
+        for port in 8080 8443; do
             if netstat -tlnp 2>/dev/null | grep -q ":$port "; then
                 echo -e "  $port: ${GREEN}● Listening${NC}"
             else
@@ -338,93 +368,98 @@ function manage_config() {
 
 function manage_mesh() {
     local action="$1"
-    local mesh_config="$STATIK_HOME/config/mesh-connection.json"
+    local mesh_config="$STATIK_HOME/config/tailscale-connection.json"
     
     case "$action" in
         status)
-            echo -e "${CYAN}Global Mesh VPN Status${NC}"
-            echo "======================"
+            echo -e "${CYAN}Tailscale Mesh VPN Status${NC}"
+            echo "========================="
             
-            # Check headscale mesh
-            if [[ -f "$STATIK_DIR/mesh.pid" ]] && kill -0 "$(cat "$STATIK_DIR/mesh.pid")" 2>/dev/null; then
-                echo -e "${GREEN}✅ Headscale Mesh VPN: Running${NC}"
+            # Check if Tailscale is available
+            local tailscale_cmd=""
+            if command -v tailscale >/dev/null 2>&1; then
+                tailscale_cmd="tailscale"
+            elif [[ -f "$REPO_DIR/bin/tailscale" ]]; then
+                tailscale_cmd="$REPO_DIR/bin/tailscale"
+            fi
+            
+            if [[ -n "$tailscale_cmd" ]]; then
+                # Check Tailscale status
+                local tailscale_status=$($tailscale_cmd status --json 2>/dev/null || echo "{}")
+                local self_ip=$($tailscale_cmd ip -4 2>/dev/null | head -n1)
                 
-                # Show connection details
-                if [[ -f "$mesh_config" ]]; then
-                    local server_url=$(jq -r '.server_url // "unknown"' "$mesh_config" 2>/dev/null || echo "unknown")
-                    local public_ip=$(jq -r '.public_ip // "unknown"' "$mesh_config" 2>/dev/null || echo "unknown")
-                    local setup_time=$(jq -r '.setup_time // "unknown"' "$mesh_config" 2>/dev/null || echo "unknown")
+                if [[ -n "$self_ip" && "$self_ip" != "" ]]; then
+                    echo -e "${GREEN}✅ Tailscale: Connected${NC}"
+                    echo "📱 This Device IP: $self_ip"
                     
-                    echo "📡 Global Server: $server_url"
-                    echo "🌍 Public IP: $public_ip"
-                    echo "⏰ Started: $setup_time"
+                    # Show connection details from config
+                    if [[ -f "$mesh_config" ]]; then
+                        local tailnet_ip=$(jq -r '.tailscale_ip // "unknown"' "$mesh_config" 2>/dev/null || echo "unknown")
+                        local setup_time=$(jq -r '.setup_time // "unknown"' "$mesh_config" 2>/dev/null || echo "unknown")
+                        
+                        echo "🌐 Mesh IP: $tailnet_ip"
+                        echo "⏰ Connected: $setup_time"
+                        
+                        # Show VS Code access URLs
+                        echo ""
+                        echo -e "${CYAN}🌐 VS Code Access:${NC}"
+                        echo "   Local:     http://localhost:8080"
+                        echo "   Tailscale: http://$self_ip:8080"
+                        echo "   Secure:    https://$self_ip:8443"
+                    fi
+                    
+                    # Show other devices in tailnet
+                    echo ""
+                    echo -e "${CYAN}📱 Other Devices in Tailnet:${NC}"
+                    $tailscale_cmd status 2>/dev/null | grep -v "^$self_ip" | head -10 || echo "   No other devices visible"
                 else
-                    echo "⚠️  No connection details found"
+                    echo -e "${RED}❌ Tailscale: Not Connected${NC}"
+                    echo "   Run: sudo tailscale up"
                 fi
             else
-                echo -e "${RED}❌ Headscale Mesh VPN: Stopped${NC}"
-                
-                # Check for Tailscale fallback
-                if [[ -f "$STATIK_DIR/config/tailscale-connection.json" ]]; then
-                    echo -e "${YELLOW}🔗 Tailscale Fallback: Available${NC}"
-                    local ts_ip=$(jq -r '.tailscale_ip // "unknown"' "$STATIK_DIR/config/tailscale-connection.json" 2>/dev/null || echo "unknown")
-                    local vs_code_url=$(jq -r '.vs_code_url // "unknown"' "$STATIK_DIR/config/tailscale-connection.json" 2>/dev/null || echo "unknown")
-                    echo "📱 Tailscale IP: $ts_ip"
-                    echo "🌐 VS Code URL: $vs_code_url"
-                elif command -v tailscale >/dev/null 2>&1; then
-                    echo -e "${YELLOW}🔗 Tailscale: Available (not configured)${NC}"
-                    echo "   Run: sudo tailscale up"
-                else
-                    echo -e "${GRAY}ℹ️  No mesh VPN available${NC}"
-                fi
+                echo -e "${RED}❌ Tailscale: Not Installed${NC}"
+                echo "   Install: curl -fsSL https://tailscale.com/install.sh | sh"
             fi
             
             echo ""
+            echo -e "${CYAN}� Mesh Commands:${NC}"
+            echo "   tailscale status      # View full mesh status"
+            echo "   tailscale ip          # Show your mesh IP"
+            echo "   tailscale ping <ip>   # Test connectivity"
+            ;;
+        info)
+            echo -e "${CYAN}Tailscale Mesh Information${NC}"
+            echo "=========================="
             
-            # Show registered devices if headscale is available
-            if command -v headscale >/dev/null || [[ -f "$REPO_DIR/lib/headscale" ]]; then
-                local headscale_cmd="headscale"
-                if [[ -f "$REPO_DIR/lib/headscale" ]]; then
-                    headscale_cmd="$REPO_DIR/lib/headscale -c $STATIK_DIR/config/headscale.yaml"
-                fi
+            if command -v tailscale >/dev/null 2>&1 || [[ -f "$REPO_DIR/bin/tailscale" ]]; then
+                local tailscale_cmd="tailscale"
+                [[ -f "$REPO_DIR/bin/tailscale" ]] && tailscale_cmd="$REPO_DIR/bin/tailscale"
                 
-                echo "📱 Connected Devices:"
-                $headscale_cmd nodes list 2>/dev/null || echo "  No devices connected"
+                echo "Full Tailscale Status:"
+                $tailscale_cmd status 2>/dev/null || echo "Not connected"
+                
                 echo ""
-                echo "🔑 Auth Keys:"
-                # List keys for user 1 (default statik user)
-                $headscale_cmd preauthkeys list --user 1 2>/dev/null || echo "  No auth keys available"
+                echo "Network Information:"
+                $tailscale_cmd netcheck 2>/dev/null || echo "Network check failed"
             else
-                echo "  Headscale not available"
+                echo "Tailscale not available"
             fi
             ;;
-        key|keys)
-            echo -e "${CYAN}Generate Connection Key${NC}"
-            echo "======================"
-            
-            if [[ -f "$REPO_DIR/lib/headscale" ]]; then
-                local key_name="${2:-statik-$(date +%s)}"
-                echo "Generating connection key: $key_name"
-                
-                # Get the first user ID
-                local user_id=$("$REPO_DIR/lib/headscale" -c "$STATIK_DIR/config/headscale.yaml" users list | tail -1 | awk '{print $1}' | head -1)
-                if [[ -n "$user_id" && "$user_id" =~ ^[0-9]+$ ]]; then
-                    local auth_key=$("$REPO_DIR/lib/headscale" -c "$STATIK_DIR/config/headscale.yaml" preauthkeys create --user "$user_id" --reusable --expiration 720h 2>/dev/null | tail -1)
-                    
-                    if [[ -n "$auth_key" && ${#auth_key} -gt 20 ]]; then
-                
-                if [[ -n "$auth_key" ]]; then
-                    echo ""
-                    echo -e "${GREEN}🔑 Connection Key Generated:${NC}"
-                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                    echo "$auth_key"
-                    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                    echo ""
-                    echo -e "${YELLOW}📋 Connection Instructions:${NC}"
-                    echo "1. Install Tailscale on target device:"
-                    echo "   curl -fsSL https://tailscale.com/install.sh | sh"
-                    echo ""
-                    echo "2. Connect to this mesh:"
+        *)
+            echo -e "${CYAN}Mesh VPN Management${NC}"
+            echo "=================="
+            echo "Commands:"
+            echo "  statik-cli mesh status    # Show mesh status"
+            echo "  statik-cli mesh info      # Detailed network info"
+            echo ""
+            echo "Tailscale Commands:"
+            echo "  sudo tailscale up         # Connect to your tailnet"
+            echo "  sudo tailscale down       # Disconnect"
+            echo "  tailscale status          # Show all devices"
+            echo "  tailscale ip              # Show your mesh IP"
+            ;;
+    esac
+}
                     if [[ -f "$mesh_config" ]]; then
                         local server_url=$(jq -r '.server_url' "$mesh_config" 2>/dev/null || echo "https://$(hostname -I | awk '{print $1}'):8443")
                         echo "   sudo tailscale up --login-server $server_url --authkey $auth_key"
@@ -433,6 +468,9 @@ function manage_mesh() {
                     fi
                     echo ""
                     echo "3. Access development environment globally! 🌍"
+                    else
+                        error "Failed to generate auth key"
+                    fi
                 else
                     error "Failed to generate auth key"
                 fi
@@ -540,6 +578,236 @@ function open_browser() {
     else
         log "Please open $url in your browser"
     fi
+}
+
+function open_vscode() {
+    local vscode_binary="$REPO_DIR/lib/code"
+    
+    if [[ ! -f "$vscode_binary" ]]; then
+        error "VS Code binary not found at $vscode_binary"
+        log "Run './install.sh' to install VS Code CLI"
+        return 1
+    fi
+    
+    log "${BLUE}Opening VS Code locally...${NC}"
+    verbose "Using VS Code binary: $vscode_binary"
+    
+    # If a path was provided as argument, use it
+    if [[ -n "$1" && -e "$1" ]]; then
+        log "Opening: ${CYAN}$1${NC}"
+        "$vscode_binary" "$1" &
+        success "VS Code opened with $1"
+        return 0
+    fi
+    
+    # If no argument provided, offer options (interactive mode)
+    if [[ -z "$1" ]]; then
+        echo ""
+        echo -e "${CYAN}What would you like to open?${NC}"
+        echo "1) Current directory ($PWD)"
+        echo "2) Home directory ($HOME)"
+        echo "3) Statik-Server directory ($REPO_DIR)"
+        echo "4) Custom path"
+        echo -n "Select (1-4): "
+        read -r choice
+        
+        case $choice in
+            1)
+                "$vscode_binary" "$PWD" &
+                success "VS Code opened with current directory"
+                ;;
+            2)
+                "$vscode_binary" "$HOME" &
+                success "VS Code opened with home directory"
+                ;;
+            3)
+                "$vscode_binary" "$REPO_DIR" &
+                success "VS Code opened with Statik-Server directory"
+                ;;
+            4)
+                echo -n "Enter path to open: "
+                read -r custom_path
+                if [[ -e "$custom_path" ]]; then
+                    "$vscode_binary" "$custom_path" &
+                    success "VS Code opened with $custom_path"
+                else
+                    error "Path not found: $custom_path"
+                    return 1
+                fi
+                ;;
+            *)
+                "$vscode_binary" "$HOME" &
+                success "VS Code opened with home directory (default)"
+                ;;
+        esac
+    else
+        # Argument provided but path doesn't exist
+        error "Path not found: $1"
+        return 1
+    fi
+}
+
+function launch_stock_vscode() {
+    log "${BLUE}Launching Stock VS Code server...${NC}"
+    
+    local vscode_binary="$REPO_DIR/lib/vscode-stock"
+    if [[ ! -f "$vscode_binary" ]]; then
+        error "Stock VS Code binary not found at $vscode_binary"
+        log "Run '$0 build' to setup VS Code servers"
+        return 1
+    fi
+    
+    local port=${1:-8080}
+    log "Starting Stock VS Code on port $port"
+    
+    # Kill any existing process
+    if [[ -f "$STATIK_DIR/vscode-stock.pid" ]]; then
+        local old_pid
+        old_pid=$(cat "$STATIK_DIR/vscode-stock.pid")
+        if kill -0 "$old_pid" 2>/dev/null; then
+            log "Stopping existing Stock VS Code (PID: $old_pid)"
+            kill "$old_pid"
+            sleep 2
+        fi
+    fi
+    
+    # Start server
+    nohup "$vscode_binary" \
+        --bind-addr="0.0.0.0:$port" \
+        --auth=none \
+        --disable-telemetry \
+        --disable-update-check \
+        > "$STATIK_DIR/logs/vscode-stock.log" 2>&1 &
+    
+    local pid=$!
+    echo "$pid" > "$STATIK_DIR/vscode-stock.pid"
+    
+    sleep 3
+    if kill -0 "$pid" 2>/dev/null; then
+        success "Stock VS Code started (PID: $pid) on http://localhost:$port"
+        
+        # Check Tailscale and provide tunnel URL
+        if command -v tailscale >/dev/null 2>&1; then
+            local tailscale_ip
+            tailscale_ip=$(tailscale ip -4 2>/dev/null | head -n1)
+            if [[ -n "$tailscale_ip" ]]; then
+                log "${GREEN}Tailscale URL: http://$tailscale_ip:$port${NC}"
+            fi
+        fi
+    else
+        error "Failed to start Stock VS Code server"
+        return 1
+    fi
+}
+
+function launch_gremlingpt_vscode() {
+    log "${BLUE}Launching GremlinGPT VS Code (statik-code)...${NC}"
+    
+    local gremlin_binary="$REPO_DIR/lib/statik-code"
+    if [[ ! -f "$gremlin_binary" ]]; then
+        error "GremlinGPT VS Code binary not found at $gremlin_binary"
+        log "Run '$0 build' to setup VS Code servers"
+        return 1
+    fi
+    
+    local port=${1:-8081}
+    log "Starting GremlinGPT VS Code on port $port"
+    
+    # Kill any existing process
+    if [[ -f "$STATIK_DIR/statik-code.pid" ]]; then
+        local old_pid
+        old_pid=$(cat "$STATIK_DIR/statik-code.pid")
+        if kill -0 "$old_pid" 2>/dev/null; then
+            log "Stopping existing GremlinGPT VS Code (PID: $old_pid)"
+            kill "$old_pid"
+            sleep 2
+        fi
+    fi
+    
+    # Start server
+    nohup "$gremlin_binary" \
+        --bind-addr="0.0.0.0:$port" \
+        --auth=none \
+        --disable-telemetry \
+        --disable-update-check \
+        > "$STATIK_DIR/logs/statik-code.log" 2>&1 &
+    
+    local pid=$!
+    echo "$pid" > "$STATIK_DIR/statik-code.pid"
+    
+    sleep 3
+    if kill -0 "$pid" 2>/dev/null; then
+        success "GremlinGPT VS Code started (PID: $pid) on http://localhost:$port"
+        
+        # Check Tailscale and provide tunnel URL
+        if command -v tailscale >/dev/null 2>&1; then
+            local tailscale_ip
+            tailscale_ip=$(tailscale ip -4 2>/dev/null | head -n1)
+            if [[ -n "$tailscale_ip" ]]; then
+                log "${GREEN}Tailscale URL: http://$tailscale_ip:$port${NC}"
+            fi
+        fi
+    else
+        error "Failed to start GremlinGPT VS Code server"
+        return 1
+    fi
+}
+
+function manage_tunnels() {
+    local action=${1:-status}
+    
+    case $action in
+        status)
+            log "${CYAN}Tailscale Tunnel Status:${NC}"
+            
+            if command -v tailscale >/dev/null 2>&1; then
+                local tailscale_ip
+                tailscale_ip=$(tailscale ip -4 2>/dev/null | head -n1)
+                
+                if [[ -n "$tailscale_ip" ]]; then
+                    log "${GREEN}✓ Connected to Tailscale: $tailscale_ip${NC}"
+                    
+                    # Check running services
+                    echo ""
+                    log "Available Services:"
+                    
+                    if [[ -f "$STATIK_DIR/frontend.pid" ]] && kill -0 "$(cat "$STATIK_DIR/frontend.pid")" 2>/dev/null; then
+                        log "  ${GREEN}✓ Frontend:${NC} http://$tailscale_ip:3000"
+                    else
+                        log "  ${RED}✗ Frontend: Not running${NC}"
+                    fi
+                    
+                    if [[ -f "$STATIK_DIR/vscode-stock.pid" ]] && kill -0 "$(cat "$STATIK_DIR/vscode-stock.pid")" 2>/dev/null; then
+                        log "  ${GREEN}✓ Stock VS Code:${NC} http://$tailscale_ip:8080"
+                    else
+                        log "  ${RED}✗ Stock VS Code: Not running${NC}"
+                    fi
+                    
+                    if [[ -f "$STATIK_DIR/statik-code.pid" ]] && kill -0 "$(cat "$STATIK_DIR/statik-code.pid")" 2>/dev/null; then
+                        log "  ${GREEN}✓ GremlinGPT VS Code:${NC} http://$tailscale_ip:8081"
+                    else
+                        log "  ${RED}✗ GremlinGPT VS Code: Not running${NC}"
+                    fi
+                else
+                    warn "Tailscale installed but not connected"
+                fi
+            else
+                warn "Tailscale not installed"
+            fi
+            ;;
+        connect)
+            log "Connecting to Tailscale..."
+            if command -v tailscale >/dev/null 2>&1; then
+                tailscale up --accept-routes --accept-dns=false
+                success "Tailscale connection initiated"
+            else
+                error "Tailscale not installed. Install with: curl -fsSL https://tailscale.com/install.sh | sh"
+            fi
+            ;;
+        *)
+            log "Usage: $0 tunnel {status|connect}"
+            ;;
+    esac
 }
 
 function launch_gui() {
@@ -758,6 +1026,18 @@ case "$COMMAND" in
         ;;
     open)
         open_browser "$@"
+        ;;
+    code)
+        open_vscode "$@"
+        ;;
+    code-stock)
+        launch_stock_vscode "$@"
+        ;;
+    code-gremlin)
+        launch_gremlingpt_vscode "$@"
+        ;;
+    tunnel)
+        manage_tunnels "$@"
         ;;
     gui)
         launch_gui "$@"

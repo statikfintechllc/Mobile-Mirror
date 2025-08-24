@@ -1,0 +1,2575 @@
+name: GitHub
+info:
+  platform: github
+  task: "Text Generation"
+features:
+  streaming: true
+  structuredOutputs: false
+  tokenCounting: true
+  isEditable: false
+  attachments:
+    - type: text
+      aitkEnhanced: true
+      mimeTypes:
+        - application/pdf
+        - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        - application/epub+zip
+        - application/vnd.oasis.opendocument.text
+        - application/rtf
+        - text/csv
+        - text/plain
+        - text/html
+        - application/json
+        - application/vnd.openxmlformats-officedocument.presentationml.presentation
+        - application/vnd.oasis.opendocument.presentation
+        - text/javascript
+        - text/css
+        - application/x-httpd-php
+        - application/x-sh
+parameterSchema:
+  enabled:
+    - name: system_prompt
+    - name: max_tokens
+    - name: temperature
+    - name: top_p
+registrySettings:
+  - name: azureml-ai21
+    validateEmptyPrompt: true
+  - name: azureml-mistral
+    validateEmptyPrompt: true
+models:
+  - name: AI21-Jamba-1.5-Large
+    features:
+      promptGenerator: system_prompt
+      tools: true
+      streaming: false
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+  - name: AI21-Jamba-1.5-Mini
+    features:
+      tools: true
+      streaming: false
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+  - name: cohere-command-a
+    features:
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Cohere-command-r
+    features:
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Cohere-command-r-08-2024
+    features:
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Cohere-command-r-plus
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Cohere-command-r-plus-08-2024
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: DeepSeek-R1
+    info:
+      popular: 2
+      reasoning: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+    features:
+      testDataGenerator: true
+  - name: DeepSeek-V3
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+    features:
+      testDataGenerator: true
+  - name: DeepSeek-V3-0324
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+    features:
+      testDataGenerator: true
+  - name: MAI-DS-R1
+    info: 
+      reasoning: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+    features:
+      testDataGenerator: true
+  - name: grok-3
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      responseFormats:
+        - text
+        - json_schema
+  - name: grok-3-mini
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 1
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      responseFormats:
+        - text
+        - json_schema
+  - name: Llama-3.2-11B-Vision-Instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+    features:
+      promptGenerator: system_prompt
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+  - name: Llama-3.2-90B-Vision-Instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+  - name: Llama-3.3-70B-Instruct
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Meta-Llama-3.1-405B-Instruct
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+        - name: stop
+  - name: Meta-Llama-3.1-70B-Instruct
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+        - name: stop
+  - name: Meta-Llama-3.1-8B-Instruct
+    features:
+      promptGenerator: system_prompt
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+        - name: stop
+  - name: Meta-Llama-3-70B-Instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Meta-Llama-3-8B-Instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Llama-4-Maverick-17B-128E-Instruct-FP8
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+    features:
+      promptGenerator: system_prompt
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+  - name: Llama-4-Scout-17B-16E-Instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+    features:
+      promptGenerator: system_prompt
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+  - name: Ministral-3B
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+  - name: Mistral-large
+    features:
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+  - name: Mistral-large-2407
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+  - name: Mistral-Large-2411
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+  - name: Mistral-Nemo
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+  - name: Mistral-small
+    features:
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+  - name: mistral-medium-2505
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+  - name: mistral-small-2503
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+  - name: gpt-4o
+    info:
+      popular: 1
+      apiVersion: 2024-08-01-preview
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 1
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+      responseFormats:
+        - text
+        - json_schema
+  - name: gpt-4.1
+    info:
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 1
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+      responseFormats:
+        - text
+        - json_schema
+  - name: gpt-4.1-mini
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 1
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+      responseFormats:
+        - text
+        - json_schema
+  - name: gpt-4.1-nano
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 1
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+      responseFormats:
+        - text
+        - json_schema
+  - name: gpt-4o-mini
+    info:
+      apiVersion: 2024-08-01-preview
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 1
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+      responseFormats:
+        - text
+        - json_schema
+  - name: o1-mini
+    info: 
+      openaiOSeries: true
+    features:
+      promptGenerator: user_prompt
+      testDataGenerator: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+  - name: o1-preview
+    info: 
+      openaiOSeries: true
+    features:
+      promptGenerator: user_prompt
+      testDataGenerator: true
+      streaming: false
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+  - name: o1
+    info:
+      openaiOSeries: true
+      useDeveloperRole: true
+      apiVersion: 2024-12-01-preview
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+  - name: o3-mini
+    info: 
+      openaiOSeries: true
+      useDeveloperRole: true
+      apiVersion: 2024-12-01-preview
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+  - name: o3
+    info: 
+      openaiOSeries: true
+      useDeveloperRole: true
+      apiVersion: 2024-12-01-preview
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+  - name: o4-mini
+    info: 
+      openaiOSeries: true
+      useDeveloperRole: true
+      apiVersion: 2024-12-01-preview
+    features:
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+  - name: Phi-3-medium-128k-instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3-medium-4k-instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3-mini-128k-instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3-mini-4k-instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3-small-128k-instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3-small-8k-instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3.5-MoE-instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-3.5-vision-instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+    features:
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+  - name: Phi-3.5-mini-instruct
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-4
+    features:
+      promptGenerator: system_prompt
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-4-mini-instruct
+    features:
+      promptGenerator: user_prompt
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-4-multimodal-instruct
+    features:
+      promptGenerator: system_prompt
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-4-mini-reasoning
+    info: 
+      reasoning: true
+    features:
+      promptGenerator: user_prompt
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.95
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: Phi-4-reasoning
+    info: 
+      reasoning: true
+    features:
+      promptGenerator: user_prompt
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.95
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+  - name: jais-30b-chat
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+  - name: Codestral-2501
+    features:
+      promptGenerator: system_prompt
+      tools: true
+    info:
+      popular: 3
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+fallbackModels:
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - RAG
+      - Multilingual
+      - Large context
+    popularity: 1
+    assetId: azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Large/versions/3
+    name: AI21-Jamba-1.5-Large
+    displayName: AI21 Jamba 1.5 Large
+    version: "3"
+    registryName: azureml-ai21
+    publisher: AI21 Labs
+    labels:
+      - latest
+    summary:
+      A 398B parameters (94B active) multilingual model, offering a 256K long
+      context window, function calling, structured output, and grounded
+      generation.
+    createdTime: 2024-08-22T03:41:12.9949255+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      Jamba 1.5 Large is a state-of-the-art, hybrid SSM-Transformer instruction
+      following foundation model. It's a Mixture-of-Expert model with 94B total
+      parameters and 398B active parameters. The Jamba family of models are the
+      most powerful & efficient long-context models on the market, offering a
+      256K context window, the longest available.. For long context input, they
+      deliver up to 2.5X faster inference than leading models of comparable
+      sizes. Jamba supports function calling/tool use, structured output (JSON),
+      and grounded generation with citation mode and documents API. Jamba
+      officially supports English, French, Spanish, Portuguese, German, Arabic
+      and Hebrew, but can also work in many other languages.
+
+
+      **Model Developer Name**: Jamba 1.5 Large
+
+
+      ## Model Architecture
+
+
+      Jamba 1.5 Large is a state-of-the-art, hybrid SSM-Transformer instruction following foundation model
+
+
+      ## Model Variations	 
+
+
+      94B total parameters and 398B active parameters
+
+
+      ## Model Input
+      	
+      Models input text only.
+
+
+      ## Model Output
+
+
+      Models generate text only.
+
+
+      ## Model Dates
+
+
+      Jamba 1.5 Large was trained in Q3 2024 with data covering through early March 2024.
+
+
+      ## Model Information Table
+
+
+      | **Name**             | **Params**         | **Content Length**  |
+
+      |----------------------|--------------------|---------------------|
+
+      | **Jamba 1.5 Mini**   | 52B (12B active)   | 256K                |
+
+      | **Jamba 1.5 Large**  | 398B (94B active)  | 256K                |
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - RAG
+      - Multilingual
+      - Large context
+    popularity: 1
+    assetId: azureml://registries/azureml-ai21/models/AI21-Jamba-1.5-Mini/versions/3
+    name: AI21-Jamba-1.5-Mini
+    displayName: AI21 Jamba 1.5 Mini
+    version: "3"
+    registryName: azureml-ai21
+    publisher: AI21 Labs
+    labels:
+      - latest
+    summary:
+      A 52B parameters (12B active) multilingual model, offering a 256K long
+      context window, function calling, structured output, and grounded
+      generation.
+    createdTime: 2024-08-22T02:36:30.4031856+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      Jamba 1.5 Mini is a state-of-the-art, hybrid SSM-Transformer instruction
+      following foundation model. It's a Mixture-of-Expert model with 52B total
+      parameters and 12B active parameters. The Jamba family of models are the
+      most powerful & efficient long-context models on the market, offering a
+      256K context window, the longest available.. For long context input, they
+      deliver up to 2.5X faster inference than leading models of comparable
+      sizes. Jamba supports function calling/tool use, structured output (JSON),
+      and grounded generation with citation mode and documents API. Jamba
+      officially supports English, French, Spanish, Portuguese, German, Arabic
+      and Hebrew, but can also work in many other languages.
+
+
+      **Model Developer Name**: AI21 Labs
+
+
+      ## Model Architecture
+
+      Jamba 1.5 Mini is a state-of-the-art, hybrid SSM-Transformer instruction following foundation model                                                                                                                             
+
+      ## Model Variations	
+
+      52B total parameters and 12B active parameters
+
+
+      ## Model Input	
+
+      Model inputs text only.
+
+
+      ## Model Output	
+
+      Model generates text only.
+
+
+      ## Model Dates
+
+      Jamba 1.5 Mini was trained in Q3 2024 with data covering through early March 2024.
+
+
+      ## *Model Information Table*
+
+
+      | **Name**             | **Params**         | **Content Length**  |
+
+      |----------------------|--------------------|---------------------|
+
+      | **Jamba 1.5 Mini**   | 52B (12B active)   | 256K                |
+
+      | **Jamba 1.5 Large**  | 398B (94B active)  | 256K                |
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - Conversation
+      - RAG
+    popularity: 1
+    assetId: azureml://registries/azureml-ai21/models/AI21-Jamba-Instruct/versions/2
+    name: AI21-Jamba-Instruct
+    displayName: AI21-Jamba-Instruct
+    version: "2"
+    registryName: azureml-ai21
+    publisher: AI21 Labs
+    labels:
+      - latest
+    summary: A production-grade Mamba-based LLM model to achieve best-in-class
+      performance, quality, and cost efficiency.
+    createdTime: 2024-06-07T20:43:08.0934552+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      Jamba-Instruct is the world's first production-grade Mamba-based LLM model
+      and leverages its hybrid Mamba-Transformer architecture to achieve
+      best-in-class performance, quality, and cost efficiency.
+
+
+      **Model Developer Name**: _AI21 Labs_
+
+
+      ## Model Architecture
+
+
+      Jamba-Instruct leverages a hybrid Mamba-Transformer architecture to achieve best-in-class performance, quality, and cost efficiency.
+
+      AI21's Jamba architecture features a blocks-and-layers approach that allows Jamba to successfully integrate the two architectures. Each Jamba block contains either an attention or a Mamba layer, followed by a multi-layer perceptron (MLP), producing an overall ratio of one Transformer layer out of every eight total layers.
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - RAG
+      - Multilingual
+    popularity: 1
+    assetId: azureml://registries/azureml-cohere/models/Cohere-command-r/versions/3
+    name: Cohere-command-r
+    displayName: Cohere Command R
+    version: "3"
+    registryName: azureml-cohere
+    publisher: Cohere
+    labels:
+      - latest
+    summary:
+      Command R is a scalable generative model targeting RAG and Tool Use to
+      enable production-scale AI for enterprise.
+    createdTime: 2024-04-04T02:34:53.8258422+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      Command R is a highly performant generative large language model,
+      optimized for a variety of use cases including reasoning, summarization,
+      and question answering. 
+
+
+      The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, Simplified Chinese, and Arabic.
+
+
+      Pre-training data additionally included the following 13 languages: Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, Persian.
+
+
+      ## Resources
+
+
+      For full details of this model, [release blog post](https://aka.ms/cohere-blog).
+
+
+      ## Model Architecture
+
+
+      This is an auto-regressive language model that uses an optimized transformer architecture. After pretraining, this model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+
+
+      ### Tool use capabilities
+
+
+      Command R has been specifically trained with conversational tool use capabilities. These have been trained into the model via a mixture of supervised fine-tuning and preference fine-tuning, using a specific prompt template. Deviating from this prompt template will likely reduce performance, but we encourage experimentation.
+
+
+      Command R's tool use functionality takes a conversation as input (with an optional user-system preamble), along with a list of available tools. The model will then generate a json-formatted list of actions to execute on a subset of those tools. Command R may use one of its supplied tools more than once.
+
+
+      The model has been trained to recognise a special directly_answer tool, which it uses to indicate that it doesn't want to use any of its other tools. The ability to abstain from calling a specific tool can be useful in a range of situations, such as greeting a user, or asking clarifying questions. We recommend including the directly_answer tool, but it can be removed or renamed if required.
+
+
+      ### Grounded Generation and RAG Capabilities
+
+
+      Command R has been specifically trained with grounded generation capabilities. This means that it can generate responses based on a list of supplied document snippets, and it will include grounding spans (citations) in its response indicating the source of the information. This can be used to enable behaviors such as grounded summarization and the final step of Retrieval Augmented Generation (RAG).This behavior has been trained into the model via a mixture of supervised fine-tuning and preference fine-tuning, using a specific prompt template. Deviating from this prompt template may reduce performance, but we encourage experimentation.
+
+
+      Command R's grounded generation behavior takes a conversation as input (with an optional user-supplied system preamble, indicating task, context and desired output style), along with a list of retrieved document snippets. The document snippets should be chunks, rather than long documents, typically around 100-400 words per chunk. Document snippets consist of key-value pairs. The keys should be short descriptive strings, the values can be text or semi-structured.
+
+
+      By default, Command R will generate grounded responses by first predicting which documents are relevant, then predicting which ones it will cite, then generating an answer. Finally, it will then insert grounding spans into the answer. See below for an example. This is referred to as accurate grounded generation.
+
+
+      The model is trained with a number of other answering modes, which can be selected by prompt changes . A fast citation mode is supported in the tokenizer, which will directly generate an answer with grounding spans in it, without first writing the answer out in full. This sacrifices some grounding accuracy in favor of generating fewer tokens.
+
+
+      ### Code Capabilities
+
+
+      Command R has been optimized to interact with your code, by requesting code snippets, code explanations, or code rewrites. It might not perform well out-of-the-box for pure code completion. For better performance, we also recommend using a low temperature (and even greedy decoding) for code-generation related instructions.
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - RAG
+      - Multilingual
+    popularity: 1
+    assetId: azureml://registries/azureml-cohere/models/Cohere-command-r-plus/versions/3
+    name: Cohere-command-r-plus
+    displayName: Cohere Command R+
+    version: "3"
+    registryName: azureml-cohere
+    publisher: Cohere
+    labels:
+      - latest
+    summary:
+      Command R+ is a state-of-the-art RAG-optimized model designed to tackle
+      enterprise-grade workloads.
+    createdTime: 2024-04-04T02:36:08.5917835+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      Command R+ is a highly performant generative large language model,
+      optimized for a variety of use cases including reasoning, summarization,
+      and question answering. 
+
+
+      The model is optimized to perform well in the following languages: English, French, Spanish, Italian, German, Brazilian Portuguese, Japanese, Korean, Simplified Chinese, and Arabic.
+
+
+      Pre-training data additionally included the following 13 languages: Russian, Polish, Turkish, Vietnamese, Dutch, Czech, Indonesian, Ukrainian, Romanian, Greek, Hindi, Hebrew, Persian.
+
+
+      ## Resources
+
+
+      For full details of this model, [release blog post](https://aka.ms/cohere-blog).
+
+
+      ## Model Architecture
+
+
+      This is an auto-regressive language model that uses an optimized transformer architecture. After pretraining, this model uses supervised fine-tuning (SFT) and preference training to align model behavior to human preferences for helpfulness and safety.
+
+
+      ### Tool use capabilities
+
+
+      Command R+ has been specifically trained with conversational tool use capabilities. These have been trained into the model via a mixture of supervised fine-tuning and preference fine-tuning, using a specific prompt template. Deviating from this prompt template will likely reduce performance, but we encourage experimentation.
+
+
+      Command R+'s tool use functionality takes a conversation as input (with an optional user-system preamble), along with a list of available tools. The model will then generate a json-formatted list of actions to execute on a subset of those tools. Command R+ may use one of its supplied tools more than once.
+
+
+      The model has been trained to recognise a special directly_answer tool, which it uses to indicate that it doesn't want to use any of its other tools. The ability to abstain from calling a specific tool can be useful in a range of situations, such as greeting a user, or asking clarifying questions. We recommend including the directly_answer tool, but it can be removed or renamed if required.
+
+
+      ### Grounded Generation and RAG Capabilities
+
+
+      Command R+ has been specifically trained with grounded generation capabilities. This means that it can generate responses based on a list of supplied document snippets, and it will include grounding spans (citations) in its response indicating the source of the information. This can be used to enable behaviors such as grounded summarization and the final step of Retrieval Augmented Generation (RAG).This behavior has been trained into the model via a mixture of supervised fine-tuning and preference fine-tuning, using a specific prompt template. Deviating from this prompt template may reduce performance, but we encourage experimentation.
+
+
+      Command R+'s grounded generation behavior takes a conversation as input (with an optional user-supplied system preamble, indicating task, context and desired output style), along with a list of retrieved document snippets. The document snippets should be chunks, rather than long documents, typically around 100-400 words per chunk. Document snippets consist of key-value pairs. The keys should be short descriptive strings, the values can be text or semi-structured.
+
+
+      By default, Command R+ will generate grounded responses by first predicting which documents are relevant, then predicting which ones it will cite, then generating an answer. Finally, it will then insert grounding spans into the answer. See below for an example. This is referred to as accurate grounded generation.
+
+
+      The model is trained with a number of other answering modes, which can be selected by prompt changes . A fast citation mode is supported in the tokenizer, which will directly generate an answer with grounding spans in it, without first writing the answer out in full. This sacrifices some grounding accuracy in favor of generating fewer tokens.
+
+
+      ### Code Capabilities
+
+
+      Command R+ has been optimized to interact with your code, by requesting code snippets, code explanations, or code rewrites. It might not perform well out-of-the-box for pure code completion. For better performance, we also recommend using a low temperature (and even greedy decoding) for code-generation related instructions.
+  - inferenceTasks:
+      - embeddings
+    fineTuningTasks: []
+    keywords:
+      - RAG
+    popularity: 1
+    assetId: azureml://registries/azureml-cohere/models/Cohere-embed-v3-english/versions/3
+    name: Cohere-embed-v3-english
+    displayName: Cohere Embed v3 English
+    version: "3"
+    registryName: azureml-cohere
+    publisher: Cohere
+    labels:
+      - latest
+    summary:
+      Cohere Embed English is the market's leading text representation model
+      used for semantic search, retrieval-augmented generation (RAG),
+      classification, and clustering.
+    createdTime: 2024-04-04T02:37:22.4330293+00:00
+    license: custom
+    tradeRestricted: true
+    description:
+      Cohere Embed English is the market's leading text representation
+      model used for semantic search, retrieval-augmented generation (RAG),
+      classification, and clustering. Embed English has top performance on the
+      HuggingFace MTEB benchmark and performs well on a variety of industries
+      such as Finance, Legal, and General-Purpose Corpora.The model was trained
+      on nearly 1B English training pairs. For full details of this model,
+      [release blog post](https://aka.ms/cohere-blog).
+  - inferenceTasks:
+      - embeddings
+    fineTuningTasks: []
+    keywords:
+      - RAG
+    popularity: 1
+    assetId: azureml://registries/azureml-cohere/models/Cohere-embed-v3-multilingual/versions/3
+    name: Cohere-embed-v3-multilingual
+    displayName: Cohere Embed v3 Multilingual
+    version: "3"
+    registryName: azureml-cohere
+    publisher: Cohere
+    labels:
+      - latest
+    summary:
+      Cohere Embed Multilingual is the market's leading text representation
+      model used for semantic search, retrieval-augmented generation (RAG),
+      classification, and clustering.
+    createdTime: 2024-04-04T02:38:36.4088459+00:00
+    license: custom
+    tradeRestricted: true
+    description: Cohere Embed Multilingual is the market's leading text
+      representation model used for semantic search, retrieval-augmented
+      generation (RAG), classification, and clustering. Embed Multilingual
+      supports 100+ languages and can be used to search within a language (e.g.,
+      search with a French query on French documents) and across languages
+      (e.g., search with an English query on Chinese documents). This model was
+      trained on nearly 1B English training pairs and nearly 0.5B Non-English
+      training pairs from 100+ languages. For full details of this model,
+      [release blog post](https://aka.ms/cohere-blog).
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks:
+      - chat-completion
+    keywords:
+      - Conversation
+    popularity: 0
+    assetId: azureml://registries/azureml-meta/models/Meta-Llama-3-70B-Instruct/versions/6
+    name: Meta-Llama-3-70B-Instruct
+    displayName: Meta-Llama-3-70B-Instruct
+    version: "6"
+    registryName: azureml-meta
+    publisher: Meta
+    labels:
+      - latest
+    summary:
+      A powerful 70-billion parameter model excelling in reasoning, coding,
+      and broad language applications.
+    createdTime: 2024-07-17T15:08:39.0963968+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      Meta developed and released the Meta Llama 3 family of large language
+      models (LLMs), a collection of pretrained and instruction tuned generative
+      text models in 8 and 70B sizes. The Llama 3 instruction tuned models are
+      optimized for dialogue use cases and outperform many of the available open
+      source chat models on common industry benchmarks. Further, in developing
+      these models, we took great care to optimize helpfulness and safety. 
+
+
+      ## Model Architecture
+
+
+      Llama 3 is an auto-regressive language model that uses an optimized transformer architecture. The tuned versions use supervised fine-tuning (SFT) and reinforcement learning with human feedback (RLHF) to align with human preferences for helpfulness and safety.
+
+
+      ## Training Datasets
+
+
+      **Overview** Llama 3 was pretrained on over 15 trillion tokens of data from publicly available sources. The fine-tuning data includes publicly available instruction datasets, as well as over 10M human-annotated examples. Neither the pretraining nor the fine-tuning datasets include Meta user data.
+
+
+      **Data Freshness** The pretraining data has a cutoff of March 2023 for the 8B and December 2023 for the 70B models respectively.
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks:
+      - chat-completion
+    keywords:
+      - Conversation
+    popularity: 0
+    assetId: azureml://registries/azureml-meta/models/Meta-Llama-3-8B-Instruct/versions/6
+    name: Meta-Llama-3-8B-Instruct
+    displayName: Meta-Llama-3-8B-Instruct
+    version: "6"
+    registryName: azureml-meta
+    publisher: Meta
+    labels:
+      - latest
+    summary:
+      A versatile 8-billion parameter model optimized for dialogue and text
+      generation tasks.
+    createdTime: 2024-07-17T16:10:29.8550695+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      Meta developed and released the Meta Llama 3 family of large language
+      models (LLMs), a collection of pretrained and instruction tuned generative
+      text models in 8 and 70B sizes. The Llama 3 instruction tuned models are
+      optimized for dialogue use cases and outperform many of the available open
+      source chat models on common industry benchmarks. Further, in developing
+      these models, we took great care to optimize helpfulness and safety. 
+
+
+      ## Model Architecture
+
+
+      Llama 3 is an auto-regressive language model that uses an optimized transformer architecture. The tuned versions use supervised fine-tuning (SFT) and reinforcement learning with human feedback (RLHF) to align with human preferences for helpfulness and safety.
+
+
+      ## Training Datasets
+
+
+      **Overview** Llama 3 was pretrained on over 15 trillion tokens of data from publicly available sources. The fine-tuning data includes publicly available instruction datasets, as well as over 10M human-annotated examples. Neither the pretraining nor the fine-tuning datasets include Meta user data.
+
+
+      **Data Freshness** The pretraining data has a cutoff of March 2023 for the 8B and December 2023 for the 70B models respectively.
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - Conversation
+    popularity: 0
+    assetId: azureml://registries/azureml-meta/models/Meta-Llama-3.1-405B-Instruct/versions/1
+    name: Meta-Llama-3.1-405B-Instruct
+    displayName: Meta-Llama-3.1-405B-Instruct
+    version: "1"
+    registryName: azureml-meta
+    publisher: Meta
+    labels:
+      - latest
+    summary: The Llama 3.1 instruction tuned text only models are optimized for
+      multilingual dialogue use cases and outperform many of the available open
+      source and closed chat models on common industry benchmarks.
+    createdTime: 2024-07-23T15:06:41.9591851+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      The Meta Llama 3.1 collection of multilingual large language models (LLMs)
+      is a collection of pretrained and instruction tuned
+
+      generative models in 8B, 70B and 405B sizes (text in/text out). The Llama 3.1 instruction tuned text only models (8B, 70B, 405B) are optimized for multilingual dialogue use cases and outperform many of the available open source and closed chat models on
+
+      common industry benchmarks.
+
+
+      ## Model Architecture
+
+
+      Llama 3.1 is an auto-regressive language model that uses an optimized transformer architecture. The tuned versions use supervised fine-tuning (SFT) and reinforcement learning with human feedback (RLHF) to align with human preferences for helpfulness and safety.
+
+
+      ## Training Datasets
+
+
+      **Overview:** Llama 3.1 was pretrained on ~15 trillion tokens of data from publicly available sources. The fine-tuning data includes publicly available instruction datasets, as well as over 25M synthetically generated examples.
+
+
+      **Data Freshness:** The pretraining data has a cutoff of December 2023.
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks:
+      - chat-completion
+    keywords:
+      - Conversation
+    popularity: 0
+    assetId: azureml://registries/azureml-meta/models/Meta-Llama-3.1-70B-Instruct/versions/1
+    name: Meta-Llama-3.1-70B-Instruct
+    displayName: Meta-Llama-3.1-70B-Instruct
+    version: "1"
+    registryName: azureml-meta
+    publisher: Meta
+    labels:
+      - latest
+    summary: The Llama 3.1 instruction tuned text only models are optimized for
+      multilingual dialogue use cases and outperform many of the available open
+      source and closed chat models on common industry benchmarks.
+    createdTime: 2024-07-23T15:02:26.3354285+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      The Meta Llama 3.1 collection of multilingual large language models (LLMs)
+      is a collection of pretrained and instruction tuned
+
+      generative models in 8B, 70B and 405B sizes (text in/text out). The Llama 3.1 instruction tuned text only models (8B, 70B, 405B) are optimized for multilingual dialogue use cases and outperform many of the available open source and closed chat models on
+
+      common industry benchmarks.
+
+
+      ## Model Architecture
+
+
+      Llama 3.1 is an auto-regressive language model that uses an optimized transformer architecture. The tuned versions use supervised fine-tuning (SFT) and reinforcement learning with human feedback (RLHF) to align with human preferences for helpfulness and safety.
+
+
+      ## Training Datasets
+
+
+      **Overview:** Llama 3.1 was pretrained on ~15 trillion tokens of data from publicly available sources. The fine-tuning data includes publicly available instruction datasets, as well as over 25M synthetically generated examples.
+
+
+      **Data Freshness:** The pretraining data has a cutoff of December 2023.
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks:
+      - chat-completion
+    keywords:
+      - Conversation
+    popularity: 0
+    assetId: azureml://registries/azureml-meta/models/Meta-Llama-3.1-8B-Instruct/versions/1
+    name: Meta-Llama-3.1-8B-Instruct
+    displayName: Meta-Llama-3.1-8B-Instruct
+    version: "1"
+    registryName: azureml-meta
+    publisher: Meta
+    labels:
+      - latest
+    summary: The Llama 3.1 instruction tuned text only models are optimized for
+      multilingual dialogue use cases and outperform many of the available open
+      source and closed chat models on common industry benchmarks.
+    createdTime: 2024-07-23T15:06:10.0521548+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      The Meta Llama 3.1 collection of multilingual large language models (LLMs)
+      is a collection of pretrained and instruction tuned
+
+      generative models in 8B, 70B and 405B sizes (text in/text out). The Llama 3.1 instruction tuned text only models (8B, 70B, 405B) are optimized for multilingual dialogue use cases and outperform many of the available open source and closed chat models on
+
+      common industry benchmarks.
+
+
+      ## Model Architecture
+
+
+      Llama 3.1 is an auto-regressive language model that uses an optimized transformer architecture. The tuned versions use supervised fine-tuning (SFT) and reinforcement learning with human feedback (RLHF) to align with human preferences for helpfulness and safety.
+
+
+      ## Training Datasets
+
+
+      **Overview:** Llama 3.1 was pretrained on ~15 trillion tokens of data from publicly available sources. The fine-tuning data includes publicly available instruction datasets, as well as over 25M synthetically generated examples.
+
+
+      **Data Freshness:** The pretraining data has a cutoff of December 2023.
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - Reasoning
+      - RAG
+      - Agents
+      - Multilingual
+    popularity: 1
+    assetId: azureml://registries/azureml-mistral/models/Mistral-large/versions/1
+    name: Mistral-large
+    displayName: Mistral Large
+    version: "1"
+    registryName: azureml-mistral
+    publisher: Mistral AI
+    labels:
+      - latest
+    summary:
+      Mistral's flagship model that's ideal for complex tasks that require
+      large reasoning capabilities or are highly specialized (Synthetic Text
+      Generation, Code Generation, RAG, or Agents).
+    createdTime: 2024-02-21T17:56:04.5300356+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      Mistral Large is Mistral AI's most advanced Large Language Model (LLM). It
+      can be used on any language-based task thanks to its state-of-the-art
+      reasoning and knowledge capabilities.
+
+
+      Additionally, Mistral Large is:
+
+
+      - **Specialized in RAG.** Crucial information is not lost in the middle of long context windows (up to 32K tokens).
+
+      - **Strong in coding.**  Code generation, review and comments. Supports all mainstream coding languages.
+
+      - **Multi-lingual by design.** Best-in-class performance in French, German, Spanish, and Italian - in addition to English. Dozens of other languages are supported.
+
+      - **Responsible AI.** Efficient guardrails baked in the model, with additional safety layer with safe_mode option
+
+
+      ## Resources
+
+
+      For full details of this model, please read [release blog post](https://aka.ms/mistral-blog).
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - Reasoning
+      - RAG
+      - Agents
+    popularity: 1
+    assetId: azureml://registries/azureml-mistral/models/Mistral-large-2407/versions/1
+    name: Mistral-large-2407
+    displayName: Mistral Large (2407)
+    version: "1"
+    registryName: azureml-mistral
+    publisher: Mistral AI
+    labels:
+      - latest
+    summary: Mistral Large (2407) is an advanced Large Language Model (LLM) with
+      state-of-the-art reasoning, knowledge and coding capabilities.
+    createdTime: 2024-07-24T17:41:55.5118456+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      Mistral Large (2407) is an advanced Large Language Model (LLM) with
+      state-of-the-art reasoning, knowledge and coding capabilities.
+
+
+      **Multi-lingual by design.** Dozens of languages supported, including English, French, German, Spanish, Italian, Chinese, Japanese, Korean, Portuguese, Dutch and Polish
+
+
+      **Proficient in coding.** Trained on 80+ coding languages such as Python, Java, C, C++, JavaScript, and Bash. Also trained on more specific languages such as Swift and Fortran
+
+
+      **Agent-centric.** Best-in-class agentic capabilities with native function calling and JSON outputting 
+
+
+      **Advanced Reasoning.** State-of-the-art mathematical and reasoning capabilities
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - Reasoning
+      - RAG
+      - Agents
+    popularity: 1
+    assetId: azureml://registries/azureml-mistral/models/Mistral-Nemo/versions/1
+    name: Mistral-Nemo
+    displayName: Mistral Nemo
+    version: "1"
+    registryName: azureml-mistral
+    publisher: Mistral AI
+    labels:
+      - latest
+    summary: Mistral Nemo is a cutting-edge Language Model (LLM) boasting
+      state-of-the-art reasoning, world knowledge, and coding capabilities
+      within its size category.
+    createdTime: 2024-07-24T17:40:18.0686102+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      Mistral Nemo is a cutting-edge Language Model (LLM) boasting
+      state-of-the-art reasoning, world knowledge, and coding capabilities
+      within its size category.
+
+
+      **Jointly developed with Nvidia.** This collaboration has resulted in a powerful 12B model that pushes the boundaries of language understanding and generation.
+
+
+      **Multilingual proficiency.** Mistral Nemo is equipped with a new tokenizer, Tekken, designed for multilingual applications. It supports over 100 languages, including but not limited to English, French, German, Spanish, Italian, Chinese, Japanese, Korean, Portuguese, Dutch, Polish, and many more. Tekken has proven to be more efficient than the Llama 3 tokenizer in compressing text for approximately 85% of all languages, with significant improvements in Malayalam, Hindi, Arabic, and prevalent European languages.
+
+
+      **Agent-centric.** Mistral Nemo possesses top-tier agentic capabilities, including native function calling and JSON outputting.
+
+
+      **Advanced Reasoning.** Mistral Nemo demonstrates state-of-the-art mathematical and reasoning capabilities within its size category.
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - Low latency
+      - Multilingual
+    popularity: 1
+    assetId: azureml://registries/azureml-mistral/models/Mistral-small/versions/1
+    name: Mistral-small
+    displayName: Mistral Small
+    version: "1"
+    registryName: azureml-mistral
+    publisher: Mistral AI
+    labels:
+      - latest
+    summary:
+      Mistral Small can be used on any language-based task that requires high
+      efficiency and low latency.
+    createdTime: 2024-05-03T18:45:25.603735+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      Mistral Small is Mistral AI's most efficient Large Language Model (LLM).
+      It can be used on any language-based task that requires high efficiency
+      and low latency.
+
+
+      Mistral Small is:
+
+
+      - **A small model optimized for low latency.** Very efficient for high volume and low latency workloads. Mistral Small is Mistral's smallest proprietary model, it outperforms Mixtral 8x7B and has lower latency. 
+
+      - **Specialized in RAG.** Crucial information is not lost in the middle of long context windows (up to 32K tokens).
+
+      - **Strong in coding.** Code generation, review and comments. Supports all mainstream coding languages.
+
+      - **Multi-lingual by design.** Best-in-class performance in French, German, Spanish, and Italian - in addition to English. Dozens of other languages are supported.
+
+      - **Responsible AI.** Efficient guardrails baked in the model, with additional safety layer with safe_mode option
+
+
+      ## Resources
+
+
+      For full details of this model, please read [release blog post](https://aka.ms/mistral-blog).
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - Multipurpose
+      - Multilingual
+      - Multimodal
+    popularity: 0
+    assetId: azureml://registries/azure-openai/models/gpt-4o/versions/2024-08-06
+    name: gpt-4o
+    displayName: OpenAI GPT-4o
+    version: 2024-08-06
+    registryName: azure-openai
+    publisher: OpenAI
+    labels:
+      - latest
+    summary:
+      OpenAI's most advanced multimodal model in the GPT-4 family. Can handle
+      both text and image inputs.
+    createdTime: 2024-09-12T21:16:07.2139587+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      GPT-4o offers a shift in how AI models interact with multimodal inputs. By
+      seamlessly combining text, images, and audio, GPT-4o provides a richer,
+      more engaging user experience.
+
+
+      Matching the intelligence of GPT-4 Turbo, it is remarkably more efficient, delivering text at twice the speed and at half the cost. Additionally, GPT-4o exhibits the highest vision performance and excels in non-English languages compared to previous OpenAI models.
+
+
+      GPT-4o is engineered for speed and efficiency. Its advanced ability to handle complex queries with minimal resources can translate into cost savings and performance.
+
+
+      The introduction of GPT-4o opens numerous possibilities for businesses in various sectors: 
+
+
+      1. **Enhanced customer service**: By integrating diverse data inputs, GPT-4o enables more dynamic and comprehensive customer support interactions.
+
+      2. **Advanced analytics**: Leverage GPT-4o's capability to process and analyze different types of data to enhance decision-making and uncover deeper insights.
+
+      3. **Content innovation**: Use GPT-4o's generative capabilities to create engaging and diverse content formats, catering to a broad range of consumer preferences.
+
+
+      ## Note: updated version 2024-08-06
+
+
+      GPT-4o has been released under a new version `2024-08-06` which brings new functionalities and a larger output size (from 4,096 to 16,384).
+
+
+      In addition to features such as:
+
+      - Text, image processing
+
+      - JSON Mode
+
+      - parallel function calling
+
+      - Enhanced accuracy and responsiveness
+
+      - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision
+
+      - Superior performance in non-English languages and in vision tasks
+
+      - Support for enhancements
+
+
+      This new version has been trained to support complex structured outputs.
+
+
+      ## Resources
+
+
+      - ["Hello GPT-4o" (OpenAI announcement)](https://openai.com/index/hello-gpt-4o/)
+
+      - [Introducing GPT-4o: OpenAI's new flagship multimodal model now in preview on Azure](https://azure.microsoft.com/en-us/blog/introducing-gpt-4o-openais-new-flagship-multimodal-model-now-in-preview-on-azure/)
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks:
+      - chat-completion
+    keywords:
+      - Multipurpose
+      - Multilingual
+      - Multimodal
+    popularity: 0
+    assetId: azureml://registries/azure-openai/models/gpt-4o-mini/versions/2024-07-18
+    name: gpt-4o-mini
+    displayName: OpenAI GPT-4o mini
+    version: 2024-07-18
+    registryName: azure-openai
+    publisher: OpenAI
+    labels:
+      - latest
+    summary: An affordable, efficient AI solution for diverse text and image tasks.
+    createdTime: 2024-09-12T21:31:56.1683493+00:00
+    license: custom
+    tradeRestricted: true
+    description: >-
+      GPT-4o mini enables a broad range of tasks with its low cost and latency,
+      such as applications that chain or parallelize multiple model calls (e.g.,
+      calling multiple APIs), pass a large volume of context to the model (e.g.,
+      full code base or conversation history), or interact with customers
+      through fast, real-time text responses (e.g., customer support chatbots).
+
+
+      Today, GPT-4o mini supports text and vision in the API, with support for text, image, video and audio inputs and outputs coming in the future. The model has a context window of 128K tokens and knowledge up to October 2023. Thanks to the improved tokenizer shared with GPT-4o, handling non-English text is now even more cost effective.
+
+
+      GPT-4o mini surpasses GPT-3.5 Turbo and other small models on academic benchmarks across both textual intelligence and multimodal reasoning, and supports the same range of languages as GPT-4o. It also demonstrates strong performance in function calling, which can enable developers to build applications that fetch data or take actions with external systems, and improved long-context performance compared to GPT-3.5 Turbo.
+
+
+      ## Resources
+
+
+      - [OpenAI announcement](https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/)
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - Reasoning
+      - Multilingual
+      - Coding
+    popularity: 1
+    assetId: azureml://registries/azure-openai/models/o1-mini/versions/1
+    name: o1-mini
+    displayName: OpenAI o1-mini
+    version: "1"
+    registryName: azure-openai
+    publisher: OpenAI
+    labels:
+      - latest
+    summary:
+      Smaller, faster, and 80% cheaper than o1-preview, performs well at code
+      generation and small context operations.
+    createdTime: 2024-09-12T22:22:19.8330003+00:00
+    license: custom
+    tradeRestricted: true
+    description: >
+      #### OpenAI's o1 Series Models: Enhanced Reasoning and Problem Solving on
+      Azure
+
+
+      The OpenAI o1 series models are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, math and similar fields. For example, o1 can be used by healthcare researchers to annotate cell sequencing data, by physicists to generate complicated mathematical formulas needed for quantum optics, and by developers in all fields to build and execute multi-step workflows.
+
+
+      o1-mini is developed to provide a faster, cheaper reasoning model that is particularly effective at coding. As a smaller model, o1-mini is 80% cheaper than o1-preview, making it a powerful, cost-effective model for applications that require reasoning but not broad world knowledge.
+
+
+      _IMPORTANT: o1-mini model is available for limited access. To try the model in the playground, registration is required, and access will be granted based on Microsoft's eligibility criteria._
+
+
+      ## Key Capabilities of the o1 Series
+
+
+      - Complex Code Generation: Capable of generating algorithms and handling advanced coding tasks to support developers.
+
+      - Advanced Problem Solving: Ideal for comprehensive brainstorming sessions and addressing multifaceted challenges.
+
+      - Complex Document Comparison: Perfect for analyzing contracts, case files, or legal documents to identify subtle differences.
+
+      - Instruction Following and Workflow Management: Particularly effective for managing workflows requiring shorter contexts.
+
+
+      ## Model Variants
+
+
+      - o1-preview: The most capable model in the o1 series, offering enhanced reasoning abilities.
+
+      - o1-mini: A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption.
+
+
+      ## Limitations
+
+
+      o1-mini model is currently in preview and do not include some features available in other models, such as image understanding and structured outputs found in the GPT-4o and GPT-4o-mini models. For many tasks, the generally available GPT-4o models may still be more suitable.
+
+
+      ## Resources
+
+
+      - [OpenaI o1-mini model announcement](https://openai.com/index/openai-o1-mini-advancing-cost-efficient-reasoning/)
+
+      - [OpenAI o1-preview model announcement](https://openai.com/index/introducing-openai-o1-preview/)
+
+      - [Azure OpenAI blog announcement](https://aka.ms/new-models)
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - Reasoning
+      - Multilingual
+      - Coding
+    popularity: 1
+    assetId: azureml://registries/azure-openai/models/o1-preview/versions/1
+    name: o1-preview
+    displayName: OpenAI o1-preview
+    version: "1"
+    registryName: azure-openai
+    publisher: OpenAI
+    labels:
+      - latest
+    summary:
+      Focused on advanced reasoning and solving complex problems, including
+      math and science tasks. Ideal for applications that require deep
+      contextual understanding and agentic workflows.
+    createdTime: 2024-09-12T22:23:37.6129559+00:00
+    license: custom
+    tradeRestricted: true
+    description: >
+      #### OpenAI's o1 Series Models: Enhanced Reasoning and Problem Solving on
+      Azure
+
+
+      The OpenAI o1 series models are specifically designed to tackle reasoning and problem-solving tasks with increased focus and capability. These models spend more time processing and understanding the user's request, making them exceptionally strong in areas like science, coding, math and similar fields. For example, o1 can be used by healthcare researchers to annotate cell sequencing data, by physicists to generate complicated mathematical formulas needed for quantum optics, and by developers in all fields to build and execute multi-step workflows.
+
+
+      _IMPORTANT: o1-preview model is available for limited access. To try the model in the playground, registration is required, and access will be granted based on Microsoft’s eligibility criteria._
+
+
+      ## Key Capabilities of the o1 Series
+
+
+      - Complex Code Generation: Capable of generating algorithms and handling advanced coding tasks to support developers.
+
+      - Advanced Problem Solving: Ideal for comprehensive brainstorming sessions and addressing multifaceted challenges.
+
+      - Complex Document Comparison: Perfect for analyzing contracts, case files, or legal documents to identify subtle differences.
+
+      - Instruction Following and Workflow Management: Particularly effective for managing workflows requiring shorter contexts.
+
+
+      ## Model Variants
+
+
+      - o1-preview: The most capable model in the o1 series, offering enhanced reasoning abilities.
+
+      - o1-mini: A faster and more cost-efficient option in the o1 series, ideal for coding tasks requiring speed and lower resource consumption.
+
+
+      ## Limitations
+
+
+      o1-preview model is currently in preview and do not include some features available in other models, such as image understanding and structured outputs found in the GPT-4o and GPT-4o-mini models. For many tasks, the generally available GPT-4o models may still be more suitable.
+
+
+      ## Resources
+
+
+      - [OpenaI o1-mini model announcement](https://openai.com/index/openai-o1-mini-advancing-cost-efficient-reasoning/)
+
+      - [OpenAI o1-preview model announcement](https://openai.com/index/introducing-openai-o1-preview/)
+
+      - [Azure OpenAI blog announcement](https://aka.ms/new-models)
+  - inferenceTasks:
+      - embeddings
+    fineTuningTasks: []
+    keywords:
+      - RAG
+    popularity: 0
+    assetId: azureml://registries/azure-openai/models/text-embedding-3-large/versions/1
+    name: text-embedding-3-large
+    displayName: OpenAI Text Embedding 3 (large)
+    version: "1"
+    registryName: azure-openai
+    publisher: OpenAI
+    labels:
+      - latest
+    summary: Text-embedding-3 series models are the latest and most capable
+      embedding model from OpenAI.
+    createdTime: 2024-07-15T08:14:52.0837426+00:00
+    license: custom
+    tradeRestricted: true
+    description: Text-embedding-3 series models are the latest and most capable
+      embedding model. The text-embedding-3 models offer better average
+      multi-language retrieval performance with the MIRACL benchmark while still
+      maintaining performance for English tasks with the MTEB benchmark.
+  - inferenceTasks:
+      - embeddings
+    fineTuningTasks: []
+    keywords:
+      - RAG
+    popularity: 1
+    assetId: azureml://registries/azure-openai/models/text-embedding-3-small/versions/1
+    name: text-embedding-3-small
+    displayName: OpenAI Text Embedding 3 (small)
+    version: "1"
+    registryName: azure-openai
+    publisher: OpenAI
+    labels:
+      - latest
+    summary: Text-embedding-3 series models are the latest and most capable
+      embedding model from OpenAI.
+    createdTime: 2024-07-15T08:16:07.296263+00:00
+    license: custom
+    tradeRestricted: true
+    description: Text-embedding-3 series models are the latest and most capable
+      embedding model. The text-embedding-3 models offer better average
+      multi-language retrieval performance with the MIRACL benchmark while still
+      maintaining performance for English tasks with the MTEB benchmark.
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks:
+      - chat-completion
+    keywords:
+      - Reasoning
+      - Understanding
+      - Large context
+    popularity: 0
+    assetId: azureml://registries/azureml/models/Phi-3-medium-128k-instruct/versions/4
+    name: Phi-3-medium-128k-instruct
+    displayName: Phi-3-medium instruct (128k)
+    version: "4"
+    registryName: azureml
+    publisher: microsoft
+    labels:
+      - latest
+    summary:
+      Same Phi-3-medium model, but with a larger context size for RAG or few
+      shot prompting.
+    createdTime: 2024-09-11T22:51:18.6600839+00:00
+    license: mit
+    tradeRestricted: false
+    description: >-
+      The Phi-3-Medium-128K-Instruct is a 14B parameters, lightweight,
+      state-of-the-art open model trained with the Phi-3 datasets that includes
+      both synthetic data and the filtered publicly available websites data with
+      a focus on high-quality and reasoning dense properties.
+
+      The model belongs to the Phi-3 family with the Medium version in two variants 4K and 128K which is the context length (in tokens) that it can support.
+
+
+      The model underwent a post-training process that incorporates both supervised fine-tuning and direct preference optimization for the instruction following and safety measures.
+
+      When assessed against benchmarks testing common sense, language understanding, math, code, long context and logical reasoning, Phi-3-Medium-128K-Instruct showcased a robust and state-of-the-art performance among models of the same-size and next-size-up.
+
+
+      ## Resources
+
+
+      🏡 [Phi-3 Portal](https://azure.microsoft.com/en-us/products/phi-3) <br>
+
+      📰 [Phi-3 Microsoft Blog](https://aka.ms/Phi-3Build2024) <br>
+
+      📖 [Phi-3 Technical Report](https://aka.ms/phi3-tech-report) <br>
+
+      🛠️ [Phi-3 on Azure AI Studio](https://aka.ms/phi3-azure-ai) <br>
+
+      👩‍🍳 [Phi-3 Cookbook](https://github.com/microsoft/Phi-3CookBook) <br>
+
+
+      ## Model Architecture
+
+
+      Phi-3-Medium-128k-Instruct has 14B parameters and is a dense decoder-only Transformer model. The model is fine-tuned with Supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) to ensure alignment with human preferences and safety guidelines.
+
+
+      ## Training Datasets
+
+
+      Our training data includes a wide variety of sources, totaling 4.8 trillion tokens (including 10% multilingual), and is a combination of 
+
+      1) Publicly available documents filtered rigorously for quality, selected high-quality educational data, and code; 
+
+      2) Newly created synthetic, "textbook - like" data for the purpose of teaching math, coding, common sense reasoning, general knowledge of the world (science, daily activities, theory of mind, etc.); 
+
+      3) High quality chat format supervised data covering various topics to reflect human preferences on different aspects such as instruct-following, truthfulness, honesty and helpfulness.
+
+
+      We are focusing on the quality of data that could potentially improve the reasoning ability for the model, and we filter the publicly available documents to contain the correct level of knowledge. As an example, the result of a game in premier league in a particular day might be good training data for frontier models, but we need to remove such information to leave more model capacity for reasoning for the small size models. More details about data can be found in the [Phi-3 Technical Report](https://aka.ms/phi3-tech-report).
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks:
+      - chat-completion
+    keywords:
+      - Reasoning
+      - Understanding
+    popularity: 0
+    assetId: azureml://registries/azureml/models/Phi-3-medium-4k-instruct/versions/4
+    name: Phi-3-medium-4k-instruct
+    displayName: Phi-3-medium instruct (4k)
+    version: "4"
+    registryName: azureml
+    publisher: microsoft
+    labels:
+      - latest
+    summary:
+      A 14B parameters model, proves better quality than Phi-3-mini, with a
+      focus on high-quality, reasoning-dense data.
+    createdTime: 2024-09-13T17:48:44.0285237+00:00
+    license: mit
+    tradeRestricted: false
+    description: >-
+      The Phi-3-Medium-4K-Instruct is a 14B parameters, lightweight,
+      state-of-the-art open model trained with the Phi-3 datasets that includes
+      both synthetic data and the filtered publicly available websites data with
+      a focus on high-quality and reasoning dense properties.
+
+      The model belongs to the Phi-3 family with the Medium version in two variants 4K and 128K which is the context length (in tokens) that it can support.
+
+
+      The model underwent a post-training process that incorporates both supervised fine-tuning and direct preference optimization for the instruction following and safety measures.
+
+      When assessed against benchmarks testing common sense, language understanding, math, code, long context and logical reasoning, Phi-3-Medium-4K-Instruct showcased a robust and state-of-the-art performance among models of the same-size and next-size-up.
+
+
+      ## Resources
+
+
+      🏡 [Phi-3 Portal](https://azure.microsoft.com/en-us/products/phi-3) <br>
+
+      📰 [Phi-3 Microsoft Blog](https://aka.ms/Phi-3Build2024) <br>
+
+      📖 [Phi-3 Technical Report](https://aka.ms/phi3-tech-report) <br>
+
+      🛠️ [Phi-3 on Azure AI Studio](https://aka.ms/phi3-azure-ai) <br>
+
+      👩‍🍳 [Phi-3 Cookbook](https://github.com/microsoft/Phi-3CookBook) <br>
+
+
+      ## Model Architecture
+
+
+      Phi-3-Medium-4K-Instruct has 14B parameters and is a dense decoder-only Transformer model. The model is fine-tuned with Supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) to ensure alignment with human preferences and safety guidelines.
+
+
+      ## Training Datasets
+
+
+      Our training data includes a wide variety of sources, totaling 4.8 trillion tokens (including 10% multilingual), and is a combination of 
+
+      1) Publicly available documents filtered rigorously for quality, selected high-quality educational data, and code; 
+
+      2) Newly created synthetic, "textbook-like" data for the purpose of teaching math, coding, common sense reasoning, general knowledge of the world (science, daily activities, theory of mind, etc.); 
+
+      3) High quality chat format supervised data covering various topics to reflect human preferences on different aspects such as instruct-following, truthfulness, honesty and helpfulness.
+
+
+      We are focusing on the quality of data that could potentially improve the reasoning ability for the model, and we filter the publicly available documents to contain the correct level of knowledge. As an example, the result of a game in premier league in a particular day might be good training data for frontier models, but we need to remove such information to leave more model capacity for reasoning for the small size models. More details about data can be found in the [Phi-3 Technical Report](https://aka.ms/phi3-tech-report).
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks:
+      - chat-completion
+    keywords:
+      - Reasoning
+      - Understanding
+      - Low latency
+    popularity: 0
+    assetId: azureml://registries/azureml/models/Phi-3-mini-128k-instruct/versions/11
+    name: Phi-3-mini-128k-instruct
+    displayName: Phi-3-mini instruct (128k)
+    version: "11"
+    registryName: azureml
+    publisher: microsoft
+    labels:
+      - latest
+    summary:
+      Same Phi-3-mini model, but with a larger context size for RAG or few
+      shot prompting.
+    createdTime: 2024-09-11T23:10:13.1861127+00:00
+    license: mit
+    tradeRestricted: false
+    description: >-
+      The Phi-3-Mini-128K-Instruct is a 3.8 billion-parameter, lightweight,
+      state-of-the-art open model trained using the Phi-3 datasets.
+
+      This dataset includes both synthetic data and filtered publicly available website data, with an emphasis on high-quality and reasoning-dense properties.
+
+
+      After initial training, the model underwent a post-training process that involved supervised fine-tuning and direct preference optimization to enhance its ability to follow instructions and adhere to safety measures.
+
+      When evaluated against benchmarks that test common sense, language understanding, mathematics, coding, long-term context, and logical reasoning, the Phi-3 Mini-128K-Instruct demonstrated robust and state-of-the-art performance among models with fewer than 13 billion parameters.
+
+
+      ## Resources
+
+
+      🏡 [Phi-3 Portal](https://azure.microsoft.com/en-us/products/phi-3) <br>
+
+      📰 [Phi-3 Microsoft Blog](https://aka.ms/Phi-3Build2024) <br>
+
+      📖 [Phi-3 Technical Report](https://aka.ms/phi3-tech-report) <br>
+
+      🛠️ [Phi-3 on Azure AI Studio](https://aka.ms/phi3-azure-ai) <br>
+
+      👩‍🍳 [Phi-3 Cookbook](https://github.com/microsoft/Phi-3CookBook) <br>
+
+
+      ## Model Architecture
+
+
+      Phi-3 Mini-128K-Instruct has 3.8B parameters and is a dense decoder-only Transformer model. The model is fine-tuned with Supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) to ensure alignment with human preferences and safety guidelines.
+
+
+      ## Training Datasets
+
+
+      Our training data includes a wide variety of sources, totaling 4.9 trillion tokens, and is a combination of 
+
+      1) Publicly available documents filtered rigorously for quality, selected high-quality educational data, and code; 
+
+      2) Newly created synthetic, "textbook - like" data for the purpose of teaching math, coding, common sense reasoning, general knowledge of the world (science, daily activities, theory of mind, etc.); 
+
+      3) High quality chat format supervised data covering various topics to reflect human preferences on different aspects such as instruct-following, truthfulness, honesty and helpfulness.
+
+
+      We are focusing on the quality of data that could potentially improve the reasoning ability for the model, and we filter the publicly available documents to contain the correct level of knowledge. As an example, the result of a game in premier league in a particular day might be good training data for frontier models, but we need to remove such information to leave more model capacity for reasoning for the small size models. More details about data can be found in the [Phi-3 Technical Report](https://aka.ms/phi3-tech-report).
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks:
+      - chat-completion
+    keywords:
+      - Reasoning
+      - Understanding
+      - Low latency
+    popularity: 0
+    assetId: azureml://registries/azureml/models/Phi-3-mini-4k-instruct/versions/11
+    name: Phi-3-mini-4k-instruct
+    displayName: Phi-3-mini instruct (4k)
+    version: "11"
+    registryName: azureml
+    publisher: microsoft
+    labels:
+      - latest
+    summary:
+      Tiniest member of the Phi-3 family. Optimized for both quality and low
+      latency.
+    createdTime: 2024-09-11T23:27:09.9608889+00:00
+    license: mit
+    tradeRestricted: false
+    description: >-
+      The Phi-3-Mini-4K-Instruct is a 3.8B parameters, lightweight,
+      state-of-the-art open model trained with the Phi-3 datasets that includes
+      both synthetic data and the filtered publicly available websites data with
+      a focus on high-quality and reasoning dense properties.
+
+      The model belongs to the Phi-3 family with the Mini version in two variants 4K and 128K which is the context length (in tokens) that it can support.
+
+
+      The model underwent a post-training process that incorporates both supervised fine-tuning and direct preference optimization for the instruction following and safety measures.
+
+      When assessed against benchmarks testing common sense, language understanding, math, code, long context and logical reasoning, Phi-3 Mini-4K-Instruct showcased a robust and state-of-the-art performance among models with less than 13 billion parameters.
+
+
+      ## Resources
+
+
+      🏡 [Phi-3 Portal](https://azure.microsoft.com/en-us/products/phi-3) <br>
+
+      📰 [Phi-3 Microsoft Blog](https://aka.ms/Phi-3Build2024) <br>
+
+      📖 [Phi-3 Technical Report](https://aka.ms/phi3-tech-report) <br>
+
+      🛠️ [Phi-3 on Azure AI Studio](https://aka.ms/phi3-azure-ai) <br>
+
+      👩‍🍳 [Phi-3 Cookbook](https://github.com/microsoft/Phi-3CookBook) <br>
+
+
+      ## Model Architecture
+
+
+      Phi-3 Mini-4K-Instruct has 3.8B parameters and is a dense decoder-only Transformer model. The model is fine-tuned with Supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) to ensure alignment with human preferences and safety guidelines.
+
+
+      ## Training Datasets
+
+
+      Our training data includes a wide variety of sources, totaling 4.9 trillion tokens, and is a combination of 
+
+      1) Publicly available documents filtered rigorously for quality, selected high-quality educational data, and code; 
+
+      2) Newly created synthetic, "textbook - like" data for the purpose of teaching math, coding, common sense reasoning, general knowledge of the world (science, daily activities, theory of mind, etc.); 
+
+      3) High quality chat format supervised data covering various topics to reflect human preferences on different aspects such as instruct-following, truthfulness, honesty and helpfulness.
+
+
+      We are focusing on the quality of data that could potentially improve the reasoning ability for the model, and we filter the publicly available documents to contain the correct level of knowledge. As an example, the result of a game in premier league in a particular day might be good training data for frontier models, but we need to remove such information to leave more model capacity for reasoning for the small size models. More details about data can be found in the [Phi-3 Technical Report](https://aka.ms/phi3-tech-report).
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks:
+      - chat-completion
+    keywords:
+      - Reasoning
+      - Understanding
+      - Large context
+    popularity: 0
+    assetId: azureml://registries/azureml/models/Phi-3-small-128k-instruct/versions/4
+    name: Phi-3-small-128k-instruct
+    displayName: Phi-3-small instruct (128k)
+    version: "4"
+    registryName: azureml
+    publisher: microsoft
+    labels:
+      - latest
+    summary:
+      Same Phi-3-small model, but with a larger context size for RAG or few
+      shot prompting.
+    createdTime: 2024-09-06T18:41:46.713663+00:00
+    license: mit
+    tradeRestricted: false
+    description: >-
+      The Phi-3-Small-128K-Instruct is a 7B parameters, lightweight,
+      state-of-the-art open model trained with the Phi-3 datasets that includes
+      both synthetic data and the filtered publicly available websites data with
+      a focus on high-quality and reasoning dense properties. The model supports
+      128K context length (in tokens).
+
+
+      The model underwent a post-training process that incorporates both supervised fine-tuning and direct preference optimization for the instruction following and safety measures.
+
+      When assessed against benchmarks testing common sense, language understanding, math, code, long context and logical reasoning, Phi-3-Small-128K-Instruct showcased a robust and state-of-the-art performance among models of the same-size and next-size-up.
+
+
+      ## Resources
+
+
+      + [Phi-3 Microsoft Blog](https://aka.ms/phi3blog-april)
+
+      + [Phi-3 Technical Report](https://aka.ms/phi3-tech-report)
+
+
+      ## Model Architecture
+
+
+      Phi-3 Small-128K-Instruct has 7B parameters and is a dense decoder-only Transformer model. The model is fine-tuned with Supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) to ensure alignment with human preferences and safety guidelines.
+
+
+      ## Training Datasets
+
+
+      Our training data includes a wide variety of sources, totaling 4.8 trillion tokens (including 10% multilingual), and is a combination of 
+
+      1) Publicly available documents filtered rigorously for quality, selected high-quality educational data, and code; 
+
+      2) Newly created synthetic, “textbook-like” data for the purpose of teaching math, coding, common sense reasoning, general knowledge of the world (science, daily activities, theory of mind, etc.); 
+
+      3) High quality chat format supervised data covering various topics to reflect human preferences on different aspects such as instruct-following, truthfulness, honesty and helpfulness.
+
+
+      We are focusing on the quality of data that could potentially improve the reasoning ability for the model, and we filter the publicly available documents to contain the correct level of knowledge. As an example, the result of a game in premier league in a particular day might be good training data for frontier models, but we need to remove such information to leave more model capacity for reasoning for the small size models. More details about data can be found in the [Phi-3 Technical Report](https://aka.ms/phi3-tech-report).
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks:
+      - chat-completion
+    keywords:
+      - Reasoning
+      - Understanding
+    popularity: 0
+    assetId: azureml://registries/azureml/models/Phi-3-small-8k-instruct/versions/4
+    name: Phi-3-small-8k-instruct
+    displayName: Phi-3-small instruct (8k)
+    version: "4"
+    registryName: azureml
+    publisher: microsoft
+    labels:
+      - latest
+    summary:
+      A 7B parameters model, proves better quality than Phi-3-mini, with a
+      focus on high-quality, reasoning-dense data.
+    createdTime: 2024-09-06T18:58:10.5886749+00:00
+    license: mit
+    tradeRestricted: false
+    description: >-
+      The Phi-3-Small-8K-Instruct is a 7B parameters, lightweight,
+      state-of-the-art open model trained with the Phi-3 datasets that includes
+      both synthetic data and the filtered publicly available websites data with
+      a focus on high-quality and reasoning dense properties. The model supports
+      8K context length (in tokens).
+
+
+      The model underwent a post-training process that incorporates both supervised fine-tuning and direct preference optimization for the instruction following and safety measures.
+
+      When assessed against benchmarks testing common sense, language understanding, math, code, long context and logical reasoning, Phi-3-Small-8K-Instruct showcased a robust and state-of-the-art performance among models of the same-size and next-size-up.
+
+
+      ## Resources
+
+
+      🏡 [Phi-3 Portal](https://azure.microsoft.com/en-us/products/phi-3) <br>
+
+      📰 [Phi-3 Microsoft Blog](https://aka.ms/Phi-3Build2024) <br>
+
+      📖 [Phi-3 Technical Report](https://aka.ms/phi3-tech-report) <br>
+
+      🛠️ [Phi-3 on Azure AI Studio](https://aka.ms/phi3-azure-ai) <br>
+
+      👩‍🍳 [Phi-3 Cookbook](https://github.com/microsoft/Phi-3CookBook) <br>
+
+
+      ## Model Architecture
+
+
+      Phi-3 Small-8K-Instruct has 7B parameters and is a dense decoder-only Transformer model. The model is fine-tuned with Supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) to ensure alignment with human preferences and safety guidelines.
+
+
+      ## Training Datasets
+
+
+      Our training data includes a wide variety of sources, totaling 4.8 trillion tokens (including 10% multilingual), and is a combination of 
+
+      1) Publicly available documents filtered rigorously for quality, selected high-quality educational data, and code; 
+
+      2) Newly created synthetic, “textbook-like” data for the purpose of teaching math, coding, common sense reasoning, general knowledge of the world (science, daily activities, theory of mind, etc.); 
+
+      3) High quality chat format supervised data covering various topics to reflect human preferences on different aspects such as instruct-following, truthfulness, honesty and helpfulness.
+
+
+      We are focusing on the quality of data that could potentially improve the reasoning ability for the model, and we filter the publicly available documents to contain the correct level of knowledge. As an example, the result of a game in premier league in a particular day might be good training data for frontier models, but we need to remove such information to leave more model capacity for reasoning for the small size models. More details about data can be found in the [Phi-3 Technical Report](https://aka.ms/phi3-tech-report).
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - Reasoning
+      - Understanding
+      - Low latency
+    popularity: 0
+    assetId: azureml://registries/azureml/models/Phi-3.5-vision-instruct/versions/2
+    name: Phi-3.5-vision-instruct
+    displayName: Phi-3.5 vision instruct (128k)
+    version: "2"
+    registryName: azureml
+    publisher: microsoft
+    labels:
+      - latest
+    summary: Refresh of Phi-3-vision model.
+    createdTime: 2024-08-20T21:19:03.2226543+00:00
+    license: mit
+    tradeRestricted: false
+    description: >
+      Phi-3.5-vision is a lightweight, state-of-the-art open multimodal model
+      built upon datasets which include - synthetic data and filtered publicly
+      available websites - with a focus on very high-quality, reasoning dense
+      data both on text and vision. The model belongs to the Phi-3 model family,
+      and the multimodal version comes with 128K context length (in tokens) it
+      can support. The model underwent a rigorous enhancement process,
+      incorporating both supervised fine-tuning and direct preference
+      optimization to ensure precise instruction adherence and robust safety
+      measures.
+
+
+      ### Resources
+
+      🏡 [Phi-3 Portal](https://azure.microsoft.com/en-us/products/phi-3) <br>
+
+      📰 [Phi-3 Microsoft Blog](https://aka.ms/phi3.5-techblog) <br>
+
+      📖 [Phi-3 Technical Report](https://arxiv.org/abs/2404.14219) <br>
+
+      👩‍🍳 [Phi-3 Cookbook](https://github.com/microsoft/Phi-3CookBook) <br>
+
+
+      ### Model Summary
+
+      |      |      |
+
+      |------|------|
+
+      | **Architecture** | Phi-3.5-vision has 4.2B parameters and contains image encoder, connector, projector, and Phi-3 Mini language model. |
+
+      | **Inputs** | Text and Image. It’s best suited for prompts using the chat format. |
+
+      | **Context length** | 128K tokens |
+
+      | **GPUs** | 256 A100-80G |
+
+      | **Training time** | 6 days |
+
+      | **Training data** | 500B tokens (vision tokens + text tokens) |
+
+      | **Outputs** | Generated text in response to the input |
+
+      | **Dates** | Trained between July and August 2024 |
+
+      | **Status** | This is a static model trained on an offline text dataset with cutoff date March 15, 2024. Future versions of the tuned models may be released as we improve models. |
+
+      | **Release date** | August 20, 2024 |
+
+      | **License** | MIT |
+  - inferenceTasks:
+      - chat-completion
+    fineTuningTasks: []
+    keywords:
+      - Reasoning
+      - Understanding
+      - Low latency
+    popularity: 0
+    assetId: azureml://registries/azureml/models/Phi-3.5-mini-instruct/versions/2
+    name: Phi-3.5-mini-instruct
+    displayName: Phi-3.5-mini instruct (128k)
+    version: "2"
+    registryName: azureml
+    publisher: microsoft
+    labels:
+      - latest
+    summary: Refresh of Phi-3-mini model.
+    createdTime: 2024-08-20T21:07:47.4167756+00:00
+    license: mit
+    tradeRestricted: false
+    description: >-
+      Phi-3.5-mini is a lightweight, state-of-the-art open model built upon
+      datasets used for Phi-3 - synthetic data and filtered publicly available
+      websites - with a focus on very high-quality, reasoning dense data. The
+      model belongs to the Phi-3 model family and supports 128K token context
+      length. The model underwent a rigorous enhancement process, incorporating
+      both supervised fine-tuning, proximal policy optimization, and direct
+      preference optimization to ensure precise instruction adherence and robust
+      safety measures.
+
+
+      ### Resources
+
+      🏡 [Phi-3 Portal](https://azure.microsoft.com/en-us/products/phi-3) <br>
+
+      📰 [Phi-3 Microsoft Blog](https://aka.ms/phi3.5-techblog) <br>
+
+      📖 [Phi-3 Technical Report](https://arxiv.org/abs/2404.14219) <br>
+
+      👩‍🍳 [Phi-3 Cookbook](https://github.com/microsoft/Phi-3CookBook) <br>
+
+
+      ### Model Architecture
+
+      Phi-3.5-mini has 3.8B parameters and is a dense decoder-only Transformer model using the same tokenizer as Phi-3 Mini. It is a text-only model best suited for prompts using chat format.
+
+
+      ### Training Data
+
+      Phi-3.5-mini is a static model trained on an offline dataset with 3.4T tokens and a cutoff date October 2023 for publicly available data. Future versions of the tuned models may be released as we improve models.

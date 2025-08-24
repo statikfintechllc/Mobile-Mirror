@@ -1,0 +1,723 @@
+name: Google
+models:
+  - name: gemini-2.5-flash-preview-05-20
+    displayName: "Gemini 2.5 Flash Preview 05-20"
+    info:
+      icon: gemini
+      platform: Google
+      publisher: Google
+      task: "Text Generation"
+      contextWindow: 1048576
+      popular: 2
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      responseFormats:
+        - text
+        - json_schema
+      webSearch: false # gemini doc said this model support search grounding, but when I call it, it return "[400 Bad Request] Search Grounding is not supported."
+      attachments:
+        - type: text
+          mimeTypes:
+            - application/pdf
+            - application/x-javascript
+            - text/javascript
+            - application/x-python
+            - text/x-python
+            - text/plain
+            - text/html
+            - text/css
+            - text/md
+            - text/csv
+            - text/xml
+            - text/rtf
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/heif
+            - image/webp
+            - image/heic
+        - type: audio
+          mimeTypes:
+            - audio/wav
+            - audio/mp3
+            - audio/aiff
+            - audio/aac
+            - audio/ogg
+            - audio/flac
+        - type: video
+          mimeTypes:
+            - video/mp4
+            - video/mpeg
+            - video/mov
+            - video/avi
+            - video/x-flv
+            - video/mpg
+            - video/webm
+            - video/wmv
+            - video/3gpp
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 65536
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 0.95
+  - name: gemini-2.0-flash
+    displayName: "Gemini 2.0 Flash"
+    info:
+      icon: gemini
+      platform: Google
+      publisher: Google
+      task: "Text Generation"
+      contextWindow: 1048576
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      responseFormats:
+        - text
+        - json_schema
+      webSearch: true
+      attachments:
+        - type: text
+          mimeTypes:
+            - application/pdf
+            - application/x-javascript
+            - text/javascript
+            - application/x-python
+            - text/x-python
+            - text/plain
+            - text/html
+            - text/css
+            - text/md
+            - text/csv
+            - text/xml
+            - text/rtf
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/heif
+            - image/webp
+            - image/heic
+        - type: audio
+          mimeTypes:
+            - audio/wav
+            - audio/mp3
+            - audio/aiff
+            - audio/aac
+            - audio/ogg
+            - audio/flac
+        - type: video
+          mimeTypes:
+            - video/mp4
+            - video/mpeg
+            - video/mov
+            - video/avi
+            - video/x-flv
+            - video/mpg
+            - video/webm
+            - video/wmv
+            - video/3gpp
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 0.95
+        - name: web_search
+          default: {}
+  - name: gemini-2.0-flash-lite-preview-02-05
+    displayName: "Gemini 2.0 Flash Lite Preview 02-05"
+    info:
+      icon: gemini
+      platform: Google
+      publisher: Google
+      task: "Text Generation"
+      retired: true
+      contextWindow: 1048576
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      responseFormats:
+        - text
+        - json_schema
+      attachments:
+        - type: text
+          mimeTypes:
+            - application/pdf
+            - application/x-javascript
+            - text/javascript
+            - application/x-python
+            - text/x-python
+            - text/plain
+            - text/html
+            - text/css
+            - text/md
+            - text/csv
+            - text/xml
+            - text/rtf
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/heif
+            - image/webp
+            - image/heic
+        - type: audio
+          mimeTypes:
+            - audio/wav
+            - audio/mp3
+            - audio/aiff
+            - audio/aac
+            - audio/ogg
+            - audio/flac
+        - type: video
+          mimeTypes:
+            - video/mp4
+            - video/mpeg
+            - video/mov
+            - video/avi
+            - video/x-flv
+            - video/mpg
+            - video/webm
+            - video/wmv
+            - video/3gpp
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 0.95
+  - name: gemini-2.0-pro-exp-02-05
+    displayName: "Gemini 2.0 Pro Experimental 02-05"
+    info:
+      icon: gemini
+      platform: Google
+      publisher: Google
+      task: "Text Generation"
+      retired: true
+      contextWindow: 2097152
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      webSearch: true
+      responseFormats:
+        - text
+        - json_schema
+      attachments:
+        - type: text
+          mimeTypes:
+            - application/pdf
+            - application/x-javascript
+            - text/javascript
+            - application/x-python
+            - text/x-python
+            - text/plain
+            - text/html
+            - text/css
+            - text/md
+            - text/csv
+            - text/xml
+            - text/rtf
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/heif
+            - image/webp
+            - image/heic
+        - type: audio
+          mimeTypes:
+            - audio/wav
+            - audio/mp3
+            - audio/aiff
+            - audio/aac
+            - audio/ogg
+            - audio/flac
+        - type: video
+          mimeTypes:
+            - video/mp4
+            - video/mpeg
+            - video/mov
+            - video/avi
+            - video/x-flv
+            - video/mpg
+            - video/webm
+            - video/wmv
+            - video/3gpp
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 0.95
+        - name: web_search
+          default: {}
+  - name: gemini-2.0-flash-thinking-exp-01-21
+    displayName: "Gemini 2.0 Flash Thinking"
+    info:
+      icon: gemini
+      platform: Google
+      publisher: Google
+      task: "Text Generation"
+      retired: true
+      contextWindow: 1048576
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      responseFormats:
+        - text
+      attachments:
+        - type: text
+          mimeTypes:
+            - application/pdf
+            - application/x-javascript
+            - text/javascript
+            - application/x-python
+            - text/x-python
+            - text/plain
+            - text/html
+            - text/css
+            - text/md
+            - text/csv
+            - text/xml
+            - text/rtf
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/heif
+            - image/webp
+            - image/heic
+      promptGenerator: system_prompt
+      testDataGenerator: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 65536
+        - name: temperature
+          default: 0.7
+        - name: top_p
+          default: 0.95
+  - name: gemini-2.0-flash-exp
+    displayName: "Gemini 2.0 Flash Experimental"
+    info:
+      icon: gemini
+      platform: Google
+      publisher: Google
+      task: "Text Generation"
+      retired: true
+      contextWindow: 1048576
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      webSearch: true
+      responseFormats:
+        - text
+        - json_schema
+      attachments:
+        - type: text
+          mimeTypes:
+            - application/pdf
+            - application/x-javascript
+            - text/javascript
+            - application/x-python
+            - text/x-python
+            - text/plain
+            - text/html
+            - text/css
+            - text/md
+            - text/csv
+            - text/xml
+            - text/rtf
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/heif
+            - image/webp
+            - image/heic
+        - type: audio
+          mimeTypes:
+            - audio/wav
+            - audio/mp3
+            - audio/aiff
+            - audio/aac
+            - audio/ogg
+            - audio/flac
+        - type: video
+          mimeTypes:
+            - video/mp4
+            - video/mpeg
+            - video/mov
+            - video/avi
+            - video/x-flv
+            - video/mpg
+            - video/webm
+            - video/wmv
+            - video/3gpp
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 0.95
+        - name: web_search
+          default: {}
+  - name: learnlm-1.5-pro-experimental
+    displayName: "LearnLM 1.5 Pro Experimental"
+    info:
+      icon: gemini
+      platform: Google
+      publisher: Google
+      task: "Text Generation"
+      retired: true
+      contextWindow: 32767
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      responseFormats:
+        - text
+        - json_schema
+      attachments:
+        - type: text
+          mimeTypes:
+            - application/pdf
+            - application/x-javascript
+            - text/javascript
+            - application/x-python
+            - text/x-python
+            - text/plain
+            - text/html
+            - text/css
+            - text/md
+            - text/csv
+            - text/xml
+            - text/rtf
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/heif
+            - image/webp
+            - image/heic
+        - type: audio
+          mimeTypes:
+            - audio/wav
+            - audio/mp3
+            - audio/aiff
+            - audio/aac
+            - audio/ogg
+            - audio/flac
+        - type: video
+          mimeTypes:
+            - video/mp4
+            - video/mpeg
+            - video/mov
+            - video/avi
+            - video/x-flv
+            - video/mpg
+            - video/webm
+            - video/wmv
+            - video/3gpp
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 0.95
+  - name: gemini-1.5-flash
+    displayName: "Gemini 1.5 Flash"
+    info:
+      icon: gemini
+      platform: Google
+      publisher: Google
+      task: "Text Generation"
+      contextWindow: 1048576
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      responseFormats:
+        - text
+        - json_schema
+      attachments:
+        - type: text
+          mimeTypes:
+            - application/pdf
+            - application/x-javascript
+            - text/javascript
+            - application/x-python
+            - text/x-python
+            - text/plain
+            - text/html
+            - text/css
+            - text/md
+            - text/csv
+            - text/xml
+            - text/rtf
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/heif
+            - image/webp
+            - image/heic
+        - type: audio
+          mimeTypes:
+            - audio/wav
+            - audio/mp3
+            - audio/aiff
+            - audio/aac
+            - audio/ogg
+            - audio/flac
+        - type: video
+          mimeTypes:
+            - video/mp4
+            - video/mpeg
+            - video/mov
+            - video/avi
+            - video/x-flv
+            - video/mpg
+            - video/webm
+            - video/wmv
+            - video/3gpp
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 0.95
+  - name: gemini-1.5-flash-8b
+    displayName: "Gemini 1.5 Flash-8B"
+    info:
+      icon: gemini
+      platform: Google
+      publisher: Google
+      task: "Text Generation"
+      contextWindow: 1048576
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      responseFormats:
+        - text
+        - json_schema
+      attachments:
+        - type: text
+          mimeTypes:
+            - application/pdf
+            - application/x-javascript
+            - text/javascript
+            - application/x-python
+            - text/x-python
+            - text/plain
+            - text/html
+            - text/css
+            - text/md
+            - text/csv
+            - text/xml
+            - text/rtf
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/heif
+            - image/webp
+            - image/heic
+        - type: audio
+          mimeTypes:
+            - audio/wav
+            - audio/mp3
+            - audio/aiff
+            - audio/aac
+            - audio/ogg
+            - audio/flac
+        - type: video
+          mimeTypes:
+            - video/mp4
+            - video/mpeg
+            - video/mov
+            - video/avi
+            - video/x-flv
+            - video/mpg
+            - video/webm
+            - video/wmv
+            - video/3gpp
+      promptGenerator: system_prompt
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 0.95
+  - name: gemini-1.5-pro
+    displayName: "Gemini 1.5 Pro"
+    info:
+      icon: gemini
+      platform: Google
+      publisher: Google
+      task: "Text Generation"
+      contextWindow: 2097152
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      responseFormats:
+        - text
+        - json_schema
+      attachments:
+        - type: text
+          mimeTypes:
+            - application/pdf
+            - application/x-javascript
+            - text/javascript
+            - application/x-python
+            - text/x-python
+            - text/plain
+            - text/html
+            - text/css
+            - text/md
+            - text/csv
+            - text/xml
+            - text/rtf
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/heif
+            - image/webp
+            - image/heic
+        - type: audio
+          mimeTypes:
+            - audio/wav
+            - audio/mp3
+            - audio/aiff
+            - audio/aac
+            - audio/ogg
+            - audio/flac
+        - type: video
+          mimeTypes:
+            - video/mp4
+            - video/mpeg
+            - video/mov
+            - video/avi
+            - video/x-flv
+            - video/mpg
+            - video/webm
+            - video/wmv
+            - video/3gpp
+      promptGenerator: system_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 0.95
+  - name: gemini-1.0-pro
+    displayName: "Gemini 1.0 Pro"
+    info:
+      icon: gemini
+      platform: Google
+      publisher: Google
+      task: "Text Generation"
+      retired: true
+      contextWindow: 30720
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      attachments:
+        - type: text
+          mimeTypes:
+            - application/x-javascript
+            - text/javascript
+            - application/x-python
+            - text/x-python
+            - text/plain
+            - text/html
+            - text/css
+            - text/md
+            - text/csv
+            - text/xml
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 1
+        - name: top_p
+          default: 0.95
+        - name: presence_penalty
+          default: 0

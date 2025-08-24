@@ -131,6 +131,11 @@ body.statik-dashboard {
     border: 1px solid var(--border-color);
 }
 
+.status-subtitle {
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+
 .status-indicator {
     font-size: 1rem;
     animation: pulse 2s infinite;

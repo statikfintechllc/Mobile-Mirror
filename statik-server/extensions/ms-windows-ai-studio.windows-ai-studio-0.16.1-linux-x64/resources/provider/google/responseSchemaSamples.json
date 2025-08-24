@@ -1,0 +1,53 @@
+{
+    "samples": [
+        {
+            "name": "math_response",
+            "description": "Structured outputs for chain-of-thought math tutoring",
+            "content": {
+                "type": "object",
+                "properties": {
+                    "steps": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "explanation": {
+                                    "type": "string"
+                                },
+                                "output": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "explanation",
+                                "output"
+                            ]
+                        }
+                    },
+                    "final_answer": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "steps",
+                    "final_answer"
+                ]
+            }
+        },
+        {
+            "name": "cookie_recipes",
+            "description": "List of cookie recipes",
+            "content": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "recipe_name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

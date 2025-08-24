@@ -1,0 +1,29 @@
+/* Additional CSS for Tailscale integration status indicators */
+
+.status-value.connected {
+    color: var(--statik-success);
+    font-weight: bold;
+}
+
+.status-value.local {
+    color: var(--statik-warning);
+}
+
+.status-value.error {
+    color: var(--statik-danger);
+}
+
+/* VS Code iframe loading state */
+.iframe-container.loading::before {
+    content: "🌍 Connecting to VS Code via Tailscale...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 16px;
+}

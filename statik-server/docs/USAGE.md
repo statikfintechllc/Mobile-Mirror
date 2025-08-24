@@ -10,41 +10,82 @@ statik
 # Via CLI
 statik-cli start
 
-# With options
-statik-cli start --port 8080 --host 0.0.0.0
+# Interactive GUI
+statik-cli gui
 ```
 
 ### Desktop Application
 Click the "Statik Server" icon in your applications menu.
 
-## Accessing the Server
+## Accessing the Development Environment
 
+### Web VS Code
 - **Local**: http://localhost:8080
 - **Network**: http://[your-ip]:8080  
 - **Secure**: https://[hostname].statik.local:8443
 - **Mobile**: Scan QR code (displayed on startup)
 
+### Local VS Code
+```bash
+# Interactive workspace selection
+statik-cli code
+
+# Open specific project
+statik-cli code ~/my-project
+
+# Open current directory
+statik-cli code .
+```
+
 ## CLI Commands
 
+### Core Commands
 ```bash
 statik-cli start          # Start server
 statik-cli stop           # Stop server
 statik-cli restart        # Restart server
 statik-cli status         # Show status
 statik-cli logs           # View logs
+```
+
+### Development Tools
+```bash
+statik-cli code           # Open VS Code locally
+statik-cli code ~/project # Open specific project
+statik-cli open           # Open web VS Code in browser
+statik-cli build          # Build/update server
+```
+
+### Management
+```bash
 statik-cli config         # Manage configuration
 statik-cli mesh           # Mesh VPN commands
-statik-cli open           # Open in browser
+statik-cli gui            # Interactive GUI
+statik-cli install       # Install desktop app
+```
+
+### Git Integration
+```bash
+statik-cli commit -m "msg" # Git commit
+statik-cli push            # Git push
+statik-cli sync -m "msg"   # Add, commit, push
 ```
 
 ## GitHub Copilot
 
-GitHub Copilot is automatically configured. To activate:
+GitHub Copilot works in both web and local VS Code:
 
-1. Open VS Code in the browser
-2. Sign in to GitHub when prompted
-3. Accept Copilot permissions
+### Setup
+1. Set GitHub token: `statik-cli config token`
+2. Open VS Code (web or local)
+3. Sign in to GitHub when prompted
 4. Start coding with AI assistance!
+
+### Features
+- Code completion and suggestions
+- Copilot Chat for questions
+- Code explanation and documentation
+- Refactoring assistance
 
 ## Mesh VPN
 

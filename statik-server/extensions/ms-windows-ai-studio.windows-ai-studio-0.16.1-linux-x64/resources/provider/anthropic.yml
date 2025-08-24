@@ -1,0 +1,317 @@
+name: Anthropic
+features:
+  attachments:
+    - type: text
+      aitkEnhanced: true
+      mimeTypes:
+        - application/pdf
+        - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        - application/epub+zip
+        - application/vnd.oasis.opendocument.text
+        - application/rtf
+        - text/csv
+        - text/plain
+        - text/html
+        - application/json
+        - application/vnd.openxmlformats-officedocument.presentationml.presentation
+        - application/vnd.oasis.opendocument.presentation
+        - text/javascript
+        - text/css
+        - application/x-httpd-php
+        - application/x-sh
+models:
+  - name: claude-sonnet-4-20250514
+    displayName: "Claude 4 Sonnet (20250514)"
+    info:
+      icon: anthropic
+      platform: Anthropic
+      publisher: Anthropic
+      task: "Text Generation"
+      contextWindow: 200000
+      popular: 1
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+        - type: text
+          mimeTypes:
+            - application/pdf
+      promptGenerator: user_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 20000
+        - name: temperature
+          default: 1
+        - name: think_mode
+          default: false
+        - name: budget_tokens
+          default: 16000
+  - name: claude-opus-4-20250514
+    displayName: "Claude 4 Opus (20250514)"
+    info:
+      icon: anthropic
+      platform: Anthropic
+      publisher: Anthropic
+      task: "Text Generation"
+      contextWindow: 200000
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+        - type: text
+          mimeTypes:
+            - application/pdf
+      promptGenerator: user_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 20000
+        - name: temperature
+          default: 1
+        - name: think_mode
+          default: false
+        - name: budget_tokens
+          default: 16000
+  - name: claude-3-7-sonnet-20250219
+    displayName: "Claude 3.7 Sonnet (20250219)"
+    info:
+      icon: anthropic
+      platform: Anthropic
+      publisher: Anthropic
+      task: "Text Generation"
+      contextWindow: 200000
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      webSearch: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+        - type: text
+          mimeTypes:
+            - application/pdf
+      promptGenerator: user_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 20000
+        - name: temperature
+          default: 1
+        - name: think_mode
+          default: false
+        - name: budget_tokens
+          default: 16000
+  - name: claude-3-5-haiku-20241022
+    displayName: "Claude 3.5 Haiku (20241022)"
+    info:
+      icon: anthropic
+      platform: Anthropic
+      publisher: Anthropic
+      task: "Text Generation"
+      contextWindow: 200000
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      promptGenerator: user_prompt
+      testDataGenerator: true
+      tools: true
+      webSearch: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+        - type: text
+          mimeTypes:
+            - application/pdf
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+  - name: claude-3-5-sonnet-20241022
+    displayName: "Claude 3.5 Sonnet (20241022)"
+    info:
+      icon: anthropic
+      platform: Anthropic
+      publisher: Anthropic
+      task: "Text Generation"
+      contextWindow: 200000
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      webSearch: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+        - type: text
+          mimeTypes:
+            - application/pdf
+      promptGenerator: user_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+  - name: claude-3-5-sonnet-20240620
+    displayName: "Claude 3.5 Sonnet (20240620)"
+    info:
+      icon: anthropic
+      platform: Anthropic
+      publisher: Anthropic
+      task: "Text Generation"
+      contextWindow: 200000
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+        - type: text
+          mimeTypes:
+            - application/pdf
+      promptGenerator: user_prompt
+      testDataGenerator: true
+      tools: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+  - name: claude-3-opus-20240229
+    displayName: "Claude 3 Opus"
+    info:
+      icon: anthropic
+      platform: Anthropic
+      publisher: Anthropic
+      task: "Text Generation"
+      contextWindow: 200000
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p
+  - name: claude-3-sonnet-20240229
+    displayName: "Claude 3 Sonnet"
+    info:
+      icon: anthropic
+      platform: Anthropic
+      publisher: Anthropic
+      task: "Text Generation"
+      contextWindow: 200000
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p
+  - name: claude-3-haiku-20240307
+    displayName: "Claude 3 Haiku"
+    info:
+      icon: anthropic
+      platform: Anthropic
+      publisher: Anthropic
+      task: "Text Generation"
+      contextWindow: 200000
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: true
+      isEditable: true
+      tools: true
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 4096
+        - name: temperature
+        - name: top_p

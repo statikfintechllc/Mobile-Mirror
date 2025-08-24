@@ -1,0 +1,262 @@
+name: Ollama
+info:
+  icon: custom
+  platform: ["win32", "win-arm64", "darwin", "linux"]
+  publisher: custom
+  task: "Text Generation"
+  device: ["CPU", "GPU"]
+features:
+  streaming: true
+  structuredOutputs: false
+  tokenCounting: false
+  isEditable: false
+  attachments:
+    - type: image
+      mimeTypes:
+        - image/jpeg
+        - image/png
+        - image/gif
+        - image/webp
+    - type: text
+      aitkEnhanced: true
+      mimeTypes:
+        - application/pdf
+        - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        - application/epub+zip
+        - application/vnd.oasis.opendocument.text
+        - application/rtf
+        - text/csv
+        - text/plain
+        - text/html
+        - application/json
+        - application/vnd.openxmlformats-officedocument.presentationml.presentation
+        - application/vnd.oasis.opendocument.presentation
+        - text/javascript
+        - text/css
+        - application/x-httpd-php
+        - application/x-sh
+parameterSchema:
+  enabled:
+    - name: system_prompt
+    - name: max_tokens
+      default: 4096
+    - name: temperature
+    - name: top_p
+    - name: presence_penalty
+    - name: frequency_penalty
+models:
+  - name: deepseek-r1
+    displayName: DeepSeek-R1
+    info:
+      icon: deepseek
+      publisher: DeepSeek
+      task: "Text Generation"
+      popular: 1
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: false
+      isEditable: false
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 80000
+        - name: temperature
+          default: 0.6
+    series:
+      - tag: latest
+        fileSize: 4.7G
+      - tag: 1.5b
+        fileSize: 1.1G
+      - tag: 7b
+        fileSize: 4.7G
+      - tag: 8b
+        fileSize: 4.9G
+      - tag: 14b
+        fileSize: 9.0G
+      - tag: 32b
+        fileSize: 20G
+  # - name: llama3.1
+  #   displayName: Meta Llama 3.1
+  #   info:
+  #     icon: meta
+  #     publisher: Meta
+  #     task: "Text Generation"
+  #   features:
+  #     streaming: true
+  #     structuredOutputs: false
+  #     tokenCounting: false
+  #     isEditable: false
+  #   parameterSchema:
+  #     enabled:
+  #       - name: system_prompt
+  #       - name: max_tokens
+  #         default: 2048
+  #       - name: temperature
+  #         default: 0.8
+  #       - name: top_p
+  #         default: 0.1
+  #       - name: presence_penalty
+  #         default: 0
+  #       - name: frequency_penalty
+  #         default: 0
+  #       - name: stop
+  #   series:
+  #     - tag: latest
+  #       fileSize: 4.9G
+  #     - tag: 8b
+  #       fileSize: 4.9G
+  #     - tag: 70b
+  #       fileSize: 43G
+  # - name: llama3.2
+  #   displayName: Meta Llama 3.2
+  #   info:
+  #     icon: meta
+  #     publisher: Meta
+  #     task: "Text Generation"
+  #   features:
+  #     streaming: true
+  #     structuredOutputs: false
+  #     tokenCounting: false
+  #     isEditable: false
+  #   parameterSchema:
+  #     enabled:
+  #       - name: system_prompt
+  #       - name: max_tokens
+  #         default: 2048
+  #       - name: temperature
+  #         default: 0.8
+  #       - name: top_p
+  #         default: 0.1
+  #       - name: presence_penalty
+  #         default: 0
+  #       - name: frequency_penalty
+  #         default: 0
+  #       - name: stop
+  #   series:
+  #     - tag: latest
+  #       fileSize: 2.0G
+  #     - tag: 1b
+  #       fileSize: 1.3G
+  #     - tag: 3b
+  #       fileSize: 2.0G
+  # - name: llama3.3
+  #   displayName: Meta Llama 3.3
+  #   info:
+  #     icon: meta
+  #     publisher: Meta
+  #     task: "Text Generation"
+  #   features:
+  #     streaming: true
+  #     structuredOutputs: false
+  #     tokenCounting: false
+  #     isEditable: false
+  #   parameterSchema:
+  #     enabled:
+  #       - name: system_prompt
+  #       - name: max_tokens
+  #         default: 2048
+  #       - name: temperature
+  #         default: 0.8
+  #       - name: top_p
+  #         default: 0.1
+  #       - name: presence_penalty
+  #         default: 0
+  #       - name: frequency_penalty
+  #         default: 0
+  #       - name: stop
+  #   series:
+  #     - tag: latest
+  #       fileSize: 43G
+  #     - tag: 70b
+  #       fileSize: 43G
+  - name: qwq
+    displayName: QwQ
+    info:
+      icon: qwen
+      publisher: Qwen
+      task: "Text Generation"
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: false
+      isEditable: false
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.95
+    series:
+      - tag: latest
+        fileSize: 20G
+      - tag: 32b
+        fileSize: 20G
+  - name: qwen2.5
+    displayName: Qwen2.5
+    info:
+      icon: qwen
+      publisher: Qwen
+      task: "Text Generation"
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: false
+      isEditable: false
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+    series:
+      - tag: latest
+        fileSize: 4.7G
+      - tag: 1.5b
+        fileSize: 986M
+      - tag: 3b
+        fileSize: 1.9G
+      - tag: 7b
+        fileSize: 4.7G
+      - tag: 14b
+        fileSize: 9.0G
+      - tag: 32b
+        fileSize: 20G
+  - name: phi4
+    displayName: Phi-4
+    info:
+      icon: ms
+      publisher: Microsoft
+      task: "Text Generation"
+      popular: 2
+    features:
+      streaming: true
+      structuredOutputs: false
+      tokenCounting: false
+      isEditable: false
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.1
+        - name: presence_penalty
+          default: 0
+        - name: frequency_penalty
+          default: 0
+    series:
+      - tag: latest
+        fileSize: 9.1G
+      - tag: 14b
+        fileSize: 9.1G

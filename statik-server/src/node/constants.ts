@@ -2,6 +2,7 @@ import { logger } from "@coder/logger"
 import type { JSONSchemaForNPMPackageJsonFiles } from "@schemastore/package"
 import * as os from "os"
 import * as path from "path"
+import { existsSync } from "fs"
 
 export function getPackageJson(relativePath: string): JSONSchemaForNPMPackageJsonFiles {
   let pkg = {}
@@ -14,11 +15,12 @@ export function getPackageJson(relativePath: string): JSONSchemaForNPMPackageJso
   return pkg
 }
 
-export const rootPath = path.resolve(__dirname, "../..")
-export const vsRootPath = path.join(rootPath, "lib/vscode")
 const PACKAGE_JSON = "package.json"
 const pkg = getPackageJson(`${rootPath}/${PACKAGE_JSON}`)
-const codePkg = getPackageJson(`${vsRootPath}/${PACKAGE_JSON}`) || { version: "0.0.0" }
+let codePkg = { version: "0.0.0" }
+if (existsSync(vsRootPath)) {
+  codePkg = getPackageJson(`${vsRootPath}/${PACKAGE_JSON}`) || { version: "0.0.0" }
+}
 export const version = pkg.version || "development"
 export const commit = pkg.commit || "development"
 export const codeVersion = codePkg.version || "development"

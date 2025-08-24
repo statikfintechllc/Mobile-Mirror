@@ -1,0 +1,9 @@
+open vscode
+wait 5 seconds
+press F1 to invoke command palette
+input: 'Azure AI Foundry: Focus on Resources View' and press enter
+wait until "RESOURCES" panel loading complete
+click tree node item "Models" in the "RESOURCES" panel
+wait until "Models" node is expanded and finish loading
+click the first model available under "Models" node
+assert the model properties are displayed

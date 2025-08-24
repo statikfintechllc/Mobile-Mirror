@@ -1,0 +1,158 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start GremlinGPT Unified System",
+      "type": "shell",
+      "command": "source $HOME/miniconda3/etc/profile.d/conda.sh && conda activate gremlin-orchestrator && python3 run/unified_startup.py",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "Start GremlinGPT Backend Server",
+      "type": "shell",
+      "command": "source $HOME/miniconda3/etc/profile.d/conda.sh && conda activate gremlin-dashboard && python3 -m backend.server",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Start GremlinGPT Frontend Dashboard",
+      "type": "shell",
+      "command": "source $HOME/miniconda3/etc/profile.d/conda.sh && conda activate gremlin-dashboard && python3 -m http.server 8080 --directory frontend",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Start MCP Server",
+      "type": "shell",
+      "command": "gremlingpt-mcp",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Setup Conda Environments",
+      "type": "shell",
+      "command": "chmod +x conda_envs/create_envs.sh && ./conda_envs/create_envs.sh",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build VS Code Extension",
+      "type": "shell",
+      "command": "chmod +x build_extensions.sh && ./build_extensions.sh --vscode-only",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Install GremlinGPT System",
+      "type": "shell",
+      "command": "chmod +x install.sh && ./install.sh",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test GremlinGPT Modules",
+      "type": "shell",
+      "command": "source $HOME/miniconda3/etc/profile.d/conda.sh && conda activate gremlin-orchestrator && python3 -c \"import sys; sys.path.insert(0, '.'); from backend.globals import CFG; from core.integration import initialize_gremlin_ecosystem; print('✅ All modules working')\"",
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Stop All GremlinGPT Processes",
+      "type": "shell",
+      "command": "chmod +x run/stop_all.sh && ./run/stop_all.sh",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

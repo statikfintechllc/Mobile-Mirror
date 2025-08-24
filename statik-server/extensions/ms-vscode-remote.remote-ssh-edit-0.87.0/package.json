@@ -1,0 +1,85 @@
+{
+	"name": "remote-ssh-edit",
+	"displayName": "Remote - SSH: Editing Configuration Files",
+	"description": "%description%",
+	"version": "0.87.0",
+	"publisher": "ms-vscode-remote",
+	"icon": "resources/remote-ssh.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-remote-release.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Microsoft/vscode-remote-release/issues"
+	},
+	"license": "SEE LICENSE IN LICENSE.txt",
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"extensionKind": [
+		"ui"
+	],
+	"activationEvents": [],
+	"categories": [
+		"Programming Languages",
+		"Snippets"
+	],
+	"keywords": [
+		"remote development",
+		"remote",
+		"ssh"
+	],
+	"capabilities": {
+		"untrustedWorkspaces": {
+			"supported": true
+		}
+	},
+	"l10n": "./l10n",
+	"main": "./out/extension",
+	"contributes": {
+		"languages": [
+			{
+				"id": "ssh_config",
+				"aliases": [
+					"SSH Config",
+					"ssh_config"
+				],
+				"filenamePatterns": [
+					"**/.ssh/config",
+					"/etc/ssh/ssh_config"
+				],
+				"filenames": [
+					"ssh.config"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "ssh_config",
+				"scopeName": "source.config.ssh",
+				"path": "./syntaxes/ssh_config.tmLanguage.json"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "webpack --mode production",
+		"compile": "webpack --mode none",
+		"watch": "webpack --mode none --watch"
+	},
+	"devDependencies": {
+		"@types/node": "^20.10.3",
+		"@types/vscode": "^1.74.0",
+		"@types/webpack": "^5.28.5",
+		"copy-webpack-plugin": "^11.0.0",
+		"ts-loader": "^9.5.1",
+		"typescript": "^5.3.3",
+		"webpack": "^5.89.0",
+		"webpack-cli": "^5.1.4"
+	},
+	"__metadata": {
+		"installedTimestamp": 1750022629458,
+		"targetPlatform": "undefined",
+		"size": 86144
+	}
+}

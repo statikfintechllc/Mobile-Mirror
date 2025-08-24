@@ -5,28 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statik-Server: Unified AI Development Dashboard</title>
     <link rel="stylesheet" href="./statik-dashboard.css">
+    <link rel="stylesheet" href="./tailscale-integration.css">
     <link rel="icon" type="image/png" href="./assets/statik-icon.png">
 </head>
 <body class="statik-dashboard">
     <header class="statik-header">
         <div class="statik-brand">
-            <img src="./assets/statik-logo.png" alt="Statik-Server" class="statik-logo">
+            <img src="../icons/AscendAI-v1.0.3.png" alt="Statik-Server" class="statik-logo">
             <h1>Statik-Server</h1>
             <span class="version">v1.0.0 | Sovereign AI Development</span>
         </div>
         <nav class="statik-nav">
             <button class="nav-btn active" data-tab="overview">🏠 Overview</button>
-            <button class="nav-btn" data-tab="vscode">💻 VS Code</button>
-            <button class="nav-btn" data-tab="gremlin">🤖 GremlinGPT</button>
-            <button class="nav-btn" data-tab="godcore">⚛️ GodCore</button>
-            <button class="nav-btn" data-tab="mobile">📱 Mobile-Mirror</button>
-            <button class="nav-btn" data-tab="memory">🧠 AI Memory</button>
+            <button class="nav-btn" data-tab="vscode-stock">💻 VS Code</button>
+            <button class="nav-btn" data-tab="vscode-gremlin">🤖 Statik-Code</button>
             <button class="nav-btn" data-tab="mesh">🌐 Mesh VPN</button>
-            <button class="nav-btn" data-tab="system">⚙️ System</button>
+            <button class="nav-btn" data-tab="system">⚙️ Settings</button>
         </nav>
         <div class="statik-status">
             <span class="status-indicator" id="status-dot">🟢</span>
-            <span id="status-text">All Systems Operational</span>
+            <span id="status-text">System Status</span>
+            <br>
+            <span class="status-subtitle">All Systems Operational</span>
         </div>
     </header>
 
@@ -40,12 +40,19 @@
                         <div class="status-item">
                             <span class="status-icon">💻</span>
                             <div>
-                                <div class="status-label">VS Code Server</div>
-                                <div class="status-value" id="vscode-status">Running</div>
+                                <div class="status-label">VS Code</div>
+                                <div class="status-value" id="vscode-stock-status">Running</div>
                             </div>
                         </div>
                         <div class="status-item">
                             <span class="status-icon">🤖</span>
+                            <div>
+                                <div class="status-label">Statik-Code</div>
+                                <div class="status-value" id="vscode-gremlin-status">Running</div>
+                            </div>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-icon">�</span>
                             <div>
                                 <div class="status-label">GitHub Copilot</div>
                                 <div class="status-value" id="copilot-status">Authenticated</div>
@@ -58,70 +65,59 @@
                                 <div class="status-value" id="mesh-status">Connected</div>
                             </div>
                         </div>
-                        <div class="status-item">
-                            <span class="status-icon">🧠</span>
-                            <div>
-                                <div class="status-label">AI Memory</div>
-                                <div class="status-value" id="memory-status">Active</div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 
                 <div class="widget quick-actions">
-                    <h3>⚡ Quick Actions</h3>
+                    <h3>📚 Other Work by StatikFinTech, LLC</h3>
                     <div class="action-grid">
-                        <button class="action-btn" onclick="openVSCode()">
-                            <span class="action-icon">💻</span>
+                        <button class="action-btn" onclick="openLink('https://medium.com/@ascend.gremlin/the-govseverance-doctrine-70fa170a9e8f')">
+                            <span class="action-icon">�</span>
                             <div>
-                                <div class="action-title">Open VS Code</div>
-                                <div class="action-desc">Start coding with Copilot</div>
+                                <div class="action-title">The GovSeverance Doctrine</div>
+                                <div class="action-desc">Medium Article</div>
                             </div>
                         </button>
-                        <button class="action-btn" onclick="openGremlinChat()">
-                            <span class="action-icon">🤖</span>
+                        <button class="action-btn" onclick="openLink('https://medium.com/@ascend.gremlin/burj-khalifa-and-the-resonant-lie-429298865708')">
+                            <span class="action-icon">🏗️</span>
                             <div>
-                                <div class="action-title">GremlinGPT Chat</div>
-                                <div class="action-desc">Talk to autonomous AI</div>
+                                <div class="action-title">Burj Khalifa and the Resonant Lie</div>
+                                <div class="action-desc">Medium Article</div>
                             </div>
                         </button>
-                        <button class="action-btn" onclick="openGodCore()">
-                            <span class="action-icon">⚛️</span>
+                        <button class="action-btn" onclick="openLink('https://medium.com/@ascend.gremlin/the-wealth-power-imbalance-and-contemporary-forms-of-economic-servitude-bf2700d91632')">
+                            <span class="action-icon">💰</span>
                             <div>
-                                <div class="action-title">GodCore Router</div>
-                                <div class="action-desc">Multi-model AI routing</div>
+                                <div class="action-title">Wealth Power Imbalance</div>
+                                <div class="action-desc">Economic Servitude Article</div>
                             </div>
                         </button>
-                        <button class="action-btn" onclick="openMobileMirror()">
-                            <span class="action-icon">📱</span>
+                        <button class="action-btn" onclick="openLink('https://medium.com/@ascend.gremlin/while-dubai-was-building-control-systems-i-built-an-autonomous-mind-fb4c8c4c0dc1')">
+                            <span class="action-icon">🧠</span>
                             <div>
-                                <div class="action-title">Mobile Development</div>
-                                <div class="action-desc">Code from mobile device</div>
+                                <div class="action-title">Autonomous Mind</div>
+                                <div class="action-desc">AI Development Article</div>
+                            </div>
+                        </button>
+                        <button class="action-btn" onclick="openLink('https://doi.org/10.5281/zenodo.15717788')">
+                            <span class="action-icon">🎓</span>
+                            <div>
+                                <div class="action-title">Cognitive Insurgency Framework</div>
+                                <div class="action-desc">Zenodo Archive</div>
+                            </div>
+                        </button>
+                        <button class="action-btn" onclick="openLink('https://github.com/statikfintechllc')">
+                            <span class="action-icon">�</span>
+                            <div>
+                                <div class="action-title">StatikFinTech GitHub</div>
+                                <div class="action-desc">Open Source Projects</div>
                             </div>
                         </button>
                     </div>
                 </div>
 
-                <div class="widget memory-preview">
-                    <h3>🧠 AI Memory Live Feed</h3>
-                    <div class="memory-container" id="memory-feed">
-                        <div class="memory-item">
-                            <span class="memory-timestamp">14:30:15</span>
-                            <span class="memory-source gremlin">GremlinGPT</span>
-                            <span class="memory-content">Autonomous mode activated</span>
-                        </div>
-                        <div class="memory-item">
-                            <span class="memory-timestamp">14:30:12</span>
-                            <span class="memory-source godcore">GodCore</span>
-                            <span class="memory-content">Quantum compression complete</span>
-                        </div>
-                        <div class="memory-item">
-                            <span class="memory-timestamp">14:30:08</span>
-                            <span class="memory-source signal">SignalCore</span>
-                            <span class="memory-content">Thought cycle iteration 3/5</span>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div class="widget mesh-info">
                     <h3>🌐 Mesh Network</h3>
@@ -146,7 +142,37 @@
             </div>
         </div>
 
-        <!-- VS Code Tab -->
+        <!-- Stock VS Code Tab -->
+        <div class="tab-content" id="vscode-stock">
+            <div class="iframe-container">
+                <div class="iframe-header">
+                    <span class="iframe-title">💻 VS Code Server</span>
+                    <div class="iframe-controls">
+                        <button onclick="reloadStockVSCode()" class="control-btn">🔄 Reload</button>
+                        <button onclick="openStockVSCodeNew()" class="control-btn">🆕 New Window</button>
+                        <span class="iframe-status" id="stock-vscode-url-status">Loading...</span>
+                    </div>
+                </div>
+                <iframe src="http://localhost:8080" id="vscode-stock-frame" frameborder="0" title="Stock VS Code Server"></iframe>
+            </div>
+        </div>
+
+        <!-- GremlinGPT VS Code Tab -->
+        <div class="tab-content" id="vscode-gremlin">
+            <div class="iframe-container">
+                <div class="iframe-header">
+                    <span class="iframe-title">🤖 Statik-Code (AI-Enhanced)</span>
+                    <div class="iframe-controls">
+                        <button onclick="reloadGremlinVSCode()" class="control-btn">🔄 Reload</button>
+                        <button onclick="openGremlinVSCodeNew()" class="control-btn">🆕 New Window</button>
+                        <span class="iframe-status" id="gremlin-vscode-url-status">Loading...</span>
+                    </div>
+                </div>
+                <iframe src="http://localhost:8081" id="vscode-gremlin-frame" frameborder="0" title="GremlinGPT VS Code"></iframe>
+            </div>
+        </div>
+
+        <!-- VS Code Tab (Legacy - kept for compatibility) -->
         <div class="tab-content" id="vscode">
             <div class="iframe-container">
                 <div class="iframe-header">
@@ -156,7 +182,7 @@
                         <button onclick="openVSCodeNew()" class="control-btn">🆕 New Window</button>
                     </div>
                 </div>
-                <iframe src="/" id="vscode-frame" frameborder="0"></iframe>
+                <iframe src="/" id="vscode-frame" frameborder="0" title="VS Code with GitHub Copilot Chat"></iframe>
             </div>
         </div>
 
@@ -172,7 +198,7 @@
                         <button onclick="resetGremlin()" class="control-btn">🔄 Reset FSM</button>
                     </div>
                 </div>
-                
+
                 <div class="gremlin-grid">
                     <div class="gremlin-chat">
                         <div class="chat-header">💬 GremlinGPT Chat</div>
@@ -182,7 +208,7 @@
                             <button onclick="sendGremlinMessage()" class="send-btn">📤</button>
                         </div>
                     </div>
-                    
+
                     <div class="gremlin-fsm">
                         <div class="fsm-header">🔄 FSM State</div>
                         <div class="fsm-visualization" id="fsm-viz">
@@ -194,12 +220,12 @@
                             <button onclick="pauseFSM()" class="fsm-btn">⏸️ Pause</button>
                         </div>
                     </div>
-                    
+
                     <div class="gremlin-memory">
                         <div class="memory-header">🧠 Memory Graph</div>
                         <div class="memory-graph" id="gremlin-memory-graph"></div>
                     </div>
-                    
+
                     <div class="gremlin-trading">
                         <div class="trading-header">📈 Trading Signals</div>
                         <div class="trading-panel" id="trading-signals"></div>
@@ -218,7 +244,7 @@
                         <button onclick="optimizeRouting()" class="control-btn">⚡ Optimize Routing</button>
                     </div>
                 </div>
-                
+
                 <div class="godcore-grid">
                     <div class="model-status">
                         <h3>🔗 Model Status</h3>
@@ -240,12 +266,13 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="godcore-chat">
                         <div class="chat-header">💬 GodCore Chat</div>
                         <div class="chat-messages" id="godcore-messages"></div>
                         <div class="chat-input">
-                            <select id="model-select">
+                            <label for="model-select" class="visually-hidden">Select AI Model</label>
+                            <select id="model-select" title="Select AI Model">
                                 <option value="auto">🤖 Auto-Route</option>
                                 <option value="mistral">⚡ Mistral-13B</option>
                                 <option value="monday">🌙 Monday.AI</option>
@@ -254,7 +281,7 @@
                             <button onclick="sendGodCoreMessage()" class="send-btn">📤</button>
                         </div>
                     </div>
-                    
+
                     <div class="quantum-storage">
                         <h3>⚛️ Quantum Storage</h3>
                         <div class="storage-stats">
@@ -272,7 +299,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="routing-analytics">
                         <h3>📊 Routing Analytics</h3>
                         <div class="analytics-chart" id="routing-chart"></div>
@@ -291,7 +318,7 @@
                         <button onclick="generateQR()" class="control-btn">📱 Generate QR</button>
                     </div>
                 </div>
-                
+
                 <div class="mobile-grid">
                     <div class="tunnel-status">
                         <h3>🔗 Tunnel Status</h3>
@@ -313,7 +340,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="qr-container">
                         <h3>📱 Mobile Access</h3>
                         <div class="qr-code" id="qr-code">
@@ -321,7 +348,7 @@
                         </div>
                         <p class="qr-instruction">Scan with your mobile device</p>
                     </div>
-                    
+
                     <div class="mobile-tools">
                         <h3>🛠️ Mobile Tools</h3>
                         <div class="tool-grid">
@@ -343,7 +370,7 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="device-list">
                         <h3>📱 Connected Devices</h3>
                         <div class="device-item">
@@ -378,13 +405,13 @@
                         <button onclick="exportMemory()" class="control-btn">💾 Export</button>
                     </div>
                 </div>
-                
+
                 <div class="memory-grid">
                     <div class="memory-feed">
                         <h3>📡 Live Memory Feed</h3>
                         <div class="feed-container" id="live-memory-feed"></div>
                     </div>
-                    
+
                     <div class="memory-stats">
                         <h3>📊 Memory Statistics</h3>
                         <div class="stat-grid">
@@ -406,12 +433,12 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="memory-graph">
                         <h3>🌐 Memory Graph</h3>
                         <div class="graph-container" id="memory-graph-viz"></div>
                     </div>
-                    
+
                     <div class="soul-state">
                         <h3>👻 Soul State</h3>
                         <div class="soul-container">
@@ -446,13 +473,13 @@
                         <button onclick="refreshMeshStatus()" class="control-btn">🔄 Refresh</button>
                     </div>
                 </div>
-                
+
                 <div class="mesh-grid">
                     <div class="mesh-topology">
                         <h3>🕸️ Network Topology</h3>
                         <div class="topology-viz" id="mesh-topology"></div>
                     </div>
-                    
+
                     <div class="mesh-nodes">
                         <h3>🔗 Connected Nodes</h3>
                         <div class="node-list" id="mesh-node-list">
@@ -466,7 +493,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="mesh-keys">
                         <h3>🔑 Preauth Keys</h3>
                         <div class="key-list" id="preauth-key-list">
@@ -481,7 +508,7 @@
                         </div>
                         <button onclick="addNewKey()" class="add-key-btn">➕ Generate New Key</button>
                     </div>
-                    
+
                     <div class="mesh-traffic">
                         <h3>📊 Network Traffic</h3>
                         <div class="traffic-stats">
@@ -517,33 +544,33 @@
                         <button onclick="updateSystem()" class="control-btn">⬆️ Update</button>
                     </div>
                 </div>
-                
+
                 <div class="system-grid">
                     <div class="system-stats">
                         <h3>📊 System Resources</h3>
                         <div class="resource-meter">
                             <div class="meter-label">CPU Usage</div>
                             <div class="meter-bar">
-                                <div class="meter-fill" style="width: 45%"></div>
+                                <div class="meter-fill cpu-usage"></div>
                             </div>
                             <div class="meter-value">45%</div>
                         </div>
                         <div class="resource-meter">
                             <div class="meter-label">Memory Usage</div>
                             <div class="meter-bar">
-                                <div class="meter-fill" style="width: 67%"></div>
+                                <div class="meter-fill memory-usage"></div>
                             </div>
                             <div class="meter-value">67%</div>
                         </div>
                         <div class="resource-meter">
                             <div class="meter-label">Disk Usage</div>
                             <div class="meter-bar">
-                                <div class="meter-fill" style="width: 23%"></div>
+                                <div class="meter-fill disk-usage"></div>
                             </div>
                             <div class="meter-value">23%</div>
                         </div>
                     </div>
-                    
+
                     <div class="service-status">
                         <h3>🔧 Service Status</h3>
                         <div class="service-list">
@@ -573,7 +600,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="system-logs">
                         <h3>📝 System Logs</h3>
                         <div class="log-container" id="system-logs">
@@ -594,7 +621,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="system-info">
                         <h3>ℹ️ System Information</h3>
                         <div class="info-grid">

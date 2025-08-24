@@ -1,0 +1,1578 @@
+name: ONNX
+features:
+  streaming: true
+  structuredOutputs: false
+  tokenCounting: true
+  isEditable: false
+  rawText: true
+  attachments:
+    - type: text
+      aitkEnhanced: true
+      mimeTypes:
+        - application/pdf
+        - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+        - application/epub+zip
+        - application/vnd.oasis.opendocument.text
+        - application/rtf
+        - text/csv
+        - text/plain
+        - text/html
+        - application/json
+        - application/vnd.openxmlformats-officedocument.presentationml.presentation
+        - application/vnd.oasis.opendocument.presentation
+        - text/javascript
+        - text/css
+        - application/x-httpd-php
+        - application/x-sh
+parameterSchema:
+  enabled:
+    - name: system_prompt
+    - name: max_tokens
+      default: 256
+    - name: temperature
+    - name: top_p
+    - name: presence_penalty
+    - name: frequency_penalty
+      default: 1
+models:
+  # QNN
+  - name: Phi-4-mini-reasoning-3.8b-qnn
+    displayName: Phi 4 Mini Reasoning 3.8B (NPU Optimized, QNN)
+    providerType: AzureFoundry
+    uri: azureml://registries/azureml/models/Phi-4-mini-reasoning-onnx/versions/2
+    path: phi-4-mini-reasoning-onnx/npu/qnn-phi4-mini-reasoning-onnx/
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    features:
+      rawText: true
+      ignoreChatHistory: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens
+          default: 1024
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.95
+        - name: top_k
+        - name: random_seed
+    promptTemplate:
+      system: |-
+        <|system|>{Content}<|end|>
+      user: |-
+        <|user|>{Content}<|end|>
+      assistant: |-
+        <|assistant|>{Content}<|end|>
+      prompt: |-
+        <|user|>{Content}<|end|><|assistant|>
+    publisher: Microsoft
+    architecture: Phi-4
+    parameterSize: 3.8B
+    fileSize: 2.79 GB
+    runtime: npu
+    contextWindow: 4096
+  - name: Phi-4-reasoning-14.7b-qnn
+    displayName: Phi 4 Reasoning 14.7B (NPU Optimized, QNN)
+    providerType: AzureFoundry
+    uri: azureml://registries/azureml/models/Phi-4-reasoning-plus-onnx/versions/1
+    path: phi-4-reasoning-plus-onnx/npu/qnn-phi-4-reasoning-plus-onnx/
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    features:
+      rawText: true
+      ignoreChatHistory: true
+    parameterSchema:
+      enabled:
+        - name: system_prompt
+        - name: max_tokens 
+          default: 1024
+        - name: temperature
+          default: 0.8
+        - name: top_p
+          default: 0.95
+        - name: top_k
+        - name: random_seed
+    promptTemplate:
+      system: |-
+        <|system|>{Content}<|end|>
+      user: |-
+        <|user|>{Content}<|end|>
+      assistant: |-
+        <|assistant|>{Content}<|end|>
+      prompt: |-
+        <|user|>{Content}<|end|><|assistant|>
+    publisher: Microsoft
+    architecture: Phi-4
+    parameterSize: 14.7B
+    fileSize: 7.40 GB
+    runtime: npu
+    contextWindow: 4096
+  - name: mistral-7b-v02-int4-cpu
+    displayName: Mistral 7B (CPU - Small, Standard)
+    popular: 2
+    providerType: HuggingFace
+    uri: microsoft/mistral-7b-instruct-v0.2-ONNX
+    path: onnx/cpu_and_mobile/mistral-7b-instruct-v0.2-cpu-int4-rtn-block-32-acc-level-4
+    modelType: onnx
+    task: Text Generation
+    icon: mistralai
+    fineTuningTemplateName: mistralai/Mistral-7B-Instruct-v0.2
+    publisher: Mistral AI
+    architecture: mistral
+    parameterSize: 7B
+    fileSize: 4.99 GB
+    runtime: cpu
+    contextWindow: 32000
+    promptTemplate:
+      system: <s>
+      user: |-
+        [INST]
+        {Content}
+        [/INST]
+      assistant: |-
+        {Content}</s>
+      prompt: |-
+        [INST]
+        {Content}
+        [/INST]
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 256
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+        - name: frequency_penalty
+          default: 1
+  - name: mistral-7b-v02-int4-gpu
+    displayName: Mistral 7B (CUDA - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/mistral-7b-instruct-v0.2-ONNX
+    path: onnx/cuda/mistral-7b-instruct-v0.2-cuda-int4-rtn-block-32
+    modelType: onnx
+    task: Text Generation
+    icon: mistralai
+    fineTuningTemplateName: mistralai/Mistral-7B-Instruct-v0.2
+    publisher: Mistral AI
+    architecture: mistral
+    parameterSize: 7B
+    fileSize: 4.27 GB
+    runtime: cuda
+    contextWindow: 32000
+    promptTemplate:
+      system: <s>
+      user: |-
+        [INST]
+        {Content}
+        [/INST]
+      assistant: |-
+        {Content}</s>
+      prompt: |-
+        [INST]
+        {Content}
+        [/INST]
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 256
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+        - name: frequency_penalty
+          default: 1
+  - name: mistral-7b-v02-fp16-gpu
+    displayName: Mistral 7B (CUDA - Large, Accurate)
+    providerType: HuggingFace
+    uri: microsoft/mistral-7b-instruct-v0.2-ONNX
+    path: onnx/cuda/mistral-7b-instruct-v0.2-cuda-fp16
+    modelType: onnx
+    task: Text Generation
+    icon: mistralai
+    fineTuningTemplateName: mistralai/Mistral-7B-Instruct-v0.2
+    publisher: Mistral AI
+    architecture: mistral
+    parameterSize: 7B
+    fileSize: 14.50 GB
+    runtime: cuda
+    contextWindow: 32000
+    promptTemplate:
+      system: <s>
+      user: |-
+        [INST]
+        {Content}
+        [/INST]
+      assistant: |-
+        {Content}</s>
+      prompt: |-
+        [INST]
+        {Content}
+        [/INST]
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 256
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+        - name: frequency_penalty
+          default: 1
+  - name: mistral-7b-v02-int4-directml
+    displayName: Mistral 7B (DirectML - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/mistral-7b-instruct-v0.2-ONNX
+    path: onnx/directml/mistralai_Mistral-7B-Instruct-v0.2
+    modelType: onnx
+    task: Text Generation
+    icon: mistralai
+    fineTuningTemplateName: mistralai/Mistral-7B-Instruct-v0.2
+    publisher: Mistral AI
+    architecture: mistral
+    parameterSize: 7B
+    fileSize: 3.96 GB
+    runtime: directml
+    contextWindow: 32768
+    promptTemplate:
+      system: <s>
+      user: |-
+        [INST]
+        {Content}
+        [/INST]
+      assistant: |-
+        {Content}</s>
+      prompt: |-
+        [INST]
+        {Content}
+        [/INST]
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 256
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+        - name: frequency_penalty
+          default: 1
+  - name: Phi-3-mini-4k-cpu-int4-rtn-block-32-acc-level-4-onnx
+    displayName: Phi 3 Mini 4K (CPU - Small, Fast)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-mini-4k-instruct-onnx
+    path: cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    fineTuningTemplateName: microsoft/Phi-3-mini-4k-instruct
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 2.72 GB
+    runtime: cpu
+    contextWindow: 4096
+  - name: Phi-3-mini-4k-cpu-int4-rtn-block-32-onnx
+    displayName: Phi 3 Mini 4K (CPU - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-mini-4k-instruct-onnx
+    path: cpu_and_mobile/cpu-int4-rtn-block-32
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    fineTuningTemplateName: microsoft/Phi-3-mini-4k-instruct
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 2.72 GB
+    runtime: cpu
+    contextWindow: 4096
+  - name: Phi-3-mini-4k-directml-int4-awq-block-128-onnx
+    displayName: Phi 3 Mini 4K (DirectML - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-mini-4k-instruct-onnx
+    path: directml/directml-int4-awq-block-128
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    fineTuningTemplateName: microsoft/Phi-3-mini-4k-instruct
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 2.13 GB
+    runtime: directml
+    contextWindow: 4096
+  - name: Phi-3-mini-128k-cpu-int4-rtn-block-32-acc-level-4-onnx
+    displayName: Phi 3 Mini 128K (CPU - Small, Fast)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-mini-128k-instruct-onnx
+    path: cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    fineTuningTemplateName: microsoft/Phi-3-mini-4k-instruct
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 2.72 GB
+    runtime: cpu
+    contextWindow: 131072
+  - name: Phi-3-mini-128k-cpu-int4-rtn-block-32-onnx
+    displayName: Phi 3 Mini 128K (CPU - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-mini-128k-instruct-onnx
+    path: cpu_and_mobile/cpu-int4-rtn-block-32
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    fineTuningTemplateName: microsoft/Phi-3-mini-4k-instruct
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 2.72 GB
+    runtime: cpu
+    contextWindow: 131072
+  - name: Phi-3-mini-128k-directml-int4-awq-block-128-onnx
+    displayName: Phi 3 Mini 128K (DirectML - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-mini-128k-instruct-onnx
+    path: directml/directml-int4-awq-block-128
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    fineTuningTemplateName: microsoft/Phi-3-mini-4k-instruct
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 2.13 GB
+    runtime: directml
+    contextWindow: 131072
+  - name: Phi-3-mini-4k-cuda-fp16-onnx
+    displayName: Phi 3 Mini 4K (CUDA - Large, Accurate)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-mini-4k-instruct-onnx
+    path: cuda/cuda-fp16
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    fineTuningTemplateName: microsoft/Phi-3-mini-4k-instruct
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 7.66 GB
+    runtime: cuda
+    contextWindow: 4096
+  - name: Phi-3-mini-4k-cuda-int4-onnx
+    displayName: Phi 3 Mini 4K (CUDA - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-mini-4k-instruct-onnx
+    path: cuda/cuda-int4-rtn-block-32
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    fineTuningTemplateName: microsoft/Phi-3-mini-4k-instruct
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 2.30 GB
+    runtime: cuda
+    contextWindow: 4096
+  - name: Phi-3-mini-128k-cuda-fp16-onnx
+    displayName: Phi 3 Mini 128K (CUDA - Large, Accurate)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-mini-128k-instruct-onnx
+    path: cuda/cuda-fp16
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    fineTuningTemplateName: microsoft/Phi-3-mini-4k-instruct
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 7.66 GB
+    runtime: cuda
+    contextWindow: 131072
+  - name: Phi-3-mini-128k-cuda-int4-onnx
+    displayName: Phi 3 Mini 128K (CUDA - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-mini-128k-instruct-onnx
+    path: cuda/cuda-int4-rtn-block-32
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    fineTuningTemplateName: microsoft/Phi-3-mini-4k-instruct
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 2.30 GB
+    runtime: cuda
+    contextWindow: 131072
+  - name: Phi-3.5-mini-cpu-int4-awq-block-128-acc-level-4-onnx
+    displayName: Phi 3.5 Mini (CPU - Small, Fast)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3.5-mini-instruct-onnx
+    path: cpu_and_mobile/cpu-int4-awq-block-128-acc-level-4
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3.5
+    parameterSize: 3.8B
+    fileSize: 2.73 GB
+    runtime: cpu
+    contextWindow: 131072
+  - name: Phi-3-vision-128k-cpu-int4-rtn-block-32-acc-level-4-onnx
+    displayName: Phi 3 Vision 128K (CPU - Small, Fast)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-vision-128k-instruct-onnx
+    path: cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+        - name: frequency_penalty
+          default: 1
+    features:
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    publisher: Microsoft
+    architecture: Phi-3-vision
+    parameterSize: 4.15B
+    fileSize: 2.99 GB
+    runtime: cpu
+
+  # 1.5B
+  - name: deepseek-r1-distill-qwen-1.5b-cpu-int4-rtn-block-32-acc-level-4
+    displayName: Deepseek R1 Distilled 1.5b (CPU - Small, Fast, 32)
+    runtime: cpu
+    fileSize: 1.84 GB
+    parameterSize: 1.5B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-1.5b/onnx/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    popular: 3
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-1.5b-cuda-int4-awq-block-128-acc-level-4
+    displayName: Deepseek R1 Distilled 1.5b (CUDA - Small, Fast, 128)
+    runtime: cuda
+    fileSize: 1.23 GB
+    parameterSize: 1.5B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-1.5b/onnx/cuda/cuda-int4-awq-block-128-acc-level-4/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-1.5b-cuda-int4-rtn-block-32
+    displayName: Deepseek R1 Distilled 1.5b (CUDA - Small, Standard, 32)
+    runtime: cuda
+    fileSize: 1.28 GB
+    parameterSize: 1.5B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-1.5b/onnx/cuda/cuda-int4-rtn-block-32/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+      ignoreChatHistory: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-1.5b-cuda-int4-rtn-block-32-acc-level-4
+    displayName: Deepseek R1 Distilled 1.5b (CUDA - Small, Fast, 32)
+    runtime: cuda
+    fileSize: 1.28 GB
+    parameterSize: 1.5B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-1.5b/onnx/cuda/cuda-int4-rtn-block-32-acc-level-4/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-1.5b-directml-int4-awq-block-128
+    displayName: Deepseek R1 Distilled 1.5b (DirectML - Small, Standard, 128)
+    runtime: directml
+    fileSize: 1.23 GB
+    parameterSize: 1.5B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-1.5b/onnx/directml/directml-int4-awq-block-128/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-1.5b-directml-int4-awq-block-128-acc-level-4
+    displayName: Deepseek R1 Distilled 1.5b (DirectML - Small, Fast, 128)
+    runtime: directml
+    fileSize: 1.23 GB
+    parameterSize: 1.5B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-1.5b/onnx/directml/directml-int4-awq-block-128-acc-level-4/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-1.5b-directml-int4-rtn-block-32-acc-level-4
+    displayName: Deepseek R1 Distilled 1.5b (DirectML - Small, Fast, 32)
+    runtime: directml
+    fileSize: 1.28 GB
+    parameterSize: 1.5B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-1.5b/onnx/directml/directml-int4-rtn-block-32-acc-level-4/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+# 7B
+  - name: deepseek-r1-distill-qwen-7b-cpu-int4-rtn-block-32-acc-level-4
+    displayName: Deepseek R1 Distilled 7B (CPU - Small, Fast, 32)
+    runtime: cpu
+    fileSize: 6.21 GB
+    parameterSize: 7B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-7b/onnx/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-7b-cuda-int4-awq-block-128-acc-level-4
+    displayName: Deepseek R1 Distilled 7B (CUDA - Small, Fast, 128)
+    runtime: cuda
+    fileSize: 4.50 GB
+    parameterSize: 7B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-7b/onnx/cuda/cuda-int4-awq-block-128-acc-level-4/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-7b-cuda-int4-rtn-block-32
+    displayName: Deepseek R1 Distilled 7B (CUDA - Small, Standard, 32)
+    runtime: cuda
+    fileSize: 4.76 GB
+    parameterSize: 7B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-7b/onnx/cuda/cuda-int4-rtn-block-32/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-7b-cuda-int4-rtn-block-32-acc-level-4
+    displayName: Deepseek R1 Distilled 7B (CUDA - Small, Fast, 32)
+    runtime: cuda
+    fileSize: 4.76 GB
+    parameterSize: 7B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-7b/onnx/cuda/cuda-int4-rtn-block-32-acc-level-4/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-7b-directml-int4-awq-block-128
+    displayName: Deepseek R1 Distilled 7B (DirectML - Small, Standard, 128)
+    runtime: directml
+    fileSize: 4.5 GB
+    parameterSize: 7B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-7b/onnx/directml/directml-int4-awq-block-128/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-7b-directml-int4-awq-block-128-acc-level-4
+    displayName: Deepseek R1 Distilled 7B (DirectML - Small, Fast, 128)
+    runtime: directml
+    fileSize: 4.5 GB
+    parameterSize: 7B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-7b/onnx/directml/directml-int4-awq-block-128-acc-level-4/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: deepseek-r1-distill-qwen-7b-directml-int4-rtn-block-32-acc-level-4
+    displayName: Deepseek R1 Distilled 7b (DirectML - Small, Fast, 32)
+    runtime: directml
+    fileSize: 4.76 GB
+    parameterSize: 7B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-7b/onnx/directml/directml-int4-rtn-block-32-acc-level-4/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+# QNN
+  - name: qnn-deepseek-r1-distill-qwen-1.5b
+    displayName: Deepseek R1 Distilled 1.5b (NPU Optimized, QNN)
+    runtime: npu
+    fileSize: 3.90 GB
+    parameterSize: 1.5B
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-1.5b/onnx/npu/qnn-deepseek-r1-distill-qwen-1.5b/
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    #APPEND
+    modelType: onnx
+    publisher: DeepSeek
+    architecture: Qwen
+    providerType: AzureFoundry
+    icon: deepseek
+    task: Text Generation
+    features:
+      rawText: true
+      ignoreChatHistory: true
+    popular: 3
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+
+  - name: qnn-deepseek-r1-distill-qwen-7b
+    displayName: Deepseek R1 Distilled 7b (NPU Optimized, QNN)
+    providerType: AzureFoundry
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-7b/onnx/npu/qnn-deepseek-r1-distill-qwen-7b/
+    modelType: onnx
+    task: Text Generation
+    icon: deepseek
+    features:
+      rawText: true
+      ignoreChatHistory: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+    publisher: DeepSeek
+    architecture: Qwen
+    parameterSize: 1.5B
+    fileSize: 3.90 GB
+    runtime: npu
+
+  - name: qnn-deepseek-r1-distill-qwen-14b
+    displayName: Deepseek R1 Distilled 14b (NPU Optimized, QNN)
+    providerType: AzureFoundry
+    uri: azureml://registries/azureml/models/DeepSeek-R1-Distilled-NPU-Optimized/versions/8
+    path: deepseek-r1-distill-qwen/deepseek-r1-distill-qwen-14b/onnx/npu/qnn-deepseek-r1-distill-qwen-14b/
+    modelType: onnx
+    task: Text Generation
+    icon: deepseek
+    features:
+      rawText: true
+      ignoreChatHistory: true
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 2048
+        - name: temperature
+          default: 0.6
+        - name: top_p
+          default: 0.9
+        - name: top_k
+          default: 5
+        - name: random_seed
+          default: 57894
+    promptTemplate:
+      assistant: |-
+        {Content}
+      prompt: |-
+        \u003C\uFF5CUser\uFF5C\u003E{Content}\u003C\uFF5CAssistant\uFF5C\u003E
+    publisher: DeepSeek
+    architecture: Qwen
+    parameterSize: 1.5B
+    fileSize: 3.90 GB
+    runtime: npu
+
+  - name: Phi-3-vision-128k-gpu-int4-rtn-block-32-onnx
+    displayName: Phi 3 Vision 128K (DirectML/CUDA - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3-vision-128k-instruct-onnx
+    path: gpu/gpu-int4-rtn-block-32
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+        - name: frequency_penalty
+    features:
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    publisher: Microsoft
+    architecture: Phi-3-vision
+    parameterSize: 4.15B
+    fileSize: 2.6 GB
+    runtime: gpu
+    # contextWindow: 131072
+  - name: Phi-3.5-vision-cpu-int4-rtn-block-32-acc-level-4-onnx
+    displayName: Phi 3.5 Vision (CPU - Small, Fast)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3.5-vision-instruct-onnx
+    path: cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+        - name: frequency_penalty
+          default: 1
+    features:
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    publisher: Microsoft
+    architecture: Phi-3.5-vision
+    parameterSize: 4.15B
+    fileSize: 2.99 GB
+    runtime: cpu
+    # contextWindow: 131072
+  - name: Phi-3.5-vision-directml-int4-rtn-block-32-onnx
+    displayName: Phi 3.5 Vision (DirectML/CUDA - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/Phi-3.5-vision-instruct-onnx
+    path: gpu/gpu-int4-rtn-block-32
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+    parameterSchema:
+      enabled:
+        - name: max_tokens
+          default: 8192
+        - name: temperature
+        - name: top_p
+        - name: presence_penalty
+        - name: frequency_penalty
+    features:
+      attachments:
+        - type: image
+          mimeTypes:
+            - image/jpeg
+            - image/png
+            - image/gif
+            - image/webp
+    publisher: Microsoft
+    architecture: Phi-3.5-vision
+    parameterSize: 4.15B
+    fileSize: 2.6 GB
+    runtime: gpu
+    # contextWindow: 131072
+  # - name: Llama-3.2-1B-cpu-int4-rtn-block-32-acc-level-4-onnx
+  #   providerType: HuggingFace
+  #   uri: onnx-community/Llama-3.2-1B-Instruct-ONNX
+  #   path: cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4
+  #   modelType: onnx
+  #   task: Text Generation
+  #   icon: meta
+  #   promptTemplate:
+  #     system: |-
+  #       <|start_header_id|>system<|end_header_id|>
+  #       {Content}<|eot_id|>
+  #     user: |-
+  #       <|start_header_id|>user<|end_header_id|>
+  #       {Content}<|eot_id|>
+  #     assistant: |-
+  #       <|start_header_id|>assistant<|end_header_id|>
+  #       {Content}<|eot_id|>
+  #     prompt: |-
+  #       <|start_header_id|>user<|end_header_id|>
+  #       {Content}<|eot_id|>
+  #       <|start_header_id|>assistant<|end_header_id|>
+  #   publisher: Meta
+  #   architecture: Llama-3.2
+  #   parameterSize: 1B
+  #   fileSize: 1.86 GB
+  #   runtime: cpu
+  # - name: Llama-3.2-3B-cpu-int4-rtn-block-32-acc-level-4-onnx
+  #   providerType: HuggingFace
+  #   uri: onnx-community/Llama-3.2-3B-Instruct-ONNX
+  #   path: cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4
+  #   modelType: onnx
+  #   task: Text Generation
+  #   icon: meta
+  #   promptTemplate:
+  #     system: |-
+  #       <|start_header_id|>system<|end_header_id|>
+  #       {Content}<|eot_id|>
+  #     user: |-
+  #       <|start_header_id|>user<|end_header_id|>
+  #       {Content}<|eot_id|>
+  #     assistant: |-
+  #       <|start_header_id|>assistant<|end_header_id|>
+  #       {Content}<|eot_id|>
+  #     prompt: |-
+  #       <|start_header_id|>user<|end_header_id|>
+  #       {Content}<|eot_id|>
+  #       <|start_header_id|>assistant<|end_header_id|>
+  #   publisher: Meta
+  #   architecture: Llama-3.2
+  #   parameterSize: 3B
+  #   fileSize: 3.65 GB
+  #   runtime: cpu
+  - name: Phi-4-mini-cpu-int4-rtn-block-32-acc-level-4-onnx
+    displayName: Phi 4 Mini (CPU - Small, Fast)
+    popular: 1
+    providerType: HuggingFace
+    uri: microsoft/Phi-4-mini-instruct-onnx
+    path: cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+      tool_spec: |-
+        <|tool|>
+        {Content}<|end|>
+      tool: |-
+        <|tool_response|>
+        {Content}<|end|>
+      tool_prompt: |-
+        <|tool_response|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 4.59 GB
+    runtime: cpu
+    contextWindow: 131072
+  - name: Phi-4-mini-gpu-int4-rtn-block-32
+    displayName: Phi 4 Mini (DirectML/CUDA - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/Phi-4-mini-instruct-onnx
+    path: gpu/gpu-int4-rtn-block-32
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    promptTemplate:
+      system: |-
+        <|system|>
+        {Content}<|end|>
+      user: |-
+        <|user|>
+        {Content}<|end|>
+      assistant: |-
+        <|assistant|>
+        {Content}<|end|>
+      prompt: |-
+        <|user|>
+        {Content}<|end|>
+        <|assistant|>
+      tool_spec: |-
+        <|tool|>
+        {Content}<|end|>
+      tool: |-
+        <|tool_response|>
+        {Content}<|end|>
+      tool_prompt: |-
+        <|tool_response|>
+        {Content}<|end|>
+        <|assistant|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 3.8B
+    fileSize: 3.19 GB
+    runtime: gpu
+    contextWindow: 131072
+  - name: Phi-4-cpu-int4-rtn-block-32-acc-level-4
+    displayName: Phi 4 (CPU - Small, Fast)
+    providerType: HuggingFace
+    uri: microsoft/phi-4-onnx
+    path: cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    promptTemplate:
+      system: |-
+        <|im_start|>system<|im_sep|>
+        {Content}<|im_end|>
+      user: |-
+        <|im_start|>user<|im_sep|>
+        {Content}<|im_end|>
+      assistant: |-
+        <|im_start|>assistant<|im_sep|>
+        {Content}<|im_end|>
+      prompt: |-
+        <|im_start|>user<|im_sep|>
+        {Content}<|im_end|>
+        <|im_start|>assistant<|im_sep|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 14.7B
+    fileSize: 12.59 GB
+    runtime: cpu
+    contextWindow: 16384
+  - name: Phi-4-gpu-int4-rtn-block-32
+    displayName: Phi 4 (DirectML/CUDA - Small, Standard)
+    providerType: HuggingFace
+    uri: microsoft/phi-4-onnx
+    path: gpu/gpu-int4-rtn-block-32
+    modelType: onnx
+    task: Text Generation
+    icon: ms
+    promptTemplate:
+      system: |-
+        <|im_start|>system<|im_sep|>
+        {Content}<|im_end|>
+      user: |-
+        <|im_start|>user<|im_sep|>
+        {Content}<|im_end|>
+      assistant: |-
+        <|im_start|>assistant<|im_sep|>
+        {Content}<|im_end|>
+      prompt: |-
+        <|im_start|>user<|im_sep|>
+        {Content}<|im_end|>
+        <|im_start|>assistant<|im_sep|>
+    publisher: Microsoft
+    architecture: Phi-3
+    parameterSize: 14.7B
+    fileSize: 8.38 GB
+    runtime: gpu
+    contextWindow: 16384
+  # - name: Phi-4-multimodal-instruct-gpu-int4-rtn-block-32
+  #   displayName: Phi 4 Multimodal (CUDA - Small, Standard)
+  #   providerType: HuggingFace
+  #   uri: microsoft/Phi-4-multimodal-instruct-onnx
+  #   path: gpu/gpu-int4-rtn-block-32
+  #   modelType: onnx
+  #   task: Text Generation
+  #   icon: ms
+  #   parameterSchema:
+  #     enabled:
+  #       - name: max_tokens
+  #         default: 8192
+  #       - name: temperature
+  #       - name: top_p
+  #       - name: presence_penalty
+  #       - name: frequency_penalty
+  #         default: 1
+  #   promptTemplate:
+  #     system: |-
+  #       <|system|>
+  #       {Content}<|end|>
+  #     user: |-
+  #       <|user|>
+  #       {Content}<|end|>
+  #     assistant: |-
+  #       <|assistant|>
+  #       {Content}<|end|>
+  #     prompt: |-
+  #       <|user|>
+  #       {Content}<|end|>
+  #       <|assistant|>
+  #     tool_spec: |-
+  #       <|tool|>
+  #       {Content}<|end|>
+  #     tool: |-
+  #       <|tool_response|>
+  #       {Content}<|end|>
+  #     tool_prompt: |-
+  #       <|tool_response|>
+  #       {Content}<|end|>
+  #       <|assistant|>
+  #   features:
+  #     tokenCounting: false
+  #     attachments:
+  #       - type: image
+  #         mimeTypes:
+  #           - image/jpeg
+  #           - image/png
+  #           - image/gif
+  #           - image/webp
+  #   publisher: Microsoft
+  #   architecture: Phi-4-mm
+  #   parameterSize: 5.57B
+  #   fileSize: 4.78 GB
+  #   runtime: cuda

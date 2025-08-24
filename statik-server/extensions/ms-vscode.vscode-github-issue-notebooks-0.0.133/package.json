@@ -1,0 +1,153 @@
+{
+	"name": "vscode-github-issue-notebooks",
+	"displayName": "GitHub Issue Notebooks",
+	"description": "GitHub Issue Notebooks for VS Code",
+	"publisher": "ms-vscode",
+	"preview": true,
+	"version": "0.0.133",
+	"type": "module",
+	"repository": {
+		"url": "https://github.com/microsoft/vscode-github-issue-notebooks"
+	},
+	"engines": {
+		"vscode": "^1.101.0-insider"
+	},
+	"categories": [
+		"Other"
+	],
+	"capabilities": {
+		"untrustedWorkspaces": {
+			"supported": true
+		},
+		"virtualWorkspaces": true
+	},
+	"icon": "icon.png",
+	"activationEvents": [
+		"onNotebook:github-issues"
+	],
+	"main": "./dist/extension-node.js",
+	"browser": "./dist/extension-web.cjs",
+	"l10n": "./l10n",
+	"contributes": {
+		"languages": [
+			{
+				"id": "github-issues",
+				"aliases": [
+					"GitHub Issues"
+				],
+				"filenamePatterns": [
+					"*.github-issues.txt"
+				]
+			}
+		],
+		"grammars": [
+			{
+				"language": "github-issues",
+				"scopeName": "source.github-issues",
+				"path": "./syntaxes/github-issues.tmGrammar.json"
+			}
+		],
+		"notebookRenderer": [
+			{
+				"id": "github-issues",
+				"displayName": "Github Issues Notebook Renderer",
+				"entrypoint": "./dist/renderer.js",
+				"mimeTypes": [
+					"x-application/github-issues"
+				]
+			}
+		],
+		"notebooks": [
+			{
+				"type": "github-issues",
+				"displayName": "GitHub Issues Notebook",
+				"selector": [
+					{
+						"filenamePattern": "*.github-issues"
+					}
+				]
+			}
+		],
+		"commands": [
+			{
+				"title": "%github-issues.new.title%",
+				"shortTitle": "GitHub Issue Notebook",
+				"command": "github-issues.new"
+			},
+			{
+				"title": "%github-issues.openAll.title%",
+				"command": "github-issues.openAll",
+				"icon": "$(globe)"
+			},
+			{
+				"title": "%github-issues.openUrl.title%",
+				"command": "github-issues.openUrl",
+				"icon": "$(home)"
+			}
+		],
+		"menus": {
+			"commandPalette": [
+				{
+					"command": "github-issues.openAll",
+					"when": "false"
+				},
+				{
+					"command": "github-issues.openUrl",
+					"when": "false"
+				}
+			],
+			"notebook/cell/title": [
+				{
+					"command": "github-issues.openUrl",
+					"alt": "github-issues.openAll",
+					"when": "notebookType == github-issues && notebookCellType == code && notebookCellHasOutputs",
+					"group": "inline/output@1"
+				}
+			],
+			"file/newFile": [
+				{
+					"command": "github-issues.new",
+					"group": "notebook"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"lint": "eslint --config .eslintrc.json ./src/**/*.ts",
+		"vscode:prepublish": "npm run esbuild",
+		"esbuild": "node ./esbuild.mjs",
+		"esbuild:watch": "node ./esbuild.mjs --watch",
+		"esbuild:minify": "node ./esbuild.mjs --minify",
+		"ts-compile": "tsc -b",
+		"integration-test": "npm run ts-compile && node ./out/test/test-integration/runTest.js",
+		"unit-test": "npm run ts-compile && npx mocha ./out/test/test-unit",
+		"compile-lint-test": "npm run ts-compile && npm run lint && npm run unit-test",
+		"precommit": "npm run lint",
+		"deploy": "npx vsce publish --noVerify"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.1",
+		"@types/node": "^18.0.0",
+		"@types/vscode-notebook-renderer": "^1.57.8",
+		"@typescript-eslint/eslint-plugin": "^5.9.0",
+		"@typescript-eslint/parser": "^5.9.0",
+		"esbuild": "^0.25.4",
+		"esbuild-css-modules-plugin": "^3.1.4",
+		"eslint": "^8.6.0",
+		"glob": "^7.1.6",
+		"husky": "^7.0.2",
+		"mocha": "^11.2.2",
+		"preact": "^10.4.6",
+		"typescript": "^5.8.3",
+		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"@octokit/rest": "^21.1.1"
+	},
+	"__metadata": {
+		"installedTimestamp": 1752548117072,
+		"targetPlatform": "undefined",
+		"size": 2892350
+	}
+}

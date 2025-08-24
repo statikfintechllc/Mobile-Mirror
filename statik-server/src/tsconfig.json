@@ -1,0 +1,87 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"removeComments": false,
+		"preserveConstEnums": true,
+		"sourceMap": false,
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"isolatedModules": false,
+		"outDir": "../out/vs",
+		"module": "NodeNext",
+	"lib": [
+		"ES2020",
+		"DOM"
+	],
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noUncheckedIndexedAccess": true,
+		"useDefineForClassFields": true,
+		"incremental": true,
+		"tsBuildInfoFile": "../.cache/tsbuildinfo",
+		"composite": true,
+		"baseUrl": ".",
+		"paths": {
+			"vscode": [
+				"../vscode-dts/vscode.proposed.*.d.ts",
+				"../vscode-dts/vscode.d.ts"
+			],
+			"vscode-test": [
+				"../vscode-test/vscode-test.d.ts"
+			],
+			"vscode/tsserverlibrary": [
+				"../vscode-dts/vscode.proposed.*.d.ts",
+				"../vscode-dts/vscode.d.ts"
+			],
+			"vscode/tsserverlibrary/proposed": [
+				"../vscode-dts/vscode.proposed.*.d.ts",
+				"../vscode-dts/vscode.d.ts"
+			],
+			"vscode/tsserverlibrary/tsserverlibrary": [
+				"../vscode-dts/vscode.proposed.*.d.ts",
+				"../vscode-dts/vscode.d.ts"
+			],
+			"vscode/tsserverlibrary/tsserverlibrary/proposed": [
+				"../vscode-dts/vscode.proposed.*.d.ts",
+				"../vscode-dts/vscode.d.ts"
+			]
+		},
+		"resolvePackageJsonExports": true,
+		"resolvePackageJsonImports": true,
+		"allowImportingTsExtensions": true,
+		"allowImportingTsExtensionsFromJson": true,
+		"allowImportingTsExtensionsFromJs": true,
+		"allowImportingTsExtensionsFromTs": true,
+		"allowImportingTsExtensionsFromDts": true,
+		"allowImportingTsExtensionsFromDcts": true,
+		"allowImportingTsExtensionsFromMts": true,
+		"allowImportingTsExtensionsFromCts": true,
+		"allowImportingTsExtensionsFromJsonc": true,
+		"allowImportingTsExtensionsFromDtsc": true,
+		"allowImportingTsExtensionsFromMtsc": true,
+		"allowImportingTsExtensionsFromCtsc": true,
+		"allowImportingTsExtensionsFromDmts": true,
+		"allowImportingTsExtensionsFromCmdts": true,
+		"allowImportingTsExtensionsFromCjs": true,
+		"allowImportingTsExtensionsFromEsm": true,
+		"allowImportingTsExtensionsFromMjs": true,
+		"allowImportingTsExtensionsFromCjsm": true,
+		"plugins": [
+			{
+				"name": "tsec",
+				"exemptionConfig": "./tsec.exemptions.json"
+			}
+		]
+	},
+	"include": [
+		"./*.ts",
+		"./typings",
+		"./vs/**/*.ts",
+		"./vscode-dts/vscode.proposed.*.d.ts",
+		"./vscode-dts/vscode.d.ts"
+	],
+	"exclude": [
+		"vs/workbench/contrib/webview/browser/pre/service-worker.js"
+	]
+}

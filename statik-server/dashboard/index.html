@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statik Server Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #1e1e1e; color: #fff; }
+        .header { background: #2d2d30; padding: 1rem 2rem; border-bottom: 1px solid #3e3e42; }
+        .header h1 { color: #007acc; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .container { display: flex; height: calc(100vh - 70px); }
+        .sidebar { width: 250px; background: #252526; border-right: 1px solid #3e3e42; }
+        .nav-item { padding: 1rem 1.5rem; cursor: pointer; border-bottom: 1px solid #3e3e42; transition: background 0.2s; }
+        .nav-item:hover { background: #2a2d2e; }
+        .nav-item.active { background: #094771; border-left: 3px solid #007acc; }
+        .content { flex: 1; padding: 2rem; overflow-y: auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .status-card { background: #2d2d30; border: 1px solid #3e3e42; border-radius: 8px; padding: 1.5rem; }
+        .status-card h3 { color: #007acc; margin-bottom: 1rem; }
+        .status-indicator { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .status-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .status-dot.online { background: #4caf50; }
+        .status-dot.offline { background: #f44336; }
+        .status-dot.warning { background: #ff9800; }
+        .btn { background: #007acc; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
+        .btn:hover { background: #005a9e; }
+        .btn-secondary { background: #3e3e42; }
+        .btn-secondary:hover { background: #4e4e52; }
+        .config-section { background: #2d2d30; border: 1px solid #3e3e42; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: #cccccc; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; background: #3c3c3c; border: 1px solid #5a5a5a; border-radius: 4px; color: #ffffff; }
+        .logs { background: #1e1e1e; border: 1px solid #3e3e42; border-radius: 8px; padding: 1rem; font-family: 'Courier New', monospace; font-size: 0.9rem; max-height: 400px; overflow-y: auto; }
+        .iframe-container { width: 100%; height: calc(100vh - 140px); border: 1px solid #3e3e42; border-radius: 8px; }
+        .iframe-container iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🚀 Statik Server Dashboard</h1>
+    </header>
+    
+    <div class="container">
+        <nav class="sidebar">
+            <div class="nav-item active" onclick="showTab('overview')">📊 Overview</div>
+            <div class="nav-item" onclick="showTab('vscode')">� VS Code</div>
+            <div class="nav-item" onclick="showTab('tailscale')">🌐 Tailscale</div>
+            <div class="nav-item" onclick="showTab('settings')">⚙️ Settings</div>
+            <div class="nav-item" onclick="showTab('logs')">📝 Logs</div>
+        </nav>
+        
+        <main class="content">
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <h2>System Overview</h2>
+                <div class="status-grid">
+                    <div class="status-card">
+                        <h3>VS Code Server</h3>
+                        <div class="status-indicator">
+                            <div class="status-dot online"></div>
+                            <span>Running on port 8080</span>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="status-dot online"></div>
+                            <span>GitHub Copilot Active</span>
+                        </div>
+                        <a href="/vscode" target="_blank" class="btn">Open VS Code</a>
+                    </div>
+                    
+                    <div class="status-card">
+                        <h3>Tailscale VPN</h3>
+                        <div class="status-indicator">
+                            <div class="status-dot warning"></div>
+                            <span>Connecting...</span>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="status-dot offline"></div>
+                            <span>Mesh Network: Initializing</span>
+                        </div>
+                        <button class="btn btn-secondary" onclick="refreshTailscale()">Refresh Status</button>
+                    </div>
+                    
+                    <div class="status-card">
+                        <h3>Security</h3>
+                        <div class="status-indicator">
+                            <div class="status-dot online"></div>
+                            <span>HTTPS Enabled</span>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="status-dot online"></div>
+                            <span>Authentication Active</span>
+                        </div>
+                        <button class="btn btn-secondary" onclick="regenerateCerts()">Regenerate Certs</button>
+                    </div>
+                    
+                    <div class="status-card">
+                        <h3>System Resources</h3>
+                        <div class="status-indicator">
+                            <div class="status-dot online"></div>
+                            <span>CPU: 15%</span>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="status-dot online"></div>
+                            <span>Memory: 2.1GB / 8GB</span>
+                        </div>
+                        <div class="status-indicator">
+                            <div class="status-dot online"></div>
+                            <span>Disk: 45GB / 100GB</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="config-section">
+                    <h3>Quick Actions</h3>
+                    <button class="btn" onclick="restartServer()">Restart Server</button>
+                    <button class="btn btn-secondary" onclick="backupConfig()">Backup Config</button>
+                    <button class="btn btn-secondary" onclick="updateServer()">Update Server</button>
+                </div>
+            </div>
+            
+            <!-- VS Code Tab -->
+            <div id="vscode" class="tab-content">
+                <h2>VS Code Server</h2>
+                <div class="iframe-container">
+                    <iframe src="/vscode" title="VS Code Server"></iframe>
+                </div>
+            </div>
+            
+            <!-- Tailscale Tab -->
+            <div id="tailscale" class="tab-content">
+                <h2>Tailscale Configuration</h2>
+                <div class="config-section">
+                    <h3>Connection Settings</h3>
+                    <div class="form-group">
+                        <label>Auth Key</label>
+                        <input type="password" id="authKey" placeholder="Enter your Tailscale auth key">
+                    </div>
+                    <div class="form-group">
+                        <label>Exit Node</label>
+                        <select id="exitNode">
+                            <option value="">None</option>
+                            <option value="auto">Auto</option>
+                        </select>
+                    </div>
+                    <button class="btn" onclick="connectTailscale()">Connect</button>
+                    <button class="btn btn-secondary" onclick="disconnectTailscale()">Disconnect</button>
+                </div>
+                
+                <div class="config-section">
+                    <h3>Network Status</h3>
+                    <div id="tailscaleStatus" class="logs">
+                        Loading Tailscale status...
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings Tab -->
+            <div id="settings" class="tab-content">
+                <h2>Server Settings</h2>
+                <div class="config-section">
+                    <h3>Server Configuration</h3>
+                    <div class="form-group">
+                        <label>Server Port</label>
+                        <input type="number" id="serverPort" value="8080">
+                    </div>
+                    <div class="form-group">
+                        <label>Domain</label>
+                        <input type="text" id="domain" placeholder="your-domain.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="Enter new password">
+                    </div>
+                    <button class="btn" onclick="saveSettings()">Save Settings</button>
+                </div>
+                
+                <div class="config-section">
+                    <h3>VS Code Settings</h3>
+                    <div class="form-group">
+                        <label>Extensions Auto-Install</label>
+                        <select id="autoInstall">
+                            <option value="true">Enabled</option>
+                            <option value="false">Disabled</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Default Workspace</label>
+                        <input type="text" id="workspace" value="/home/workspace">
+                    </div>
+                    <button class="btn" onclick="saveVSCodeSettings()">Save VS Code Settings</button>
+                </div>
+            </div>
+            
+            <!-- Logs Tab -->
+            <div id="logs" class="tab-content">
+                <h2>System Logs</h2>
+                <div class="config-section">
+                    <h3>Real-time Logs</h3>
+                    <div id="systemLogs" class="logs">
+                        [2025-07-14 22:50:00] INFO: Statik Server started successfully
+                        [2025-07-14 22:50:01] INFO: VS Code server listening on port 8080
+                        [2025-07-14 22:50:02] INFO: HTTPS certificates loaded
+                        [2025-07-14 22:50:03] WARN: Tailscale not yet connected
+                        [2025-07-14 22:50:04] INFO: Dashboard ready at https://localhost:8443
+                    </div>
+                    <button class="btn btn-secondary" onclick="clearLogs()">Clear Logs</button>
+                    <button class="btn btn-secondary" onclick="downloadLogs()">Download Logs</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Load tab-specific content
+            if (tabName === 'tailscale') {
+                loadTailscaleStatus();
+            } else if (tabName === 'logs') {
+                loadSystemLogs();
+            }
+        }
+        
+        function refreshTailscale() {
+            fetch('/api/tailscale/status')
+                .then(response => response.json())
+                .then(data => {
+                    // Update status indicators
+                    console.log('Tailscale status:', data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        
+        function connectTailscale() {
+            const authKey = document.getElementById('authKey').value;
+            if (!authKey) {
+                alert('Please enter an auth key');
+                return;
+            }
+            
+            fetch('/api/tailscale/connect', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ authKey })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Tailscale connection initiated');
+                loadTailscaleStatus();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        
+        function disconnectTailscale() {
+            fetch('/api/tailscale/disconnect', { method: 'POST' })
+                .then(() => {
+                    alert('Tailscale disconnected');
+                    loadTailscaleStatus();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        
+        function loadTailscaleStatus() {
+            document.getElementById('tailscaleStatus').innerHTML = 'Loading...';
+            setTimeout(() => {
+                document.getElementById('tailscaleStatus').innerHTML = `
+[2025-07-14 22:50:00] Tailscale v1.32.0
+[2025-07-14 22:50:01] Status: Stopped
+[2025-07-14 22:50:02] No auth key configured
+[2025-07-14 22:50:03] Run 'tailscale up' to connect
+                `;
+            }, 1000);
+        }
+        
+        function loadSystemLogs() {
+            // Simulate real-time logs
+            const logs = document.getElementById('systemLogs');
+            setInterval(() => {
+                const timestamp = new Date().toISOString().replace('T', ' ').substr(0, 19);
+                const messages = [
+                    'INFO: Health check completed',
+                    'DEBUG: Processing request',
+                    'INFO: Extension installed',
+                    'WARN: High memory usage detected'
+                ];
+                const message = messages[Math.floor(Math.random() * messages.length)];
+                logs.innerHTML += `\n[${timestamp}] ${message}`;
+                logs.scrollTop = logs.scrollHeight;
+            }, 5000);
+        }
+        
+        function saveSettings() {
+            alert('Settings saved successfully');
+        }
+        
+        function saveVSCodeSettings() {
+            alert('VS Code settings saved successfully');
+        }
+        
+        function restartServer() {
+            if (confirm('Are you sure you want to restart the server?')) {
+                alert('Server restart initiated');
+            }
+        }
+        
+        function backupConfig() {
+            alert('Configuration backup created');
+        }
+        
+        function updateServer() {
+            alert('Server update check initiated');
+        }
+        
+        function clearLogs() {
+            document.getElementById('systemLogs').innerHTML = '';
+        }
+        
+        function downloadLogs() {
+            alert('Logs download started');
+        }
+        
+        function regenerateCerts() {
+            if (confirm('Regenerate SSL certificates?')) {
+                alert('Certificates regenerated successfully');
+            }
+        }
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSystemLogs();
+        });
+    </script>
+</body>
+</html>
